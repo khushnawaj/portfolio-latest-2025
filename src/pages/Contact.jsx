@@ -34,9 +34,9 @@ export default function Contact() {
   };
 
   const socialLinks = [
-    { icon: <FiGithub />, label: "GitHub", url: "https://github.com", color: "hover:text-gray-300" },
-    { icon: <FiLinkedin />, label: "LinkedIn", url: "https://linkedin.com", color: "hover:text-blue-500" },
-    { icon: <FiTwitter />, label: "Twitter", url: "https://twitter.com", color: "hover:text-sky-400" },
+    { icon: <FiGithub />, label: "GitHub", url: "https://github.com/khushnawaj", color: "hover:text-gray-300" },
+    { icon: <FiLinkedin />, label: "LinkedIn", url: "https://www.linkedin.com/in/17-khushnawaj/", color: "hover:text-blue-500" },
+    { icon: <FiTwitter />, label: "Twitter", url: "https://x.com/PG4daotBo94zbMG", color: "hover:text-sky-400" },
   ];
 
   return (

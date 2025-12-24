@@ -1,5 +1,6 @@
 import { FiCode, FiDatabase, FiLayers, FiChevronRight, FiDownload } from "react-icons/fi";
 import { useState } from "react";
+import logo from "../assets/logo.png";
 
 export default function Home() {
   const [hoveredCard, setHoveredCard] = useState(null);
@@ -7,53 +8,68 @@ export default function Home() {
   return (
     <main className="pt-28">
       {/* HERO */}
-      <section className="min-h-[80vh] flex items-center justify-center px-6">
-        <div className="max-w-4xl text-center mx-auto">
-          <div className="relative">
-            {/* Animated gradient background */}
-            <div className="absolute -top-20 -left-20 w-64 h-64 bg-neon/10 rounded-full blur-3xl animate-pulse"></div>
-            
-            <h1 className="text-5xl md:text-7xl font-bold mb-4 relative">
-              <span className="bg-gradient-to-r from-white to-neon/80 bg-clip-text text-transparent">
-                Khushnawaj
-              </span>
-            </h1>
+<section className="min-h-[80vh] flex items-center justify-center px-6">
+  <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+    
+    {/* LEFT: TEXT */}
+    <div className="text-center md:text-left relative">
+      <div className="absolute -top-20 -left-20 w-64 h-64 bg-neon/10 rounded-full blur-3xl animate-pulse"></div>
 
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-neon/10 rounded-full mb-6 border border-neon/30">
-              <span className="w-2 h-2 bg-neon rounded-full animate-pulse"></span>
-              <p className="text-neon text-lg md:text-xl">
-                Full Stack Web Developer
-              </p>
-            </div>
+      <h1 className="text-5xl md:text-7xl font-bold mb-4 relative">
+        <span className="bg-gradient-to-r from-white to-neon/80 bg-clip-text text-transparent">
+          Khushnawaj
+        </span>
+      </h1>
 
-            <p className="text-gray-300 max-w-2xl mx-auto leading-relaxed text-lg mb-8">
-              Full Stack Developer with <span className="text-neon font-semibold">~2 years</span> of experience building and
-              deploying production-ready web applications. Currently working at{" "}
-              <span className="text-white font-semibold relative group cursor-pointer">
-                Life Layer Health Solutions Pvt Ltd
-                <span className="absolute -bottom-1 left-0 w-0 group-hover:w-full h-0.5 bg-neon transition-all duration-300"></span>
-              </span>, focusing on backend APIs, databases, and real-world systems.
-            </p>
+      <div className="inline-flex items-center gap-2 px-4 py-2 bg-neon/10 rounded-full mb-6 border border-neon/30">
+        <span className="w-2 h-2 bg-neon rounded-full animate-pulse"></span>
+        <p className="text-neon text-lg md:text-xl">
+          Full Stack Web Developer
+        </p>
+      </div>
 
-            <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-              <a
-                href="/projects"
-                className="px-8 py-3 bg-neon text-black rounded-lg font-semibold flex items-center justify-center gap-2 group hover:bg-neon/90 hover:shadow-[0_0_20px_rgba(0,255,255,0.3)] transition-all duration-300"
-              >
-                View Projects
-                <FiChevronRight className="group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a
-                href="/resume"
-                className="px-8 py-3 border border-neon/30 rounded-lg text-white hover:border-neon hover:bg-neon/10 flex items-center justify-center gap-2 transition-all duration-300 group"
-              >
-                <FiDownload />
-                Resume
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      <p className="text-gray-300 leading-relaxed text-lg mb-8">
+        Full Stack Developer with <span className="text-neon font-semibold">~2 years</span> 
+        of experience building production-ready web applications. Currently working at{" "}
+        <span className="text-white font-semibold relative group cursor-pointer">
+          Life Layer Health Solutions Pvt Ltd
+          <span className="absolute -bottom-1 left-0 w-0 group-hover:w-full h-0.5 bg-neon transition-all duration-300"></span>
+        </span>.
+      </p>
+
+      <div className="mt-6 flex flex-col sm:flex-row md:justify-start justify-center gap-4">
+        <a
+          href="/projects"
+          className="px-8 py-3 bg-neon text-black rounded-lg font-semibold flex items-center justify-center gap-2 group hover:bg-neon/90 hover:shadow-[0_0_20px_rgba(0,255,255,0.3)] transition-all duration-300"
+        >
+          View Projects
+          <FiChevronRight className="group-hover:translate-x-1 transition-transform" />
+        </a>
+
+        <a
+          href="/resume"
+          className="px-8 py-3 border border-neon/30 rounded-lg text-white hover:border-neon hover:bg-neon/10 flex items-center justify-center gap-2 transition-all duration-300 group"
+        >
+          <FiDownload />
+          Resume
+        </a>
+      </div>
+    </div>
+
+    {/* RIGHT: IMAGE */}
+    <div className="flex justify-center md:justify-end relative">
+      <div className="absolute inset-0 w-64 h-64 bg-neon/10 blur-3xl rounded-full animate-pulse mx-auto"></div>
+
+      <img 
+        src={logo}
+        alt="Khushnawaj avatar"
+        className="relative h-56 w-56 md:h-72 md:w-72 object-contain rounded-full border border-neon/30 shadow-[0_0_40px_rgba(0,255,255,0.25)] hover:scale-105 transition-transform duration-300"
+      />
+    </div>
+
+  </div>
+</section>
+
 
       {/* WHAT I DO */}
       <section className="max-w-6xl mx-auto px-6 py-20">

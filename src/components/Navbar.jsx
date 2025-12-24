@@ -1,5 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
+import Logo from "../assets/logo.png";
+
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -13,13 +15,19 @@ export default function Navbar() {
     <nav className="fixed top-0 w-full bg-bg/90 backdrop-blur-sm border-b border-gray-800 z-50">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo with glow effect */}
-        <Link 
-          to="/" 
-          className="font-arcade text-neon text-xl hover:text-neon/80 transition-colors duration-300 relative group"
-        >
-          KHUSHNAWAJ
-          <span className="absolute -inset-1 blur opacity-30 group-hover:opacity-50 transition-opacity duration-300 bg-neon"></span>
-        </Link>
+<Link to="/" className="relative group flex items-center gap-2">
+  <img 
+    src={Logo} 
+    alt="Site logo" 
+    className="h-10 w-10 object-contain rounded-full shadow-neon"
+  />
+  <span className="font-arcade text-neon text-xl hover:text-neon/80 transition-colors duration-300">
+    KHUSH
+  </span>
+
+  <span className="absolute -inset-1 blur opacity-30 group-hover:opacity-50 transition-opacity duration-300 "></span>
+</Link>
+
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex gap-8 items-center">
