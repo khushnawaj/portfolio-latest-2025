@@ -4,17 +4,23 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Light mode default */
 body {
-  background: #0B0B0D;
-  color: #E5E7EB;
+  background: #ffffff;
+  color: #1f2937;
   font-family: Inter, sans-serif;
 }
 
-/* Subtle cyan underline on hover */
+/* Dark mode only when html has .dark */
+.dark body {
+  background: #0B0B0D;      /* bg */
+  color: #E5E7EB;           /* text */
+}
+
+/* Hover underline */
 .hover-underline {
   position: relative;
 }
-
 .hover-underline::after {
   content: "";
   position: absolute;
@@ -22,20 +28,18 @@ body {
   left: 0;
   width: 0;
   height: 2px;
-  background: #22D3EE; 
+  background: #22D3EE;
   opacity: .8;
   transition: width .25s ease;
 }
-
 .hover-underline:hover::after {
   width: 100%;
 }
 
-/* Minimal active dot */
+/* Active dot */
 .active-dot {
   position: relative;
 }
-
 .active-dot::before {
   content: "";
   position: absolute;
@@ -48,7 +52,7 @@ body {
   opacity: .9;
 }
 
-/* Smooth transitions for all links */
+/* Smooth link transitions */
 a {
   transition: 0.25s;
 }

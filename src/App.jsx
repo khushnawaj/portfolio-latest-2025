@@ -6,8 +6,16 @@ import Projects from "./pages/Projects";
 import ProjectDetails from "./pages/ProjectDetails";
 import Resume from "./pages/Resume";
 import Contact from "./pages/Contact";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 export default function App() {
+  const theme = useSelector((state) => state.theme.mode);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", theme === "dark");
+  }, [theme]);
+
   return (
     <>
       <Navbar />

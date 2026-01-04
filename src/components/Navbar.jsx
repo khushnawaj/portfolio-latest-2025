@@ -1,68 +1,147 @@
 import { Link, NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Logo from "../assets/logo.png";
+import { useDispatch, useSelector } from "react-redux";
+import { FiMoon, FiSun, FiX, FiMenu } from "react-icons/fi";
+import { toggleTheme } from "../store/themeSlice";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
+  const theme = useSelector((s) => s.theme.mode);
 
-  const linkClass = ({ isActive }) =>
-    isActive
-      ? "text-accent font-medium"
-      : "text-gray-300 hover:text-white transition";
+  // Lock scroll when menu open
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "auto";
+  }, [open]);
 
   return (
-    <nav className="fixed top-0 w-full bg-[#0B0B0D]/95 backdrop-blur border-b border-border z-50">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-[#0B0B0D] border-b border-gray-200 dark:border-[#1F2937]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
 
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3">
           <img
             src={Logo}
             alt="Logo"
-            className="h-9 w-9 object-cover rounded-full border border-border"
+            className="h-9 w-9 rounded-full border border-gray-200 dark:border-[#1F2937]"
           />
-          <span className="text-gray-200 font-semibold tracking-wide">
+          <span className="font-semibold tracking-wide text-gray-900 dark:text-gray-100">
             KHUSH
           </span>
         </Link>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex gap-10 items-center">
-          <NavLink to="/" className={linkClass}>Home</NavLink>
-          <NavLink to="/projects" className={linkClass}>Projects</NavLink>
-          <NavLink to="/resume" className={linkClass}>Resume</NavLink>
-          <NavLink to="/contact" className={linkClass}>Contact</NavLink>
+        {/* Desktop Nav */}
+        <div className="hidden md:flex gap-8 items-center">
+          <NavLink
+            to="/"
+            className="text-gray-700 dark:text-gray-300 hover:text-cyan-500 dark:hover:text-accent"
+          >
+            Home
+          </NavLink>
+
+          <NavLink
+            to="/projects"
+            className="text-gray-700 dark:text-gray-300 hover:text-cyan-500 dark:hover:text-accent"
+          >
+            Projects
+          </NavLink>
+
+          <NavLink
+            to="/resume"
+            className="text-gray-700 dark:text-gray-300 hover:text-cyan-500 dark:hover:text-accent"
+          >
+            Resume
+          </NavLink>
+
+          <NavLink
+            to="/contact"
+            className="text-gray-700 dark:text-gray-300 hover:text-cyan-500 dark:hover:text-accent"
+          >
+            Contact
+          </NavLink>
+
+          <button
+            onClick={() => dispatch(toggleTheme())}
+            className="p-2 rounded-lg border border-gray-200 dark:border-[#1F2937]"
+          >
+            {theme === "dark" ? <FiSun /> : <FiMoon />}
+          </button>
         </div>
 
         {/* Mobile Button */}
         <button
-          onClick={() => setOpen(!open)}
-          className="md:hidden text-gray-300 text-2xl"
-          aria-label="Menu"
+          onClick={() => setOpen(true)}
+          className="md:hidden text-2xl text-gray-800 dark:text-gray-200 p-2"
         >
-          {open ? "✕" : "☰"}
+          <FiMenu />
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* FULLSCREEN MENU */}
       <div
-        className={`md:hidden bg-[#0B0B0D] border-t border-border transition-all duration-300 overflow-hidden ${
-          open ? "max-h-64" : "max-h-0"
-        }`}
+        className={`
+          fixed inset-0 z-[60] md:hidden
+          bg-white dark:bg-[#0B0B0D]
+          transition-transform duration-300
+          ${open ? "translate-y-0" : "-translate-y-full"}
+        `}
       >
-        <div className="px-6 py-4 space-y-4">
-          <NavLink onClick={() => setOpen(false)} to="/" className={linkClass}>
+        {/* Top bar */}
+        <div className="flex justify-between items-center px-6 py-4 border-b border-gray-200 dark:border-[#1F2937]">
+          <span className="font-semibold text-gray-900 dark:text-gray-100 text-lg">
+            Menu
+          </span>
+
+          <button
+            onClick={() => setOpen(false)}
+            className="text-2xl text-gray-700 dark:text-gray-300"
+          >
+            <FiX />
+          </button>
+        </div>
+
+        {/* Center Links */}
+        <div className="flex flex-col items-center justify-center gap-6 h-[85%]">
+
+          <NavLink
+            to="/"
+            onClick={() => setOpen(false)}
+            className="text-3xl font-semibold text-gray-800 dark:text-gray-200 hover:text-cyan-500 dark:hover:text-accent"
+          >
             Home
           </NavLink>
-          <NavLink onClick={() => setOpen(false)} to="/projects" className={linkClass}>
+
+          <NavLink
+            to="/projects"
+            onClick={() => setOpen(false)}
+            className="text-3xl font-semibold text-gray-800 dark:text-gray-200 hover:text-cyan-500 dark:hover:text-accent"
+          >
             Projects
           </NavLink>
-          <NavLink onClick={() => setOpen(false)} to="/resume" className={linkClass}>
+
+          <NavLink
+            to="/resume"
+            onClick={() => setOpen(false)}
+            className="text-3xl font-semibold text-gray-800 dark:text-gray-200 hover:text-cyan-500 dark:hover:text-accent"
+          >
             Resume
           </NavLink>
-          <NavLink onClick={() => setOpen(false)} to="/contact" className={linkClass}>
+
+          <NavLink
+            to="/contact"
+            onClick={() => setOpen(false)}
+            className="text-3xl font-semibold text-gray-800 dark:text-gray-200 hover:text-cyan-500 dark:hover:text-accent"
+          >
             Contact
           </NavLink>
+
+          <button
+            onClick={() => dispatch(toggleTheme())}
+            className="mt-8 p-3 rounded-lg border border-gray-200 dark:border-[#1F2937] text-gray-700 dark:text-gray-200"
+          >
+            {theme === "dark" ? <FiSun /> : <FiMoon />}
+          </button>
         </div>
       </div>
     </nav>

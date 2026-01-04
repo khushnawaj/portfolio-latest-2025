@@ -5,7 +5,8 @@ import {
   FiSend,
   FiLinkedin,
   FiGithub,
-  FiTwitter
+  FiTwitter,
+  FiInstagram
 } from "react-icons/fi";
 import { useState } from "react";
 
@@ -29,7 +30,8 @@ export default function Contact() {
   const social = [
     { icon: <FiGithub />, url: "https://github.com/khushnawaj" },
     { icon: <FiLinkedin />, url: "https://www.linkedin.com/in/17-khushnawaj/" },
-    { icon: <FiTwitter />, url: "https://x.com/PG4daotBo94zbMG" }
+    { icon: <FiTwitter />, url: "https://x.com/PG4daotBo94zbMG" },
+    { icon: <FiInstagram />, url: "https://www.instagram.com/__nawaj_md__" }
   ];
 
   return (
@@ -37,13 +39,13 @@ export default function Contact() {
 
       {/* Header */}
       <div className="text-center mb-16">
-        <p className="text-accent tracking-wide mb-2">CONTACT</p>
+        <p className="tracking-wide mb-2 text-cyan-600 dark:text-accent">CONTACT</p>
 
-        <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
           Let's Connect
         </h1>
 
-        <p className="text-gray-400 max-w-2xl mx-auto">
+        <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-400">
           Have a project or opportunity in mind? Feel free to reach out.
         </p>
       </div>
@@ -53,49 +55,69 @@ export default function Contact() {
         {/* Left */}
         <div className="space-y-6">
 
-          <div className="p-6 bg-[#111216] border border-[#1F2937] rounded-xl flex gap-4">
-            <div className="p-3 rounded-lg bg-[#0B0B0D] border border-[#1F2937] text-accent">
+          <div className="p-6 rounded-xl flex gap-4
+            bg-white border border-gray-200
+            dark:bg-[#111216] dark:border-[#1F2937]
+          ">
+            <div className="p-3 rounded-lg
+              bg-gray-100 border border-gray-200 text-cyan-600
+              dark:bg-[#0B0B0D] dark:border-[#1F2937] dark:text-accent
+            ">
               <FiMail />
             </div>
             <div>
-              <h3 className="text-white font-medium mb-1">Email</h3>
+              <h3 className="font-medium mb-1 text-gray-900 dark:text-white">Email</h3>
               <a
                 href="mailto:khushnawaj14@gmail.com"
-                className="text-gray-300 hover:text-accent"
+                className="text-gray-700 hover:text-cyan-600 dark:text-gray-300 dark:hover:text-accent"
               >
                 khushnawaj14@gmail.com
               </a>
             </div>
           </div>
 
-          <div className="p-6 bg-[#111216] border border-[#1F2937] rounded-xl flex gap-4">
-            <div className="p-3 rounded-lg bg-[#0B0B0D] border border-[#1F2937] text-accent">
+          <div className="p-6 rounded-xl flex gap-4
+            bg-white border border-gray-200
+            dark:bg-[#111216] dark:border-[#1F2937]
+          ">
+            <div className="p-3 rounded-lg
+              bg-gray-100 border border-gray-200 text-cyan-600
+              dark:bg-[#0B0B0D] dark:border-[#1F2937] dark:text-accent
+            ">
               <FiPhone />
             </div>
             <div>
-              <h3 className="text-white font-medium mb-1">Phone</h3>
+              <h3 className="font-medium mb-1 text-gray-900 dark:text-white">Phone</h3>
               <a
                 href="tel:+918417858734"
-                className="text-gray-300 hover:text-accent"
+                className="text-gray-700 hover:text-cyan-600 dark:text-gray-300 dark:hover:text-accent"
               >
                 +91 84178 58734
               </a>
             </div>
           </div>
 
-          <div className="p-6 bg-[#111216] border border-[#1F2937] rounded-xl flex gap-4">
-            <div className="p-3 rounded-lg bg-[#0B0B0D] border border-[#1F2937] text-accent">
+          <div className="p-6 rounded-xl flex gap-4
+            bg-white border border-gray-200
+            dark:bg-[#111216] dark:border-[#1F2937]
+          ">
+            <div className="p-3 rounded-lg
+              bg-gray-100 border border-gray-200 text-cyan-600
+              dark:bg-[#0B0B0D] dark:border-[#1F2937] dark:text-accent
+            ">
               <FiMapPin />
             </div>
             <div>
-              <h3 className="text-white font-medium mb-1">Location</h3>
-              <p className="text-gray-300">Gurugram, Haryana</p>
+              <h3 className="font-medium mb-1 text-gray-900 dark:text-white">Location</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Gurugram, Haryana
+              </p>
             </div>
           </div>
 
           {/* Social */}
           <div className="pt-4">
-            <h3 className="text-white font-medium mb-4">Social</h3>
+            <h3 className="font-medium mb-4 text-gray-900 dark:text-white">Social</h3>
 
             <div className="flex gap-3">
               {social.map((s, i) => (
@@ -104,7 +126,13 @@ export default function Contact() {
                   href={s.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-lg border border-[#1F2937] bg-[#0B0B0D] text-gray-400 hover:text-accent hover:border-accent/40 transition"
+                  className="
+                    p-3 rounded-lg transition
+                    border border-gray-200 bg-gray-100 text-gray-600
+                    hover:text-cyan-600 hover:border-cyan-300
+                    dark:border-[#1F2937] dark:bg-[#0B0B0D] dark:text-gray-400
+                    dark:hover:text-accent dark:hover:border-accent/40
+                  "
                 >
                   {s.icon}
                 </a>
@@ -115,17 +143,21 @@ export default function Contact() {
         </div>
 
         {/* Form */}
-        <div className="bg-[#111216] border border-[#1F2937] rounded-2xl p-8">
+        <div className="
+          rounded-2xl p-8
+          bg-white border border-gray-200
+          dark:bg-[#111216] dark:border-[#1F2937]
+        ">
 
-          <h2 className="text-2xl font-bold text-white mb-8">
+          <h2 className="text-2xl font-bold mb-8 text-gray-900 dark:text-white">
             Send a Message
           </h2>
 
           {isSubmitted ? (
             <div className="text-center py-10">
-              <div className="text-accent text-3xl mb-4"><FiMail /></div>
-              <p className="text-white font-medium mb-2">Message Sent</p>
-              <p className="text-gray-400">I’ll get back to you soon.</p>
+              <div className="text-3xl mb-4 text-cyan-600 dark:text-accent"><FiMail /></div>
+              <p className="font-medium mb-2 text-gray-900 dark:text-white">Message Sent</p>
+              <p className="text-gray-600 dark:text-gray-400">I’ll get back to you soon.</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -137,7 +169,12 @@ export default function Contact() {
                 required
                 value={formData.name}
                 onChange={e => setFormData({ ...formData, name: e.target.value })}
-                className="w-full px-4 py-3 bg-[#0B0B0D] border border-[#1F2937] rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-accent"
+                className="
+                  w-full px-4 py-3 rounded-lg focus:outline-none transition
+                  bg-gray-100 border border-gray-300 placeholder-gray-500
+                  focus:border-cyan-500
+                  dark:bg-[#0B0B0D] dark:border-[#1F2937] dark:text-white dark:placeholder-gray-500 dark:focus:border-accent
+                "
               />
 
               <input
@@ -147,7 +184,12 @@ export default function Contact() {
                 required
                 value={formData.email}
                 onChange={e => setFormData({ ...formData, email: e.target.value })}
-                className="w-full px-4 py-3 bg-[#0B0B0D] border border-[#1F2937] rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-accent"
+                className="
+                  w-full px-4 py-3 rounded-lg focus:outline-none transition
+                  bg-gray-100 border border-gray-300 placeholder-gray-500
+                  focus:border-cyan-500
+                  dark:bg-[#0B0B0D] dark:border-[#1F2937] dark:text-white dark:placeholder-gray-500 dark:focus:border-accent
+                "
               />
 
               <textarea
@@ -157,13 +199,22 @@ export default function Contact() {
                 required
                 value={formData.message}
                 onChange={e => setFormData({ ...formData, message: e.target.value })}
-                className="w-full px-4 py-3 bg-[#0B0B0D] border border-[#1F2937] rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-accent resize-none"
+                className="
+                  w-full px-4 py-3 rounded-lg resize-none focus:outline-none transition
+                  bg-gray-100 border border-gray-300 placeholder-gray-500
+                  focus:border-cyan-500
+                  dark:bg-[#0B0B0D] dark:border-[#1F2937] dark:text-white dark:placeholder-gray-500 dark:focus:border-accent
+                "
               />
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-3 bg-white text-black font-medium rounded-lg hover:bg-gray-200 transition disabled:opacity-60"
+                className="
+                  w-full py-3 rounded-lg font-medium transition disabled:opacity-60
+                  bg-gray-900 text-white hover:bg-gray-800
+                  dark:bg-white dark:text-black dark:hover:bg-gray-200
+                "
               >
                 {isSubmitting ? "Sending..." : "Send Message"}
               </button>
@@ -175,18 +226,26 @@ export default function Contact() {
 
       {/* CTA */}
       <div className="text-center mb-20">
-        <div className="bg-[#111216] border border-[#1F2937] rounded-2xl p-12">
-          <h3 className="text-3xl font-bold text-white mb-6">
+        <div className="
+          rounded-2xl p-12
+          bg-gray-50 border border-gray-200
+          dark:bg-[#111216] dark:border-[#1F2937]
+        ">
+          <h3 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
             Open to Work & Collaboration
           </h3>
 
-          <p className="text-gray-400 max-w-xl mx-auto mb-8">
+          <p className="max-w-xl mx-auto mb-8 text-gray-600 dark:text-gray-400">
             Whether it's a product build, backend system or consultation — I’d love to talk.
           </p>
 
           <a
             href="mailto:khushnawaj14@gmail.com"
-            className="px-8 py-3 bg-white text-black font-medium rounded-lg hover:bg-gray-200 transition"
+            className="
+              px-8 py-3 rounded-lg font-medium transition
+              bg-gray-900 text-white hover:bg-gray-800
+              dark:bg-white dark:text-black dark:hover:bg-gray-200
+            "
           >
             Email Me
           </a>

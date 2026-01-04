@@ -61,13 +61,15 @@ export default function Projects() {
 
       {/* Header */}
       <div className="mb-14">
-        <p className="text-accent tracking-wide mb-2">PROJECTS</p>
+        <p className="tracking-wide mb-2 text-cyan-600 dark:text-accent">
+          PROJECTS
+        </p>
 
-        <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
           Selected Work
         </h1>
 
-        <p className="text-gray-400 max-w-2xl">
+        <p className="max-w-2xl text-gray-600 dark:text-gray-400">
           A curated collection of products and systems I’ve built.
         </p>
       </div>
@@ -77,10 +79,18 @@ export default function Projects() {
         {projects.map((p, i) => (
           <div
             key={i}
-            className="bg-[#111216] border border-border rounded-xl p-6 transition-all hover:border-accent/40"
+            className="
+              rounded-xl p-6 transition-all
+              bg-white border border-gray-200 hover:border-cyan-300
+              dark:bg-[#111216] dark:border-border dark:hover:border-accent/40
+            "
           >
             <div className="flex items-start justify-between mb-4">
-              <div className="p-3 rounded-lg bg-[#0B0B0D] border border-border text-accent">
+              <div className="
+                p-3 rounded-lg
+                bg-gray-100 border border-gray-200 text-cyan-600
+                dark:bg-[#0B0B0D] dark:border-border dark:text-accent
+              ">
                 <FiFolder size={22} />
               </div>
 
@@ -88,8 +98,8 @@ export default function Projects() {
                 {p.github && (
                   <a
                     href={p.github}
-                    className="text-gray-400 hover:text-accent transition"
                     aria-label="GitHub"
+                    className="transition text-gray-500 hover:text-cyan-600 dark:text-gray-400 dark:hover:text-accent"
                   >
                     <FiGithub />
                   </a>
@@ -100,8 +110,8 @@ export default function Projects() {
                     href={p.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-accent transition"
                     aria-label="Live Demo"
+                    className="transition text-gray-500 hover:text-cyan-600 dark:text-gray-400 dark:hover:text-accent"
                   >
                     <FiExternalLink />
                   </a>
@@ -109,11 +119,11 @@ export default function Projects() {
               </div>
             </div>
 
-            <h3 className="text-xl font-semibold text-white mb-2">
+            <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
               {p.title}
             </h3>
 
-            <p className="text-gray-400 mb-5 leading-relaxed">
+            <p className="mb-5 leading-relaxed text-gray-600 dark:text-gray-400">
               {p.description}
             </p>
 
@@ -121,7 +131,11 @@ export default function Projects() {
               {p.tags.map((t, idx) => (
                 <span
                   key={idx}
-                  className="px-3 py-1 text-xs rounded-lg bg-[#0B0B0D] border border-border text-gray-300"
+                  className="
+                    px-3 py-1 text-xs rounded-lg
+                    bg-gray-100 border border-gray-200 text-gray-700
+                    dark:bg-[#0B0B0D] dark:border-border dark:text-gray-300
+                  "
                 >
                   {t}
                 </span>
@@ -131,7 +145,11 @@ export default function Projects() {
             {p.caseStudy && (
               <Link
                 to={`/projects/${p.slug}`}
-                className="inline-flex items-center gap-1 text-accent text-sm"
+                className="
+                  inline-flex items-center gap-1 text-sm
+                  text-cyan-600 hover:text-cyan-700
+                  dark:text-accent dark:hover:text-accent
+                "
               >
                 View Case Study
                 <FiChevronRight />
@@ -142,14 +160,20 @@ export default function Projects() {
       </div>
 
       {/* Highlight */}
-      <div className="bg-[#111216] border border-border rounded-2xl p-10 mb-20">
-        <p className="text-accent mb-3 font-medium">FEATURED CASE STUDY</p>
+      <div className="
+        rounded-2xl p-10 mb-20
+        bg-gray-50 border border-gray-200
+        dark:bg-[#111216] dark:border-border
+      ">
+        <p className="mb-3 font-medium text-cyan-600 dark:text-accent">
+          FEATURED CASE STUDY
+        </p>
 
-        <h2 className="text-3xl font-bold text-white mb-4">
+        <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
           Scentiva E-Commerce
         </h2>
 
-        <p className="text-gray-400 max-w-3xl mb-6">
+        <p className="max-w-3xl mb-6 text-gray-600 dark:text-gray-400">
           A production-grade e-commerce platform built with real-world payment flows,
           admin dashboards and scalable deployment architecture.
         </p>
@@ -158,7 +182,11 @@ export default function Projects() {
           {["Payments", "REST APIs", "Admin Panel", "Cloud Deployments"].map((t, i) => (
             <span
               key={i}
-              className="px-4 py-1.5 bg-[#0B0B0D] border border-border text-gray-300 rounded-lg text-sm"
+              className="
+                px-4 py-1.5 text-sm rounded-lg
+                bg-gray-100 border border-gray-200 text-gray-700
+                dark:bg-[#0B0B0D] dark:border-border dark:text-gray-300
+              "
             >
               {t}
             </span>
@@ -168,7 +196,11 @@ export default function Projects() {
         <div className="flex gap-4">
           <Link
             to="/projects/scentiva"
-            className="px-6 py-3 bg-white text-black font-medium rounded-lg hover:bg-gray-200 transition"
+            className="
+              px-6 py-3 rounded-lg font-medium transition
+              bg-gray-900 text-white hover:bg-gray-800
+              dark:bg-white dark:text-black dark:hover:bg-gray-200
+            "
           >
             View Case Study
           </Link>
@@ -177,7 +209,11 @@ export default function Projects() {
             href="https://scentiva-lac.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3 border border-border text-gray-200 rounded-lg hover:border-accent transition"
+            className="
+              px-6 py-3 rounded-lg transition
+              border border-gray-300 text-gray-700 hover:border-cyan-300 hover:text-cyan-600
+              dark:border-border dark:text-gray-200 dark:hover:text-accent dark:hover:border-accent
+            "
           >
             Live Demo
           </a>
@@ -186,17 +222,21 @@ export default function Projects() {
 
       {/* CTA */}
       <div className="text-center py-10">
-        <h3 className="text-2xl font-bold text-white mb-3">
+        <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white">
           Have a project in mind?
         </h3>
 
-        <p className="text-gray-400 max-w-xl mx-auto mb-6">
+        <p className="max-w-xl mx-auto mb-6 text-gray-600 dark:text-gray-400">
           I’m always open to meaningful work and collaborations.
         </p>
 
         <a
           href="/contact"
-          className="inline-flex items-center gap-2 px-7 py-3 bg-white text-black rounded-lg font-medium hover:bg-gray-200 transition"
+          className="
+            inline-flex items-center gap-2 px-7 py-3 rounded-lg font-medium transition
+            bg-gray-900 text-white hover:bg-gray-800
+            dark:bg-white dark:text-black dark:hover:bg-gray-200
+          "
         >
           Let’s Connect
           <FiChevronRight />

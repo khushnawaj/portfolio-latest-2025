@@ -12,16 +12,19 @@ export default function Home() {
 
           {/* LEFT */}
           <div>
-            <p className="text-accent tracking-wide mb-2">
+            <p className="text-cyan-600 dark:text-accent tracking-wide mb-2">
               Full Stack Developer
             </p>
 
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+            <h1 className="
+              text-5xl md:text-6xl font-bold leading-tight mb-6
+              text-gray-900 dark:text-white
+            ">
               Building reliable, scalable and elegant web applications.
             </h1>
 
-            <p className="text-gray-400 text-lg leading-relaxed mb-8">
-              I'm <span className="text-white font-medium">Khushnawaj</span>, a developer with ~2 years of
+            <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed mb-8">
+              I'm <span className="text-gray-900 dark:text-white font-medium">Khushnawaj</span>, a developer with ~2 years of
               professional experience building full-stack products using modern web technologies.
             </p>
 
@@ -30,14 +33,22 @@ export default function Home() {
 
               <a
                 href="/projects"
-                className="px-7 py-3 bg-white text-black font-medium rounded-lg hover:bg-gray-200 transition"
+                className="
+                  px-7 py-3 rounded-lg font-medium transition
+                  bg-gray-900 text-white hover:bg-gray-800
+                  dark:bg-white dark:text-black dark:hover:bg-gray-200
+                "
               >
                 View Projects
               </a>
 
               <a
                 href="/resume"
-                className="px-7 py-3 border border-border text-gray-200 rounded-lg hover:border-accent hover:text-accent transition flex items-center gap-2"
+                className="
+                  px-7 py-3 rounded-lg flex items-center gap-2 transition
+                  border border-gray-300 text-gray-700 hover:text-cyan-600 hover:border-cyan-300
+                  dark:border-border dark:text-gray-200 dark:hover:text-accent dark:hover:border-accent
+                "
               >
                 <FiDownload />
                 Resume
@@ -50,8 +61,11 @@ export default function Home() {
           <div className="flex justify-center md:justify-end">
             <img
               src={logo}
-              className="h-64 w-64 object-cover rounded-2xl border border-border shadow-xl"
               alt="profile"
+              className="
+                h-64 w-64 object-cover rounded-2xl shadow-xl
+                border border-gray-300 dark:border-border
+              "
             />
           </div>
 
@@ -61,7 +75,7 @@ export default function Home() {
       {/* WHAT I DO */}
       <section className="max-w-6xl mx-auto px-6 py-20">
 
-        <h2 className="text-3xl font-bold text-white mb-10">
+        <h2 className="text-3xl font-bold mb-10 text-gray-900 dark:text-white">
           Core Expertise
         </h2>
 
@@ -86,18 +100,22 @@ export default function Home() {
           ].map((item, i) => (
             <div
               key={i}
-              className="bg-[#111216] border border-border rounded-xl p-7 transition-all hover:border-accent/40"
+              className="
+                rounded-xl p-7 transition-all
+                bg-white border border-gray-200 hover:border-cyan-300
+                dark:bg-[#111216] dark:border-border dark:hover:border-accent/40
+              "
             >
 
-              <div className="text-accent mb-4">
+              <div className="text-cyan-600 dark:text-accent mb-4">
                 {item.icon}
               </div>
 
-              <h3 className="text-white text-lg font-semibold mb-3">
+              <h3 className="text-lg font-semibold mb-3 text-gray-900 dark:text-white">
                 {item.title}
               </h3>
 
-              <p className="text-gray-400 leading-relaxed">
+              <p className="leading-relaxed text-gray-600 dark:text-gray-400">
                 {item.desc}
               </p>
 
@@ -109,19 +127,27 @@ export default function Home() {
 
       {/* CTA */}
       <section className="max-w-4xl mx-auto px-6 py-16 text-center">
-        <div className="bg-[#111216] border border-border rounded-2xl p-12">
+        <div className="
+          rounded-2xl p-12
+          bg-gray-50 border border-gray-200
+          dark:bg-[#111216] dark:border-border
+        ">
 
-          <h2 className="text-3xl font-bold text-white mb-6">
+          <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
             Open to meaningful work & collaborations
           </h2>
 
-          <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
+          <p className="mb-8 max-w-2xl mx-auto text-gray-600 dark:text-gray-400">
             If you have a project, opportunity or just want to connect, feel free to reach out.
           </p>
 
           <a
             href="/contact"
-            className="px-8 py-3 bg-white text-black font-medium rounded-lg hover:bg-gray-200 transition inline-flex items-center gap-2"
+            className="
+              px-8 py-3 rounded-lg font-medium inline-flex items-center gap-2 transition
+              bg-gray-900 text-white hover:bg-gray-800
+              dark:bg-white dark:text-black dark:hover:bg-gray-200
+            "
           >
             Get in touch
             <FiChevronRight />

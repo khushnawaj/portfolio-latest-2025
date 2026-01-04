@@ -132,7 +132,7 @@ export default function Resume() {
     {
       title: "AWS Cloud Computing",
       org: "KANISHKA I.T. Pvt Ltd",
-      date: "Oct 2020",
+      date: "Oct 0",
       id: "2020/KIT/16",
       skills: "Programing Concepts"
     },
@@ -169,13 +169,15 @@ export default function Resume() {
       {/* HEADER */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-14">
         <div>
-          <p className="text-accent tracking-wide mb-2">EXPERIENCE & SKILLS</p>
+          <p className="tracking-wide mb-2 text-cyan-600 dark:text-accent">
+            EXPERIENCE & SKILLS
+          </p>
 
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
             Resume
           </h1>
 
-          <p className="text-gray-400 max-w-2xl">
+          <p className="max-w-2xl text-gray-600 dark:text-gray-400">
             Full-Stack Developer with ~2 years of experience building scalable products.
           </p>
         </div>
@@ -183,22 +185,26 @@ export default function Resume() {
         <a
           href="/Khushnawaj_MERN_Resume.pdf"
           download="Khushnawaj_MERN_Resume.pdf"
-          className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-lg font-medium hover:bg-gray-200 transition"
+          className="
+            inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition
+            bg-gray-900 text-white hover:bg-gray-800
+            dark:bg-white dark:text-black dark:hover:bg-gray-200
+          "
         >
           <FiDownload /> Download Resume
         </a>
       </div>
 
       {/* TABS */}
-      <div className="flex gap-6 border-b border-[#1F2937] mb-12">
+      <div className="flex gap-6 border-b border-gray-200 dark:border-[#1F2937] mb-12">
         {["experience","education","skills","certifications"].map(tab => (
           <button
             key={tab}
             onClick={() => setActive(tab)}
             className={`pb-3 font-medium transition ${
               active === tab
-                ? "text-accent border-b-2 border-accent"
-                : "text-gray-400 hover:text-white"
+                ? "text-cyan-600 dark:text-accent border-b-2 border-cyan-600 dark:border-accent"
+                : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
             }`}
           >
             {tab[0].toUpperCase()+tab.slice(1)}
@@ -210,25 +216,48 @@ export default function Resume() {
       {active === "experience" && (
         <div className="space-y-8">
           {experiences.map((e,i)=>(
-            <div key={i} className="bg-[#111216] border border-[#1F2937] rounded-xl p-8">
+            <div
+              key={i}
+              className="
+                rounded-xl p-8
+                bg-white border border-gray-200
+                dark:bg-[#111216] dark:border-[#1F2937]
+              "
+            >
+              <h3 className="text-2xl font-bold mb-1 text-gray-900 dark:text-white">
+                {e.role}
+              </h3>
 
-              <h3 className="text-2xl font-bold text-white mb-1">{e.role}</h3>
-              <p className="text-accent font-medium mb-1">{e.company}</p>
-              <p className="text-gray-400 mb-4">{e.period} • {e.location}</p>
+              <p className="font-medium mb-1 text-cyan-600 dark:text-accent">
+                {e.company}
+              </p>
 
-              <h4 className="text-white font-semibold mb-3">Key Responsibilities</h4>
+              <p className="mb-4 text-gray-600 dark:text-gray-400">
+                {e.period} • {e.location}
+              </p>
+
+              <h4 className="font-semibold mb-3 text-gray-900 dark:text-white">
+                Key Responsibilities
+              </h4>
 
               <ul className="space-y-2 mb-6">
                 {e.responsibilities?.map((r,idx)=>(
-                  <li key={idx} className="text-gray-300 flex gap-2">
-                    <span className="text-accent mt-1">•</span> {r}
+                  <li key={idx} className="flex gap-2 text-gray-700 dark:text-gray-300">
+                    <span className="mt-1 text-cyan-600 dark:text-accent">•</span> {r}
                   </li>
                 ))}
               </ul>
 
               <div className="flex flex-wrap gap-2">
                 {e.tech.map((t,idx)=>(
-                  <span key={idx} className="px-3 py-1 bg-[#0B0B0D] border border-[#1F2937] rounded-lg text-gray-300 text-sm">
+                  <span
+                    key={idx}
+                    className="
+                      px-3 py-1 rounded-lg text-sm
+                      bg-gray-100 border border-gray-200 text-gray-700
+                      dark:bg-[#0B0B0D] dark:border-[#1F2937] dark:text-gray-300
+                    "
+                  >
                     {t}
                   </span>
                 ))}
@@ -242,18 +271,34 @@ export default function Resume() {
       {active === "education" && (
         <div className="grid md:grid-cols-2 gap-8">
           {education.map((ed,i)=>(
-            <div key={i} className="bg-[#111216] border border-[#1F2937] rounded-xl p-8">
-              <p className="px-3 py-1 bg-[#0B0B0D] border border-[#1F2937] rounded-lg text-accent inline-block mb-4">
+            <div
+              key={i}
+              className="
+                rounded-xl p-8
+                bg-white border border-gray-200
+                dark:bg-[#111216] dark:border-[#1F2937]
+              "
+            >
+              <p className="
+                px-3 py-1 rounded-lg inline-block mb-4
+                bg-gray-100 border border-gray-200 text-cyan-600
+                dark:bg-[#0B0B0D] dark:border-[#1F2937] dark:text-accent
+              ">
                 {ed.period}
               </p>
 
-              <h3 className="text-2xl font-bold text-white mb-1">{ed.degree}</h3>
-              <p className="text-gray-300 mb-5">{ed.institution}</p>
+              <h3 className="text-2xl font-bold mb-1 text-gray-900 dark:text-white">
+                {ed.degree}
+              </h3>
+
+              <p className="mb-5 text-gray-700 dark:text-gray-300">
+                {ed.institution}
+              </p>
 
               <ul className="space-y-2">
                 {ed.highlights.map((h,idx)=>(
-                  <li key={idx} className="text-gray-300 flex gap-2">
-                    <span className="text-accent mt-1">•</span> {h}
+                  <li key={idx} className="flex gap-2 text-gray-700 dark:text-gray-300">
+                    <span className="mt-1 text-cyan-600 dark:text-accent">•</span> {h}
                   </li>
                 ))}
               </ul>
@@ -266,23 +311,36 @@ export default function Resume() {
       {active === "skills" && (
         <div className="grid md:grid-cols-3 gap-8">
           {Object.entries(skills).map(([cat,arr])=>(
-            <div key={cat} className="bg-[#111216] border border-[#1F2937] rounded-xl p-8">
-
-              <h3 className="text-xl font-bold text-white mb-6">{cat}</h3>
+            <div
+              key={cat}
+              className="
+                rounded-xl p-8
+                bg-white border border-gray-200
+                dark:bg-[#111216] dark:border-[#1F2937]
+              "
+            >
+              <h3 className="text-xl font-bold mb-6 text-gray-900 dark:text-white">
+                {cat}
+              </h3>
 
               <div className="space-y-6">
                 {arr.map((s,i)=>(
                   <div key={i}>
                     <div className="flex justify-between items-center mb-2">
-                      <div className="flex items-center gap-2 text-white">
-                        <span className="text-accent">{s.icon}</span>
+                      <div className="flex items-center gap-2 text-gray-900 dark:text-white">
+                        <span className="text-cyan-600 dark:text-accent">{s.icon}</span>
                         {s.name}
                       </div>
-                      <span className="text-accent text-sm">{s.level}%</span>
+                      <span className="text-sm text-cyan-600 dark:text-accent">
+                        {s.level}%
+                      </span>
                     </div>
 
-                    <div className="h-2 bg-[#0B0B0D] rounded-full overflow-hidden">
-                      <div className="h-full bg-accent rounded-full" style={{width:`${s.level}%`}}/>
+                    <div className="h-2 rounded-full overflow-hidden bg-gray-200 dark:bg-[#0B0B0D]">
+                      <div
+                        className="h-full rounded-full bg-cyan-600 dark:bg-accent"
+                        style={{width:`${s.level}%`}}
+                      />
                     </div>
                   </div>
                 ))}
@@ -296,18 +354,26 @@ export default function Resume() {
       {active === "certifications" && (
         <div className="grid md:grid-cols-2 gap-8">
           {certifications.map((c,i)=>(
-            <div key={i} className="bg-[#111216] border border-[#1F2937] rounded-xl p-8">
-
+            <div
+              key={i}
+              className="
+                rounded-xl p-8
+                bg-white border border-gray-200
+                dark:bg-[#111216] dark:border-[#1F2937]
+              "
+            >
               <div className="flex items-center gap-3 mb-3">
-                <FiAward className="text-accent" />
-                <h3 className="text-xl font-bold text-white">{c.title}</h3>
+                <FiAward className="text-cyan-600 dark:text-accent" />
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                  {c.title}
+                </h3>
               </div>
 
-              <p className="text-accent mb-1">{c.org}</p>
-              <p className="text-gray-400 mb-3">{c.date}</p>
+              <p className="mb-1 text-cyan-600 dark:text-accent">{c.org}</p>
+              <p className="mb-3 text-gray-600 dark:text-gray-400">{c.date}</p>
 
               {c.id && (
-                <p className="text-gray-400 text-sm mb-3">
+                <p className="mb-3 text-sm text-gray-600 dark:text-gray-400">
                   Credential ID: {c.id}
                 </p>
               )}
@@ -317,16 +383,15 @@ export default function Resume() {
                   href={c.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-accent underline mb-3 inline-block"
+                  className="mb-3 inline-block underline text-cyan-600 dark:text-accent"
                 >
                   View Credential
                 </a>
               )}
 
-              <p className="text-gray-300">
+              <p className="text-gray-700 dark:text-gray-300">
                 Skills: {c.skills}
               </p>
-
             </div>
           ))}
         </div>

@@ -55,7 +55,12 @@ export default function ProjectDetails() {
   const [gallery, setGallery] = useState([]);
   const [exists, setExists] = useState(true);
 
-  if (!project) return <div className="pt-28 px-6 text-gray-300">Project not found.</div>;
+  if (!project)
+    return (
+      <div className="pt-28 px-6 text-gray-700 dark:text-gray-300">
+        Project not found.
+      </div>
+    );
 
   useEffect(() => {
     const all = import.meta.glob("../assets/**/*.{png,jpg,jpeg,webp}", { eager: true });
@@ -77,15 +82,25 @@ export default function ProjectDetails() {
   if (!exists) {
     return (
       <div className="pt-28 px-6 max-w-4xl mx-auto">
-        <div className="bg-[#111216] border border-[#1F2937] rounded-2xl p-14 text-center">
+        <div className="
+          text-center rounded-2xl p-14
+          bg-gray-50 border border-gray-200
+          dark:bg-[#111216] dark:border-[#1F2937]
+        ">
           <div className="text-5xl mb-4">🚧</div>
-          <h1 className="text-3xl font-bold text-white mb-3">Case Study Coming Soon</h1>
-          <p className="text-gray-400 mb-8">
+          <h1 className="text-3xl font-bold mb-3 text-gray-900 dark:text-white">
+            Case Study Coming Soon
+          </h1>
+          <p className="mb-8 text-gray-600 dark:text-gray-400">
             This project case study is currently being prepared.
           </p>
           <a
             href="/projects"
-            className="px-7 py-3 bg-white text-black rounded-lg font-medium hover:bg-gray-200 transition"
+            className="
+              px-7 py-3 rounded-lg font-medium transition
+              bg-gray-900 text-white hover:bg-gray-800
+              dark:bg-white dark:text-black dark:hover:bg-gray-200
+            "
           >
             Back to Projects
           </a>
@@ -99,27 +114,38 @@ export default function ProjectDetails() {
 
       {/* HEADER */}
       <div className="mb-12">
-        <a href="/projects" className="text-gray-400 hover:text-white transition text-sm">
+        <a
+          href="/projects"
+          className="text-sm transition
+          text-gray-600 hover:text-cyan-600
+          dark:text-gray-400 dark:hover:text-accent"
+        >
           ← Back to Projects
         </a>
 
         <div className="flex items-center gap-3 mt-6 mb-3">
           {project.featured && (
-            <span className="px-3 py-1 bg-[#0B0B0D] border border-[#1F2937] rounded-lg text-accent text-sm">
+            <span
+              className="
+                px-3 py-1 rounded-lg text-sm
+                bg-gray-100 border border-gray-200 text-cyan-600
+                dark:bg-[#0B0B0D] dark:border-[#1F2937] dark:text-accent
+              "
+            >
               Featured
             </span>
           )}
 
-          <span className="text-gray-400 text-sm flex items-center gap-1">
+          <span className="text-sm flex items-center gap-1 text-gray-600 dark:text-gray-400">
             <FiCalendar /> {project.date}
           </span>
         </div>
 
-        <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
           {project.title}
         </h1>
 
-        <p className="text-lg text-gray-300 max-w-3xl">
+        <p className="text-lg max-w-3xl text-gray-700 dark:text-gray-300">
           {project.description}
         </p>
       </div>
@@ -127,7 +153,14 @@ export default function ProjectDetails() {
       {/* GALLERY */}
       <div className="grid md:grid-cols-2 gap-6 mb-16">
         {gallery.map((src, i) => (
-          <div key={i} className="rounded-xl overflow-hidden border border-[#1F2937] bg-[#0B0B0D]">
+          <div
+            key={i}
+            className="
+              rounded-xl overflow-hidden
+              bg-gray-100 border border-gray-200
+              dark:bg-[#0B0B0D] dark:border-[#1F2937]
+            "
+          >
             <img src={src} alt={`Screenshot ${i}`} className="w-full h-72 object-cover" />
           </div>
         ))}
@@ -140,7 +173,11 @@ export default function ProjectDetails() {
             href={project.live}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-7 py-3 bg-white text-black rounded-lg font-medium hover:bg-gray-200 transition inline-flex items-center gap-2"
+            className="
+              px-7 py-3 rounded-lg font-medium inline-flex items-center gap-2 transition
+              bg-gray-900 text-white hover:bg-gray-800
+              dark:bg-white dark:text-black dark:hover:bg-gray-200
+            "
           >
             <FiExternalLink /> Live Demo
           </a>
@@ -149,7 +186,11 @@ export default function ProjectDetails() {
         {project.github && (
           <a
             href={project.github}
-            className="px-7 py-3 border border-[#1F2937] text-gray-200 rounded-lg hover:border-accent transition inline-flex items-center gap-2"
+            className="
+              px-7 py-3 rounded-lg inline-flex items-center gap-2 transition
+              border border-gray-300 text-gray-700 hover:text-cyan-600 hover:border-cyan-300
+              dark:border-[#1F2937] dark:text-gray-200 dark:hover:text-accent dark:hover:border-accent
+            "
           >
             <FiGithub /> Source Code
           </a>
@@ -158,7 +199,7 @@ export default function ProjectDetails() {
 
       {/* TECH STACK */}
       <div className="mb-20">
-        <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2 text-gray-900 dark:text-white">
           <FiCode /> Tech Stack
         </h2>
 
@@ -166,74 +207,79 @@ export default function ProjectDetails() {
           {project.tech.map((t, i) => (
             <div
               key={i}
-              className="bg-[#111216] border border-[#1F2937] rounded-lg p-4 text-center"
+              className="
+                rounded-lg p-4 text-center
+                bg-gray-50 border border-gray-200
+                dark:bg-[#111216] dark:border-[#1F2937]
+              "
             >
-              <span className="text-gray-200">{t}</span>
+              <span className="text-gray-800 dark:text-gray-200">{t}</span>
             </div>
           ))}
         </div>
       </div>
 
-      {/* PROBLEM SECTION */}
-      <div className="mb-16">
-        <h2 className="text-2xl font-bold text-white mb-4">Problem & Context</h2>
+      {/* CONTENT SECTIONS */}
+      {[
+        {
+          title: "Problem & Context",
+          content:
+            "Most small businesses struggle to set up secure and scalable online platforms. They need a solution that supports real-world user traffic, secure payments and a simple admin workflow without requiring a large tech team."
+        },
+        {
+          title: "Solution Overview",
+          content:
+            "I engineered a full-stack web application designed for real-world deployments. The platform includes authentication, admin dashboards, order tracking, payment processing and secure API-based communication across services.\n\nThe architecture focuses on scalability, modularity and long-term maintainability."
+        },
+        {
+          title: "System Architecture",
+          list: [
+            "Frontend served as a statically optimised SPA",
+            "Backend REST API with token-based authentication",
+            "Secure database with schema-driven access",
+            "Cloud storage for media uploads",
+            "Integration with third-party payment gateway",
+            "Environment-based deployment configurations"
+          ]
+        },
+        {
+          title: "Key Outcomes",
+          list: [
+            "Designed & deployed a production-grade system",
+            "Implemented secure authentication flow",
+            "Built a scalable backend API",
+            "Delivered clean, intuitive user experience",
+            "Improved development speed using modular architecture"
+          ]
+        }
+      ].map((sec, i) => (
+        <div className="mb-16" key={i}>
+          <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+            {sec.title}
+          </h2>
 
-        <div className="bg-[#111216] border border-[#1F2937] rounded-2xl p-8">
-          <p className="text-gray-300 leading-relaxed">
-            Most small businesses struggle to set up secure and scalable online platforms.
-            They need a solution that supports real-world user traffic, secure payments and 
-            a simple admin workflow without requiring a large tech team.
-          </p>
+          <div className="
+            rounded-2xl p-8
+            bg-gray-50 border border-gray-200
+            dark:bg-[#111216] dark:border-[#1F2937]
+          ">
+            {sec.content && (
+              <p className="leading-relaxed whitespace-pre-line text-gray-700 dark:text-gray-300">
+                {sec.content}
+              </p>
+            )}
+
+            {sec.list && (
+              <ul className="space-y-3 text-gray-700 dark:text-gray-300">
+                {sec.list.map((l, k) => (
+                  <li key={k}>• {l}</li>
+                ))}
+              </ul>
+            )}
+          </div>
         </div>
-      </div>
+      ))}
 
-      {/* SOLUTION SECTION */}
-      <div className="mb-16">
-        <h2 className="text-2xl font-bold text-white mb-4">Solution Overview</h2>
-
-        <div className="bg-[#111216] border border-[#1F2937] rounded-2xl p-8 space-y-4">
-          <p className="text-gray-300 leading-relaxed">
-            I engineered a full-stack web application designed for real-world deployments.
-            The platform includes authentication, admin dashboards, order tracking,
-            payment processing and secure API-based communication across services.
-          </p>
-
-          <p className="text-gray-300 leading-relaxed">
-            The architecture focuses on scalability, modularity and long-term maintainability.
-          </p>
-        </div>
-      </div>
-
-      {/* ARCHITECTURE SECTION */}
-      <div className="mb-16">
-        <h2 className="text-2xl font-bold text-white mb-4">System Architecture</h2>
-
-        <div className="bg-[#111216] border border-[#1F2937] rounded-2xl p-8">
-          <ul className="space-y-3 text-gray-300">
-            <li>• Frontend served as a statically optimised SPA</li>
-            <li>• Backend REST API with token-based authentication</li>
-            <li>• Secure database with schema-driven access</li>
-            <li>• Cloud storage for media uploads</li>
-            <li>• Integration with third-party payment gateway</li>
-            <li>• Environment-based deployment configurations</li>
-          </ul>
-        </div>
-      </div>
-
-      {/* KEY RESULTS */}
-      <div className="mb-20">
-        <h2 className="text-2xl font-bold text-white mb-4">Key Outcomes</h2>
-
-        <div className="bg-[#111216] border border-[#1F2937] rounded-2xl p-8">
-          <ul className="space-y-3 text-gray-300">
-            <li>• Designed & deployed a production-grade system</li>
-            <li>• Implemented secure authentication flow</li>
-            <li>• Built a scalable backend API</li>
-            <li>• Delivered clean, intuitive user experience</li>
-            <li>• Improved development speed using modular architecture</li>
-          </ul>
-        </div>
-      </div>
     </div>
   );
 }
