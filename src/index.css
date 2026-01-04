@@ -5,41 +5,50 @@
 @tailwind utilities;
 
 body {
-  background-color: #0B0F14;
+  background: #0B0B0D;
   color: #E5E7EB;
+  font-family: Inter, sans-serif;
 }
 
-
-/* Add these to your global CSS */
+/* Subtle cyan underline on hover */
 .hover-underline {
   position: relative;
 }
 
 .hover-underline::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -2px;
   left: 0;
   width: 0;
   height: 2px;
-  background: #00FFFF;
-  transition: width 0.3s ease;
+  background: #22D3EE; 
+  opacity: .8;
+  transition: width .25s ease;
 }
 
 .hover-underline:hover::after {
   width: 100%;
 }
 
-/* Active link dot indicator */
-.active-dot::before {
-  content: '•';
-  position: absolute;
-  left: -12px;
-  color: #00FFFF;
-  animation: pulse 2s infinite;
+/* Minimal active dot */
+.active-dot {
+  position: relative;
 }
 
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+.active-dot::before {
+  content: "";
+  position: absolute;
+  left: -12px;
+  top: 45%;
+  width: 6px;
+  height: 6px;
+  background: #22D3EE;
+  border-radius: 50%;
+  opacity: .9;
+}
+
+/* Smooth transitions for all links */
+a {
+  transition: 0.25s;
 }

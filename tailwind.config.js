@@ -1,16 +1,21 @@
+/** tailwind.config.js */
+
 export default {
   content: ["./index.html", "./src/**/*.{js,jsx}"],
   theme: {
     extend: {
       colors: {
-        bg: "#0B0F14",
-        neon: "#00FF9C",
-        muted: "#8892B0",
-        panel: "#111827"
+        bg: "#0B0B0D",
+        surface: "#111216",
+        border: "#1F2937",
+        text: "#E5E7EB",
+        muted: "#9CA3AF",
+        accent: "#38BDF8",
+        accentSoft: "#0EA5E9"
       },
       fontFamily: {
-        arcade: ["VT323", "monospace"],
-        body: ["Inter", "sans-serif"]
+        body: ["Inter", "sans-serif"],
+        mono: ["VT323", "monospace"]
       }
     }
   },
