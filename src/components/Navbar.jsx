@@ -35,28 +35,52 @@ export default function Navbar() {
         <div className="hidden md:flex gap-8 items-center">
           <NavLink
             to="/"
-            className="text-gray-700 dark:text-gray-300 hover:text-cyan-500 dark:hover:text-accent"
+            className={({ isActive }) => `
+              transition font-medium
+              ${isActive
+                ? "text-cyan-600 dark:text-accent"
+                : "text-gray-700 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-accent"
+              }
+            `}
           >
             Home
           </NavLink>
 
           <NavLink
             to="/projects"
-            className="text-gray-700 dark:text-gray-300 hover:text-cyan-500 dark:hover:text-accent"
+            className={({ isActive }) => `
+              transition font-medium
+              ${isActive
+                ? "text-cyan-600 dark:text-accent"
+                : "text-gray-700 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-accent"
+              }
+            `}
           >
             Projects
           </NavLink>
 
           <NavLink
             to="/resume"
-            className="text-gray-700 dark:text-gray-300 hover:text-cyan-500 dark:hover:text-accent"
+            className={({ isActive }) => `
+              transition font-medium
+              ${isActive
+                ? "text-cyan-600 dark:text-accent"
+                : "text-gray-700 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-accent"
+              }
+            `}
           >
             Resume
           </NavLink>
 
           <NavLink
             to="/contact"
-            className="text-gray-700 dark:text-gray-300 hover:text-cyan-500 dark:hover:text-accent"
+            className={({ isActive }) => `
+              transition font-medium
+              ${isActive
+                ? "text-cyan-600 dark:text-accent"
+                : "text-gray-700 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-accent"
+              }
+            `}
           >
             Contact
           </NavLink>
@@ -107,7 +131,10 @@ export default function Navbar() {
           <NavLink
             to="/"
             onClick={() => setOpen(false)}
-            className="text-3xl font-semibold text-gray-800 dark:text-gray-200 hover:text-cyan-500 dark:hover:text-accent"
+            className={({ isActive }) => `
+              text-3xl font-semibold transition
+              ${isActive ? "text-cyan-600 dark:text-accent" : "text-gray-800 dark:text-gray-200"}
+            `}
           >
             Home
           </NavLink>
@@ -115,7 +142,10 @@ export default function Navbar() {
           <NavLink
             to="/projects"
             onClick={() => setOpen(false)}
-            className="text-3xl font-semibold text-gray-800 dark:text-gray-200 hover:text-cyan-500 dark:hover:text-accent"
+            className={({ isActive }) => `
+              text-3xl font-semibold transition
+              ${isActive ? "text-cyan-600 dark:text-accent" : "text-gray-800 dark:text-gray-200"}
+            `}
           >
             Projects
           </NavLink>
@@ -123,7 +153,10 @@ export default function Navbar() {
           <NavLink
             to="/resume"
             onClick={() => setOpen(false)}
-            className="text-3xl font-semibold text-gray-800 dark:text-gray-200 hover:text-cyan-500 dark:hover:text-accent"
+            className={({ isActive }) => `
+              text-3xl font-semibold transition
+              ${isActive ? "text-cyan-600 dark:text-accent" : "text-gray-800 dark:text-gray-200"}
+            `}
           >
             Resume
           </NavLink>
@@ -131,7 +164,10 @@ export default function Navbar() {
           <NavLink
             to="/contact"
             onClick={() => setOpen(false)}
-            className="text-3xl font-semibold text-gray-800 dark:text-gray-200 hover:text-cyan-500 dark:hover:text-accent"
+            className={({ isActive }) => `
+              text-3xl font-semibold transition
+              ${isActive ? "text-cyan-600 dark:text-accent" : "text-gray-800 dark:text-gray-200"}
+            `}
           >
             Contact
           </NavLink>

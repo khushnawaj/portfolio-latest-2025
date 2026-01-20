@@ -50,8 +50,8 @@ export default function Resume() {
         "Backend & database implementation"
       ],
       tech: [
-        "Python","Django","MySQL","Node.js",
-        "Express","React.js","MongoDB"
+        "Python", "Django", "MySQL", "Node.js",
+        "Express", "React.js", "MongoDB"
       ]
     },
     {
@@ -65,7 +65,7 @@ export default function Resume() {
         "Machine Learning fundamentals",
         "ML, NLP & Deep Learning basics"
       ],
-      tech: ["Python","Tkinter","Machine Learning","Data Science"]
+      tech: ["Python", "Tkinter", "Machine Learning", "Data Science"]
     }
   ];
 
@@ -83,13 +83,13 @@ export default function Resume() {
       degree: "Intermediate (12th Grade)",
       institution: "Hansvahini Inter College, Sonebhadra",
       period: "2014 – 2016",
-      highlights: ["PCM","69.2% Aggregate"]
+      highlights: ["PCM", "69.2% Aggregate"]
     },
     {
       degree: "High School (10th Grade)",
       institution: "Hansvahini Inter College, Sonebhadra",
       period: "2012 – 2014",
-      highlights: ["PCM","73.66% Aggregate"]
+      highlights: ["PCM", "73.66% Aggregate"]
     }
   ];
 
@@ -164,7 +164,7 @@ export default function Resume() {
   };
 
   return (
-    <div className="pt-28 px-6 max-w-6xl mx-auto">
+    <div className="pt-28 px-6 max-w-6xl mx-auto pb-20">
 
       {/* HEADER */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-14">
@@ -182,32 +182,33 @@ export default function Resume() {
           </p>
         </div>
 
-        <a
-          href="/Khushnawaj_MERN_Resume.pdf"
-          download="Khushnawaj_MERN_Resume.pdf"
-          className="
-            inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition
-            bg-gray-900 text-white hover:bg-gray-800
-            dark:bg-white dark:text-black dark:hover:bg-gray-200
-          "
-        >
-          <FiDownload /> Download Resume
-        </a>
+        <div className="flex justify-start md:justify-end">
+          <a
+            href="/Khushnawaj_MERN_Resume.pdf"
+            download="Khushnawaj_MERN_Resume.pdf"
+            className="
+              inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition
+              bg-gray-900 text-white hover:bg-gray-800
+              dark:bg-white dark:text-black dark:hover:bg-gray-200
+            "
+          >
+            <FiDownload /> Download Resume
+          </a>
+        </div>
       </div>
 
       {/* TABS */}
-      <div className="flex gap-6 border-b border-gray-200 dark:border-[#1F2937] mb-12">
-        {["experience","education","skills","certifications"].map(tab => (
+      <div className="flex gap-6 border-b border-gray-200 dark:border-[#1F2937] mb-12 overflow-x-auto no-scrollbar">
+        {["experience", "education", "skills", "certifications"].map(tab => (
           <button
             key={tab}
             onClick={() => setActive(tab)}
-            className={`pb-3 font-medium transition ${
-              active === tab
-                ? "text-cyan-600 dark:text-accent border-b-2 border-cyan-600 dark:border-accent"
-                : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
-            }`}
+            className={`pb-3 font-medium transition whitespace-nowrap ${active === tab
+              ? "text-cyan-600 dark:text-accent border-b-2 border-cyan-600 dark:border-accent"
+              : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+              }`}
           >
-            {tab[0].toUpperCase()+tab.slice(1)}
+            {tab.charAt(0).toUpperCase() + tab.slice(1)}
           </button>
         ))}
       </div>
@@ -215,7 +216,7 @@ export default function Resume() {
       {/* EXPERIENCE */}
       {active === "experience" && (
         <div className="space-y-8">
-          {experiences.map((e,i)=>(
+          {experiences.map((e, i) => (
             <div
               key={i}
               className="
@@ -241,7 +242,7 @@ export default function Resume() {
               </h4>
 
               <ul className="space-y-2 mb-6">
-                {e.responsibilities?.map((r,idx)=>(
+                {e.responsibilities?.map((r, idx) => (
                   <li key={idx} className="flex gap-2 text-gray-700 dark:text-gray-300">
                     <span className="mt-1 text-cyan-600 dark:text-accent">•</span> {r}
                   </li>
@@ -249,7 +250,7 @@ export default function Resume() {
               </ul>
 
               <div className="flex flex-wrap gap-2">
-                {e.tech.map((t,idx)=>(
+                {e.tech.map((t, idx) => (
                   <span
                     key={idx}
                     className="
@@ -270,7 +271,7 @@ export default function Resume() {
       {/* EDUCATION */}
       {active === "education" && (
         <div className="grid md:grid-cols-2 gap-8">
-          {education.map((ed,i)=>(
+          {education.map((ed, i) => (
             <div
               key={i}
               className="
@@ -296,7 +297,7 @@ export default function Resume() {
               </p>
 
               <ul className="space-y-2">
-                {ed.highlights.map((h,idx)=>(
+                {ed.highlights.map((h, idx) => (
                   <li key={idx} className="flex gap-2 text-gray-700 dark:text-gray-300">
                     <span className="mt-1 text-cyan-600 dark:text-accent">•</span> {h}
                   </li>
@@ -310,7 +311,7 @@ export default function Resume() {
       {/* SKILLS */}
       {active === "skills" && (
         <div className="grid md:grid-cols-3 gap-8">
-          {Object.entries(skills).map(([cat,arr])=>(
+          {Object.entries(skills).map(([cat, arr]) => (
             <div
               key={cat}
               className="
@@ -324,7 +325,7 @@ export default function Resume() {
               </h3>
 
               <div className="space-y-6">
-                {arr.map((s,i)=>(
+                {arr.map((s, i) => (
                   <div key={i}>
                     <div className="flex justify-between items-center mb-2">
                       <div className="flex items-center gap-2 text-gray-900 dark:text-white">
@@ -339,7 +340,7 @@ export default function Resume() {
                     <div className="h-2 rounded-full overflow-hidden bg-gray-200 dark:bg-[#0B0B0D]">
                       <div
                         className="h-full rounded-full bg-cyan-600 dark:bg-accent"
-                        style={{width:`${s.level}%`}}
+                        style={{ width: `${s.level}%` }}
                       />
                     </div>
                   </div>
@@ -353,7 +354,7 @@ export default function Resume() {
       {/* CERTIFICATIONS */}
       {active === "certifications" && (
         <div className="grid md:grid-cols-2 gap-8">
-          {certifications.map((c,i)=>(
+          {certifications.map((c, i) => (
             <div
               key={i}
               className="

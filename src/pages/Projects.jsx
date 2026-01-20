@@ -1,60 +1,31 @@
 import { FiExternalLink, FiGithub, FiFolder, FiChevronRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
-
-const projects = [
-  {
-    slug: "scentiva",
-    title: "Scentiva E-Commerce",
-    description:
-      "Production-ready e-commerce platform with payments, admin panel, and cloud deployment.",
-    tags: ["React", "Node.js", "MongoDB", "Razorpay"],
-    caseStudy: true,
-    github: "#",
-    live: "https://scentiva-lac.vercel.app/",
-  },
-  {
-    slug: "election-campaign",
-    title: "Election Campaign Platform",
-    description:
-      "Secure election system with paid registration, candidate workflows, and real-time voting.",
-    tags: ["Vue.js", "Node.js", "Express", "MongoDB"],
-    caseStudy: true,
-    github: "#",
-    live: "#",
-  },
-  {
-    slug: "elearning",
-    title: "E-Learning Platform",
-    description:
-      "Course management and live classes with teacher & student dashboards.",
-    tags: ["Vue.js", "Node.js", "Express", "MongoDB"],
-    caseStudy: true,
-    github: "#",
-    live: "#",
-  },
-  {
-    slug: "task-manager",
-    title: "Task Management System",
-    description:
-      "Collaborative task management with real-time updates and team features.",
-    tags: ["React", "Node.js", "Socket.io", "PostgreSQL"],
-    caseStudy: false,
-    github: "#",
-    live: "#",
-  },
-  {
-    slug: "weather-dashboard",
-    title: "Weather Dashboard",
-    description:
-      "Real-time weather tracking with forecast and clean UI.",
-    tags: ["React", "API Integration", "Chart.js", "Tailwind"],
-    caseStudy: false,
-    github: "#",
-    live: "#",
-  },
-];
+import { projectsData } from "../data/projects";
+import { motion } from "framer-motion";
+import { useState } from "react";
 
 export default function Projects() {
+  const [filter, setFilter] = useState("All");
+  const categories = ["All", "React", "Vue.js", "Node.js"];
+
+  const filteredProjects = filter === "All"
+    ? projectsData
+    : projectsData.filter(p => p.tags.some(tag => tag.includes(filter)));
+
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 30 },
+    show: { opacity: 1, y: 0 }
+  };
 
   return (
     <div className="pt-28 px-6 max-w-6xl mx-auto">
@@ -69,16 +40,41 @@ export default function Projects() {
           Selected Work
         </h1>
 
-        <p className="max-w-2xl text-gray-600 dark:text-gray-400">
+        <p className="max-w-2xl text-gray-600 dark:text-gray-400 mb-8">
           A curated collection of products and systems I’ve built.
         </p>
+
+        {/* Filter Buttons */}
+        <div className="flex gap-2 flex-wrap">
+          {categories.map(cat => (
+            <button
+              key={cat}
+              onClick={() => setFilter(cat)}
+              className={`
+                px-4 py-2 rounded-lg text-sm font-medium transition
+                ${filter === cat
+                  ? "bg-cyan-600 text-white"
+                  : "bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-[#111216] dark:text-gray-400 dark:hover:bg-[#1F2937]"
+                }
+              `}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Grid */}
-      <div className="grid md:grid-cols-2 gap-8 mb-20">
-        {projects.map((p, i) => (
-          <div
-            key={i}
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate="show"
+        className="grid md:grid-cols-2 gap-8 mb-20"
+      >
+        {filteredProjects.map((p, i) => (
+          <motion.div
+            key={p.slug} // Use slug as key for better stability
+            variants={item}
             className="
               rounded-xl p-6 transition-all
               bg-white border border-gray-200 hover:border-cyan-300
@@ -95,7 +91,7 @@ export default function Projects() {
               </div>
 
               <div className="flex gap-3">
-                {p.github && (
+                {p.github && p.github !== "#" && (
                   <a
                     href={p.github}
                     aria-label="GitHub"
@@ -105,7 +101,7 @@ export default function Projects() {
                   </a>
                 )}
 
-                {p.live && (
+                {p.live && p.live !== "#" && (
                   <a
                     href={p.live}
                     target="_blank"
@@ -155,70 +151,9 @@ export default function Projects() {
                 <FiChevronRight />
               </Link>
             )}
-          </div>
+          </motion.div>
         ))}
-      </div>
-
-      {/* Highlight */}
-      <div className="
-        rounded-2xl p-10 mb-20
-        bg-gray-50 border border-gray-200
-        dark:bg-[#111216] dark:border-border
-      ">
-        <p className="mb-3 font-medium text-cyan-600 dark:text-accent">
-          FEATURED CASE STUDY
-        </p>
-
-        <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
-          Scentiva E-Commerce
-        </h2>
-
-        <p className="max-w-3xl mb-6 text-gray-600 dark:text-gray-400">
-          A production-grade e-commerce platform built with real-world payment flows,
-          admin dashboards and scalable deployment architecture.
-        </p>
-
-        <div className="flex gap-3 flex-wrap mb-8">
-          {["Payments", "REST APIs", "Admin Panel", "Cloud Deployments"].map((t, i) => (
-            <span
-              key={i}
-              className="
-                px-4 py-1.5 text-sm rounded-lg
-                bg-gray-100 border border-gray-200 text-gray-700
-                dark:bg-[#0B0B0D] dark:border-border dark:text-gray-300
-              "
-            >
-              {t}
-            </span>
-          ))}
-        </div>
-
-        <div className="flex gap-4">
-          <Link
-            to="/projects/scentiva"
-            className="
-              px-6 py-3 rounded-lg font-medium transition
-              bg-gray-900 text-white hover:bg-gray-800
-              dark:bg-white dark:text-black dark:hover:bg-gray-200
-            "
-          >
-            View Case Study
-          </Link>
-
-          <a
-            href="https://scentiva-lac.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="
-              px-6 py-3 rounded-lg transition
-              border border-gray-300 text-gray-700 hover:border-cyan-300 hover:text-cyan-600
-              dark:border-border dark:text-gray-200 dark:hover:text-accent dark:hover:border-accent
-            "
-          >
-            Live Demo
-          </a>
-        </div>
-      </div>
+      </motion.div>
 
       {/* CTA */}
       <div className="text-center py-10">

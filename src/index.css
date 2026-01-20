@@ -8,15 +8,15 @@ html { color-scheme: light dark; }
 
 /* Light mode default */
 body {
-  background: #ffffff;
-  color: #1f2937;
+  background-color: #ffffff;
+  color: #111827; /* Gray-900 for better contrast */
   font-family: Inter, sans-serif;
 }
 
 /* Dark mode only when html has .dark */
 .dark body {
-  background: #0B0B0D;      /* bg */
-  color: #E5E7EB;           /* text */
+  background-color: #0B0B0D;
+  color: #F3F4F6; /* Gray-100 for better contrast */
 }
 
 /* Hover underline */
@@ -57,4 +57,22 @@ body {
 /* Smooth link transitions */
 a {
   transition: 0.25s;
+}
+
+@keyframes meteor {
+  0% {
+    transform: rotate(215deg) translateX(0);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(215deg) translateX(-500px);
+    opacity: 0;
+  }
+}
+
+.animate-meteor {
+  animation: meteor 5s linear infinite;
 }
