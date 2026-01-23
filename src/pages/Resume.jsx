@@ -95,8 +95,22 @@ export default function Resume() {
 
   const certifications = [
     {
+      title: "Hands-On Introduction to Cloud Computing with AWS",
+      org: "Udemy",
+      date: "Jan 2026",
+      id: "Learning-AWS-Cloud-Computing 2026",
+      skills: "AWS, Cloud Computing"
+    },
+    {
+      title: "Advanced Node.js",
+      org: "LinkedIn Learning",
+      date: "Jan 2026",
+      id: "https://lnkd.in/gjRECFxK",
+      skills: "Node.js"
+    },
+    {
       title: "Node.js Essential Training",
-      org: "LinkedIn",
+      org: "LinkedIn Learning",
       date: "Mar 2025",
       id: "317cafe0e0d57457...",
       skills: "Node.js"
@@ -132,7 +146,7 @@ export default function Resume() {
     {
       title: "AWS Cloud Computing",
       org: "KANISHKA I.T. Pvt Ltd",
-      date: "Oct 0",
+      date: "Oct 2020",
       id: "2020/KIT/16",
       skills: "Programing Concepts"
     },

@@ -105,5 +105,17 @@ export const projectsData = [
     featured: false,
     date: "Sep 2024",
     tech: ["React", "Tailwind", "OpenWeather API"]
+  },
+  {
+    slug: "ArtWall",
+    title: "ArtWall",
+    description: "A platform for artists to showcase their digital art.",
+    tags: ["Vue", "Node.js", "Express", "MongoDB"],
+    caseStudy: false,
+    github: "https://github.com/khushnawaj/vue-wall",
+    live: "https://vue-wall.vercel.app/",
+    featured: true,
+    date: "Jan 2026",
+    tech: ["Vue", "Node.js", "Express", "MongoDB"]
   }
 ];
