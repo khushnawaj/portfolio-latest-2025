@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { projectsData } from "../data/projects";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import SEO from "../components/SEO";
 
 export default function Projects() {
   const [filter, setFilter] = useState("All");
@@ -29,6 +30,7 @@ export default function Projects() {
 
   return (
     <div className="pt-28 px-6 max-w-6xl mx-auto">
+      <SEO title="Projects" description="Explore my curated collection of web applications and system architectures." />
 
       {/* Header */}
       <div className="mb-14">

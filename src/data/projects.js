@@ -1,5 +1,62 @@
 export const projectsData = [
   {
+    slug: "script-shelf",
+    title: "ScriptShelf",
+    description: "A developer-centric platform featuring a Redis-backed notification system, gamification with XP/reputation, and an interactive typing game.",
+    tags: ["React", "Express", "MongoDB", "Redis"],
+    caseStudy: true,
+    github: "https://github.com/khushnawaj/scriptSelf",
+    live: "https://script-self-two.vercel.app/",
+    featured: true,
+    date: "Feb 2026",
+    tech: ["React.js", "Node.js", "Express", "MongoDB", "Redis", "Socket.io", "Tailwind CSS"],
+    details: {
+      problem: "Developers need a platform to not only manage scripts but also engage with the community and improve their skills, while admins require robust tools for content moderation and user management.",
+      solution: "Built a comprehensive ecosystem featuring a high-performance notification engine using Redis, a gamified system with XP and reputation to drive engagement, and an interactive typing game for skill enhancement. Also includes a powerful Admin Console for system management.",
+      architecture: [
+        "React frontend with Tailwind CSS for a modern, responsive UI",
+        "Node.js/Express backend with MongoDB for scalable data storage",
+        "Redis for efficient notification queuing and caching",
+        "Socket.io for real-time updates and interactive features"
+      ],
+      outcomes: [
+        "Increased user engagement through gamification mechanics",
+        "High-performance notification delivery with Redis",
+        "Streamlined administrative workflows with the Admin Console",
+        "Interactive skill-building with the Typing Game"
+      ]
+    }
+  },
+  {
+    slug: "currency-xchange",
+    title: "CurrencyXchange",
+    description: "Multi-currency wallet & exchange platform with real-time rates and secure transfers.",
+    tags: ["React", "Django", "PostgreSQL", "JWT"],
+    caseStudy: true,
+    github: "https://github.com/khushnawaj/currency-exchange-backend", // Backend Repo
+    live: "#",   // Add link if available
+    featured: true,
+    date: "Jan 2026",
+    tech: ["React 19", "Vite", "Django REST Framework", "PostgreSQL", "JWT", "Hot Toast"],
+    details: {
+      problem: "Users need a secure, unified platform to manage multiple currencies, view live exchange rates, and perform instant money transfers without complex banking procedures.",
+      solution: "Developed a full-stack financial application allowing users to create multi-currency wallets, convert funds with real-time API data, and securely transfer money to other users. Includes a comprehensive dashboard for tracking transaction history and analytics.",
+      architecture: [
+        "Django REST Framework backend with custom JWT authentication",
+        "React + Vite frontend for a responsive SPA experience",
+        "Integration with ExchangeRate-API for live currency data",
+        "PostgreSQL database for secure transaction storage",
+        "Admin panel for system management and user oversight"
+      ],
+      outcomes: [
+        "Implemented secure financial transaction flows",
+        "Real-time currency conversion with live data",
+        "Scalable wallet management system",
+        "Comprehensive transaction tracking and export"
+      ]
+    }
+  },
+  {
     slug: "scentiva",
     title: "Scentiva E-Commerce",
     description: "Production-ready e-commerce platform with payments, admin panel, and cloud deployment.",

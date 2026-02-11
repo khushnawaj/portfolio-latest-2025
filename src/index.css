@@ -9,14 +9,62 @@ html { color-scheme: light dark; }
 /* Light mode default */
 body {
   background-color: #ffffff;
-  color: #111827; /* Gray-900 for better contrast */
+  color: #111827;
   font-family: Inter, sans-serif;
+  background-position: center top;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 5px;
+  border: 2px solid #ffffff;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #374151;
+  border: 2px solid #0B0B0D;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #4b5563;
+}
+
+/* Custom Text Selection */
+::selection {
+  background: #06b6d4; /* cyan-500 */
+  color: white;
 }
 
 /* Dark mode only when html has .dark */
 .dark body {
   background-color: #0B0B0D;
-  color: #F3F4F6; /* Gray-100 for better contrast */
+  color: #F3F4F6;
+  background-image: 
+    linear-gradient(to right, #1f2937 1px, transparent 1px),
+    linear-gradient(to bottom, #1f2937 1px, transparent 1px);
+  background-size: 6rem 6rem;
+}
+
+/* Adjust pattern opacity for subtlety */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent, white);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.dark body::before {
+  background: radial-gradient(circle at center, transparent, #0B0B0D);
 }
 
 /* Hover underline */
@@ -76,3 +124,28 @@ a {
 .animate-meteor {
   animation: meteor 5s linear infinite;
 }
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* Pause animation on hover for better UX */
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+

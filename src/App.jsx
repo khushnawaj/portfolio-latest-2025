@@ -6,11 +6,15 @@ import Projects from "./pages/Projects";
 import ProjectDetails from "./pages/ProjectDetails";
 import Resume from "./pages/Resume";
 import Contact from "./pages/Contact";
+import NotFound from "./pages/NotFound";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
 import ScrollToTop from "./components/ScrollToTop";
 import { AnimatePresence } from "framer-motion";
 import PageTransition from "./components/PageTransition";
+
+import { useState, useEffect } from "react";
+import ScrollProgress from "./components/ScrollProgress";
+import BackToTop from "./components/BackToTop";
 
 export default function App() {
   const theme = useSelector((state) => state.theme.mode);
@@ -29,6 +33,8 @@ export default function App() {
 
   return (
     <>
+      <ScrollProgress />
+      <BackToTop />
       <ScrollToTop />
       <Navbar />
       <AnimatePresence mode="wait">
@@ -38,6 +44,7 @@ export default function App() {
           <Route path="/projects/:slug" element={<WrappedProjectDetails />} />
           <Route path="/resume" element={<WrappedResume />} />
           <Route path="/contact" element={<WrappedContact />} />
+          <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
         </Routes>
       </AnimatePresence>
       <Footer />

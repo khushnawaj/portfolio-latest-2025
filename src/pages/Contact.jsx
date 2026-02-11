@@ -6,14 +6,26 @@ import {
   FiLinkedin,
   FiGithub,
   FiTwitter,
-  FiInstagram
+  FiInstagram,
+  FiLayers,
+  FiCopy,
+  FiCheck
 } from "react-icons/fi";
 import { useState } from "react";
+import SEO from "../components/SEO";
+import Toast from "../components/Toast";
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText("khushnawaj14@gmail.com");
+    setIsCopied(true);
+    setTimeout(() => setIsCopied(false), 2000);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,11 +43,13 @@ export default function Contact() {
     { icon: <FiGithub />, url: "https://github.com/khushnawaj" },
     { icon: <FiLinkedin />, url: "https://www.linkedin.com/in/17-khushnawaj/" },
     { icon: <FiTwitter />, url: "https://x.com/PG4daotBo94zbMG" },
-    { icon: <FiInstagram />, url: "https://www.instagram.com/__nawaj_md__" }
+    { icon: <FiInstagram />, url: "https://www.instagram.com/__nawaj_md__" },
+    { icon: <FiLayers />, url: "https://script-self-two.vercel.app/u/khush" }
   ];
 
   return (
     <div className="pt-28 px-6 max-w-6xl mx-auto">
+      <SEO title="Contact" description="Get in touch with Khushnawaj for collaborations and opportunities." />
 
       {/* Header */}
       <div className="text-center mb-16">
@@ -51,7 +65,7 @@ export default function Contact() {
       </div>
 
       <div className="grid md:grid-cols-2 gap-10 mb-20">
-        
+
         {/* Left */}
         <div className="space-y-6">
 
@@ -65,14 +79,23 @@ export default function Contact() {
             ">
               <FiMail />
             </div>
-            <div>
+            <div className="flex-1">
               <h3 className="font-medium mb-1 text-gray-900 dark:text-white">Email</h3>
-              <a
-                href="mailto:khushnawaj14@gmail.com"
-                className="text-gray-700 hover:text-cyan-600 dark:text-gray-300 dark:hover:text-accent"
-              >
-                khushnawaj14@gmail.com
-              </a>
+              <div className="flex items-center gap-2">
+                <a
+                  href="mailto:khushnawaj14@gmail.com"
+                  className="text-gray-700 hover:text-cyan-600 dark:text-gray-300 dark:hover:text-accent"
+                >
+                  khushnawaj14@gmail.com
+                </a>
+                <button
+                  onClick={handleCopy}
+                  className="p-1.5 rounded-md text-gray-400 hover:text-cyan-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+                  title="Copy Email"
+                >
+                  {isCopied ? <FiCheck className="text-green-500" /> : <FiCopy size={14} />}
+                </button>
+              </div>
             </div>
           </div>
 
@@ -114,6 +137,8 @@ export default function Contact() {
               </p>
             </div>
           </div>
+
+
 
           {/* Social */}
           <div className="pt-4">
@@ -251,6 +276,8 @@ export default function Contact() {
           </a>
         </div>
       </div>
+
+      <Toast message="Email copied to clipboard!" isVisible={isCopied} />
     </div>
   );
 }
