@@ -134,10 +134,6 @@ a {
   animation: marquee 30s linear infinite;
 }
 
-/* Pause animation on hover for better UX */
-.animate-marquee:hover {
-  animation-play-state: paused;
-}
 
 @keyframes spin-slow {
   from { transform: rotate(0deg); }

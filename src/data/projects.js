@@ -1,5 +1,35 @@
 export const projectsData = [
   {
+    slug: "nexus360",
+    title: "Nexus360 ERP System",
+    description: "An enterprise-grade, microservice-based ERP system featuring Multi-Tenancy, Role-Based Access Control, an API Gateway, and automated invoice workflows.",
+    tags: ["Next.js", "NestJS", "Microservices", "TurboRepo"],
+    caseStudy: true,
+    github: "https://github.com/khushnawaj/nexus360",
+    live: "#",
+    featured: true,
+    date: "Mar 2026",
+    tech: ["Next.js", "NestJS", "TypeScript", "TurboRepo", "PostgreSQL", "Redis", "Docker", "Tailwind CSS"],
+    details: {
+      problem: "Large organizations require a highly scalable, multi-tenant ERP system to manage complex operations like invoicing, user verification, and role-based permissions without single points of failure.",
+      solution: "Architected Nexus360 as a robust monorepo (TurboRepo) consisting of an API Gateway and independent NestJS microservices (Auth, ERP). Developed a modern Next.js admin frontend with a complex Super Admin verification panel, complete invoice cancellation/emailing workflows, and scheduled cron jobs.",
+      architecture: [
+        "TurboRepo advanced monorepo structure",
+        "NestJS microservices communicating natively",
+        "API Gateway configuration with wildcard tenant routing",
+        "Next.js glassy frontend utilizing Server Side Rendering",
+        "Multi-tenancy implementation using dynamic tenant identification",
+        "Automated scheduled jobs for due-date reminders"
+      ],
+      outcomes: [
+        "Eliminated monolithic bottlenecks",
+        "Seamless addition of specialized microservices",
+        "Robust enterprise verification systems integrated",
+        "Sleek and highly performant internal admin UI"
+      ]
+    }
+  },
+  {
     slug: "script-shelf",
     title: "ScriptShelf",
     description: "A developer-centric platform featuring a Redis-backed notification system, gamification with XP/reputation, and an interactive typing game.",

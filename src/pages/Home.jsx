@@ -1,12 +1,17 @@
 import { Link } from "react-router-dom";
 import { FiChevronRight, FiDownload, FiCode, FiDatabase, FiLayers, FiExternalLink } from "react-icons/fi";
 import logo from "../assets/logo.png";
-import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
 import SpotlightCard from "../components/SpotlightCard";
 import Tilt from "../components/Tilt";
-import TechMarquee from "../components/TechMarquee";
+import TechGravity from "../components/TechGravity";
 import SEO from "../components/SEO";
+import ParticleBackground from "../components/ParticleBackground";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Typewriter = ({ words, delay = 3000 }) => {
   const [index, setIndex] = useState(0);
@@ -48,6 +53,38 @@ const Typewriter = ({ words, delay = 3000 }) => {
 };
 
 export default function Home() {
+  const heroRef = useRef(null);
+
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+      // Reveal text elements nicely using GSAP
+      gsap.from(".hero-text-anim", {
+        y: 50,
+        opacity: 0,
+        stagger: 0.15,
+        duration: 1,
+        ease: "power3.out",
+        delay: 0.2
+      });
+
+      // Scroll Reveal Animations
+      gsap.utils.toArray('.reveal-up').forEach((elem) => {
+        gsap.from(elem, {
+          scrollTrigger: {
+            trigger: elem,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+          y: 40,
+          opacity: 0,
+          duration: 0.8,
+          ease: "power3.out"
+        });
+      });
+    }, heroRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <main className="overflow-hidden">
@@ -57,214 +94,221 @@ export default function Home() {
       />
 
       {/* HERO */}
-      <section className="min-h-[85vh] flex items-center px-6 pt-20 relative overflow-hidden">
+      <section ref={heroRef} className="min-h-[90vh] flex items-center px-6 pt-20 relative overflow-hidden bg-white/50 dark:bg-[#09090b]/50">
+        
+        {/* TS Particles Background */}
+        <ParticleBackground />
 
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
+        {/* Ambient Glows */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-400/20 dark:bg-cyan-600/20 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/20 dark:bg-blue-800/20 rounded-full blur-[120px] pointer-events-none" />
+
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10 w-full">
 
           {/* LEFT */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <p className="text-cyan-600 dark:text-accent tracking-widest text-sm font-semibold uppercase mb-4">
-              Full Stack Developer
+          <div className="flex flex-col justify-center">
+            <p className="hero-text-anim text-cyan-600 dark:text-cyan-400 tracking-widest text-sm font-bold uppercase mb-4">
+              Full Stack Engineer & Designer
             </p>
 
-            <h1 className="
-              text-5xl md:text-7xl font-bold tracking-tight mb-6
-              text-gray-900 dark:text-white
-            ">
+            <h1 className="hero-text-anim text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-2 text-gray-900 dark:text-white leading-[1.1]">
               Khushnawaj
             </h1>
+            <h2 className="hero-text-anim text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight mb-6 text-gray-700 dark:text-gray-300">
+              Crafting <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600 dark:from-cyan-400 dark:to-blue-500">Digital</span> Experiences
+            </h2>
 
-            <div className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-lg leading-relaxed">
-              I engineer <span className="text-gray-900 dark:text-white font-medium">high-performance systems</span> and <span className="text-gray-900 dark:text-white font-medium">beautiful interfaces</span> that scale.
+            <div className="hero-text-anim text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-10 max-w-lg leading-relaxed font-light">
+              I build <b className="font-semibold text-gray-900 dark:text-white">high-performance systems</b> and <b className="font-semibold text-gray-900 dark:text-white">beautiful interfaces</b> that scale gracefully.
             </div>
 
             {/* CTA BUTTONS - Nested inside Left Column */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="hero-text-anim flex flex-col sm:flex-row gap-5">
               <a
                 href="/projects"
                 className="
-                  px-7 py-3 rounded-lg font-medium transition text-center
+                  px-8 py-3.5 rounded-full font-bold transition text-center shadow-[0_0_30px_rgba(8,145,178,0.2)] hover:shadow-[0_0_30px_rgba(8,145,178,0.5)]
                   bg-gray-900 text-white hover:bg-gray-800
                   dark:bg-white dark:text-black dark:hover:bg-gray-200
                 "
               >
-                View Projects
+                View Selected Work
               </a>
 
               <a
                 href="/resume"
                 className="
-                  px-7 py-3 rounded-lg flex items-center justify-center gap-2 transition
-                  border border-gray-300 text-gray-700 hover:text-cyan-600 hover:border-cyan-300
-                  dark:border-border dark:text-gray-200 dark:hover:text-accent dark:hover:border-accent
+                  px-8 py-3.5 rounded-full flex items-center justify-center gap-2 transition font-bold
+                  border border-gray-300 text-gray-700 hover:text-cyan-600 hover:border-cyan-400 bg-white/50 backdrop-blur-sm
+                  dark:border-white/10 dark:text-gray-200 dark:hover:text-cyan-400 dark:hover:border-cyan-500/50 dark:bg-black/20
                 "
               >
                 <FiDownload />
                 Resume
               </a>
             </div>
-          </motion.div>
+          </div>
 
 
           {/* RIGHT */}
           <motion.div
-            className="flex justify-center md:justify-end"
+            className="flex justify-center md:justify-end items-center w-full h-full min-h-[400px] relative cursor-pointer"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
           >
-            <Tilt>
-              <img
-                src={logo}
-                alt="profile"
-                className="
-                  h-64 w-64 object-cover rounded-2xl shadow-xl
-                  border border-gray-300 dark:border-border
-                  relative z-20
-                "
-              />
-            </Tilt>
+            {/* Restored Hero Profile Image */}
+            <div className="relative z-20">
+              <Tilt>
+                <div className="relative rounded-3xl p-2 bg-gradient-to-br from-cyan-400 to-blue-600 dark:from-cyan-500/50 dark:to-blue-600/50">
+                  <img
+                    src={logo}
+                    alt="Khushnawaj"
+                    className="
+                      h-64 w-64 md:h-80 md:w-80 object-cover rounded-2xl shadow-[0_0_50px_rgba(8,145,178,0.3)] dark:shadow-[0_0_50px_rgba(8,145,178,0.2)]
+                      border border-white/50 dark:border-black/50
+                      bg-white dark:bg-[#09090b]
+                    "
+                  />
+                </div>
+              </Tilt>
+            </div>
           </motion.div>
 
         </div>
       </section>
 
-      {/* TECH MARQUEE */}
-      <TechMarquee />
+      {/* TECH GRAVITY SANDBOX */}
+      <TechGravity />
 
-      {/* FEATURED PROJECT: SCIPRT SHELF */}
-      <section className="max-w-6xl mx-auto px-6 py-20">
-        <div className="flex flex-col md:flex-row items-center gap-12">
+      {/* FEATURED PROJECT: NEXUS360 */}
+      <section className="max-w-6xl mx-auto px-6 py-32 reveal-up">
+        <div className="flex flex-col md:flex-row items-center gap-16">
 
           <div className="flex-1 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300 text-sm font-medium">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-medium">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
               </span>
-              Latest Work
+              Latest Masterpiece
             </div>
 
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
-              ScriptShelf
+            <h2 className="text-3xl md:text-5xl font-black text-gray-900 dark:text-white">
+              Nexus360 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-500">ERP</span>
             </h2>
 
-            <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-              A developer-centric platform featuring a generic Redis-backed notification engine, gamification with XP/reputation, and an interactive typing game.
+            <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed font-light">
+              An enterprise-grade, microservice-based ERP system featuring Multi-Tenancy, Role-Based Access Control, an API Gateway, and highly automated workflows.
             </p>
 
-            <ul className="grid grid-cols-2 gap-2 text-sm text-gray-500 dark:text-gray-400">
-              <li className="flex items-center gap-2">✓ Redis Notification System</li>
-              <li className="flex items-center gap-2">✓ Gamification & XP</li>
-              <li className="flex items-center gap-2">✓ Admin Console</li>
-              <li className="flex items-center gap-2">✓ Typing Speed Game</li>
+            <ul className="grid grid-cols-2 gap-3 text-sm text-gray-600 dark:text-gray-300 font-medium">
+              <li className="flex items-center gap-2"><span className="text-cyan-500">◆</span> TurboRepo Architecture</li>
+              <li className="flex items-center gap-2"><span className="text-cyan-500">◆</span> NestJS Microservices</li>
+              <li className="flex items-center gap-2"><span className="text-cyan-500">◆</span> Next.js Admin Panel</li>
+              <li className="flex items-center gap-2"><span className="text-cyan-500">◆</span> API Gateway & Redis</li>
             </ul>
 
-            <div className="pt-4 flex flex-wrap gap-4">
+            <div className="pt-6 flex flex-wrap gap-4">
               <Link
-                to="/projects/script-shelf"
+                to="/projects/nexus360"
                 className="
-                  px-6 py-2.5 rounded-lg bg-cyan-600 text-white font-medium 
-                  hover:bg-cyan-700 transition inline-flex items-center gap-2 shadow-sm
+                  px-8 py-3.5 rounded-full bg-gray-900 dark:bg-white text-white dark:text-black font-bold 
+                  hover:-translate-y-1 transition duration-300 shadow-[0_0_20px_rgba(8,145,178,0.2)] hover:shadow-[0_0_20px_rgba(8,145,178,0.5)] inline-flex items-center gap-2
                 "
               >
-                View Case Study <FiChevronRight />
+                Explore Architecture <FiChevronRight />
               </Link>
 
               <a
-                href="https://script-self-two.vercel.app/"
+                href="https://github.com/khushnawaj/nexus360"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="
-                   px-6 py-2.5 rounded-lg border border-gray-300 text-gray-700 font-medium 
-                   hover:text-cyan-600 hover:border-cyan-300 transition inline-flex items-center gap-2
-                   dark:border-gray-700 dark:text-gray-300 dark:hover:text-accent dark:hover:border-accent
-                   bg-white dark:bg-transparent
+                   px-8 py-3.5 rounded-full border border-gray-300 text-gray-700 font-bold 
+                   hover:text-blue-600 hover:border-blue-400 transition inline-flex items-center gap-2
+                   dark:border-white/10 dark:text-gray-200 dark:hover:text-blue-400 dark:hover:border-blue-500/50
+                   bg-white/50 dark:bg-black/20 backdrop-blur-sm hover:-translate-y-1 duration-300
                  "
               >
-                <FiExternalLink /> Live Demo
+                <FiCode /> Source Code
               </a>
             </div>
           </div>
 
           <div className="flex-1 w-full relative group">
-            {/* Abstract Code/Preview Placeholder since we don't have a screenshot yet */}
-            {/* Live Profile Feature Card */}
-            <a
-              href="https://script-self-two.vercel.app/u/khush"
-              target="_blank"
-              rel="noopener noreferrer"
+            {/* Abstract ERP Dashboard Preview */}
+            <Link
+              to="/projects/nexus360"
               className="
-               aspect-video rounded-xl overflow-hidden 
-               bg-gradient-to-br from-white to-gray-50 
-               dark:from-[#111216] dark:to-[#0B0B0D]
-               border border-gray-200 dark:border-[#1F2937]
-               flex flex-col relative group hover:border-cyan-300 dark:hover:border-accent/40 transition-all duration-300 shadow-md cursor-pointer
+               aspect-video rounded-2xl overflow-hidden 
+               bg-gradient-to-br from-[#f8fafc] to-[#e2e8f0] 
+               dark:from-[#111216] dark:to-[#09090b]
+               border border-gray-200 dark:border-white/10
+               flex flex-col relative group hover:border-blue-400 dark:hover:border-blue-500/50 transition-all duration-500 shadow-2xl block
              ">
 
-              {/* Card Header / Badge */}
-              <div className="absolute top-4 right-4 z-10">
-                <span className="px-3 py-1 rounded-full text-xs font-bold bg-cyan-100 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800">
-                  Live System
-                </span>
+              {/* Server / Microservice Status Badge */}
+              <div className="absolute top-5 right-5 z-20 flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold bg-white/80 dark:bg-black/80 backdrop-blur-md border border-gray-200 dark:border-white/10 text-gray-800 dark:text-gray-200 shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                All Services Operational
               </div>
 
-              <div className="flex-1 flex flex-col items-center justify-center p-8 text-center relative">
-                <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]" />
+              {/* Mock Dashboard UI */}
+              <div className="w-full h-12 bg-white/50 dark:bg-black/40 border-b border-gray-200 dark:border-white/5 flex items-center px-4 gap-2 backdrop-blur-md relative z-10">
+                <div className="w-3 h-3 rounded-full bg-red-400"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
+                <div className="w-3 h-3 rounded-full bg-green-400"></div>
+                <div className="ml-4 h-4 w-32 bg-gray-200 dark:bg-white/10 rounded-full"></div>
+              </div>
 
-                {/* Avatar Ring */}
-                <div className="relative mb-4">
-                  <div className="w-20 h-20 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 p-[2px] shadow-lg">
-                    <div className="w-full h-full rounded-full bg-white dark:bg-[#111216] flex items-center justify-center overflow-hidden">
-                      <span className="text-2xl font-bold text-gray-800 dark:text-white">K</span>
-                    </div>
+              <div className="flex-1 p-6 relative flex flex-col gap-4">
+                {/* Background Grid */}
+                <div className="absolute inset-0 bg-grid-pattern opacity-[0.05] dark:opacity-[0.02]" />
+                
+                {/* Dashboard Stats Row */}
+                <div className="grid grid-cols-3 gap-4 relative z-10">
+                  <div className="h-20 bg-white/70 dark:bg-white/5 rounded-xl border border-gray-200 dark:border-white/5 p-4 flex flex-col justify-between shadow-sm">
+                    <div className="h-2 w-16 bg-blue-500/50 rounded-full"></div>
+                    <div className="h-6 w-12 bg-gray-800 dark:bg-white/80 rounded-md"></div>
                   </div>
-                  <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center text-xs font-bold text-black border-2 border-white dark:border-[#111216] shadow-sm">
-                    18
+                  <div className="h-20 bg-white/70 dark:bg-white/5 rounded-xl border border-gray-200 dark:border-white/5 p-4 flex flex-col justify-between shadow-sm">
+                    <div className="h-2 w-20 bg-cyan-500/50 rounded-full"></div>
+                    <div className="h-6 w-16 bg-gray-800 dark:bg-white/80 rounded-md"></div>
+                  </div>
+                  <div className="h-20 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl p-4 flex flex-col justify-between shadow-[0_0_15px_rgba(59,130,246,0.3)]">
+                    <div className="h-2 w-12 bg-white/50 rounded-full"></div>
+                    <div className="h-6 w-10 bg-white rounded-md"></div>
                   </div>
                 </div>
 
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">Khushnawaj</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">Full Stack Developer</p>
-
-                {/* XP Bar */}
-                <div className="w-full max-w-[200px] space-y-2 mb-6">
-                  <div className="flex justify-between text-xs font-medium text-gray-600 dark:text-gray-400">
-                    <span>XP Progress</span>
-                    <span className="text-cyan-600 dark:text-accent">24,500 / 30,000</span>
-                  </div>
-                  <div className="h-2 rounded-full bg-gray-100 dark:bg-[#1F2937] overflow-hidden">
-                    <div className="h-full bg-gradient-to-r from-cyan-500 to-blue-600 w-[82%]" />
+                {/* Dashboard Chart Mock */}
+                <div className="flex-1 bg-white/70 dark:bg-white/5 rounded-xl border border-gray-200 dark:border-white/5 p-4 relative z-10 shadow-sm overflow-hidden flex flex-col">
+                  <div className="h-3 w-32 bg-gray-300 dark:bg-white/20 rounded-full mb-4"></div>
+                  <div className="flex-1 flex items-end gap-2">
+                    {[40, 70, 45, 90, 65, 100, 80].map((height, i) => (
+                      <div key={i} className="flex-1 bg-gradient-to-t from-blue-500/20 to-cyan-400/80 rounded-t-sm" style={{ height: `${height}%` }}></div>
+                    ))}
                   </div>
                 </div>
 
-                <span
-                  className="text-sm font-medium text-cyan-600 dark:text-accent hover:underline inline-flex items-center gap-1"
-                >
-                  View My Public Profile <FiExternalLink size={12} />
-                </span>
+                {/* Microservice Flow Mock */}
+                <div className="absolute right-6 bottom-6 w-32 h-32 bg-cyan-500/10 dark:bg-cyan-500/5 rounded-full blur-2xl z-0"></div>
               </div>
-            </a>
+
+            </Link>
           </div>
 
         </div>
       </section>
 
       {/* CORE EXPERTISE */}
-      <section className="bg-gray-50 dark:bg-[#0e0e10] py-20">
-        <div className="max-w-6xl mx-auto px-6">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold mb-10 text-gray-900 dark:text-white"
-          >
-            Core Expertise
-          </motion.h2>
+      <section className="bg-gray-50 dark:bg-[#0e0e10] py-32 relative">
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent"></div>
+        <div className="max-w-6xl mx-auto px-6 relative z-10">
+          <h2 className="reveal-up text-4xl md:text-5xl font-black mb-12 text-gray-900 dark:text-white text-center">
+            Core <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600">Expertise</span>
+          </h2>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
@@ -284,42 +328,39 @@ export default function Home() {
                 desc: "Clean React/Vue applications with maintainable architecture."
               }
             ].map((item, i) => (
-              <SpotlightCard
-                key={i}
-                className="p-7 bg-white dark:bg-[#111216]"
-              >
-                <div className="text-cyan-600 dark:text-accent mb-4">
-                  {item.icon}
-                </div>
+              <div key={i} className="reveal-up">
+                <SpotlightCard className="p-8 h-full bg-white dark:bg-[#111216] border border-gray-100 dark:border-white/5 hover:-translate-y-2 transition-transform duration-300">
+                  <div className="text-cyan-600 dark:text-cyan-400 mb-6 bg-cyan-50 dark:bg-cyan-900/20 w-14 h-14 rounded-xl flex items-center justify-center">
+                    {item.icon}
+                  </div>
 
-                <h3 className="text-lg font-semibold mb-3 text-gray-900 dark:text-white">
-                  {item.title}
-                </h3>
+                  <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
+                    {item.title}
+                  </h3>
 
-                <p className="leading-relaxed text-gray-600 dark:text-gray-400">
-                  {item.desc}
-                </p>
-              </SpotlightCard>
+                  <p className="leading-relaxed text-gray-600 dark:text-gray-400">
+                    {item.desc}
+                  </p>
+                </SpotlightCard>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="max-w-4xl mx-auto px-6 py-20 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="
-            rounded-2xl p-12
-            bg-white border border-gray-200 shadow-sm
-            dark:bg-[#111216] dark:border-border
+      <section className="max-w-4xl mx-auto px-6 py-32 text-center reveal-up">
+        <div className="
+            relative rounded-3xl p-16 overflow-hidden
+            bg-white border border-gray-200 shadow-2xl
+            dark:bg-[#111216] dark:border-white/10
           "
         >
+          {/* Decorative Glow */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[150%] h-40 bg-gradient-to-b from-cyan-500/20 to-transparent blur-3xl pointer-events-none" />
 
-          <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
-            Open to meaningful work & collaborations
+          <h2 className="text-4xl md:text-5xl font-black mb-8 text-gray-900 dark:text-white relative z-10">
+            Let's build something <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600">extraordinary</span>
           </h2>
 
           <p className="mb-8 max-w-2xl mx-auto text-gray-600 dark:text-gray-400">
@@ -329,16 +370,16 @@ export default function Home() {
           <a
             href="/contact"
             className="
-              px-8 py-3 rounded-lg font-medium inline-flex items-center gap-2 transition
+              relative z-10 px-10 py-4 text-lg rounded-full font-bold inline-flex items-center gap-3 transition shadow-[0_0_40px_rgba(8,145,178,0.3)] hover:shadow-[0_0_40px_rgba(8,145,178,0.6)] hover:-translate-y-1
               bg-gray-900 text-white hover:bg-gray-800
               dark:bg-white dark:text-black dark:hover:bg-gray-200
             "
           >
-            Get in touch
-            <FiChevronRight />
+            Start a Conversation
+            <FiChevronRight size={20} />
           </a>
 
-        </motion.div>
+        </div>
       </section>
 
     </main >

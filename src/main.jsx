@@ -6,13 +6,16 @@ import "./index.css";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import { Analytics } from "@vercel/analytics/react"
+import SmoothScroll from "./components/SmoothScroll";
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
-  <BrowserRouter>
-    <App />
-    <Analytics />
-  </BrowserRouter>
+    <BrowserRouter>
+      <SmoothScroll>
+        <App />
+      </SmoothScroll>
+      <Analytics />
+    </BrowserRouter>
   </Provider>
 );
