@@ -1,9 +1,44 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState, useCallback } from "react";
-import { FiExternalLink, FiGithub, FiCalendar, FiCode, FiX, FiChevronLeft, FiChevronRight, FiMaximize2 } from "react-icons/fi";
+import { FiExternalLink, FiGithub, FiCalendar, FiCode, FiX, FiChevronLeft, FiChevronRight, FiMaximize2, FiServer, FiDatabase, FiLayout, FiCpu } from "react-icons/fi";
+import { 
+  SiReact, SiNodedotjs, SiExpress, SiMongodb, SiRedis, SiSocketdotio, SiTailwindcss, 
+  SiDjango, SiPostgresql, SiJsonwebtokens, SiRazorpay, SiVercel, SiCloudinary, SiStripe, 
+  SiVuedotjs, SiNextdotjs, SiNestjs, SiTypescript, SiDocker, SiPython, SiVite, SiTurborepo 
+} from "react-icons/si";
 import { projectsData } from "../data/projects";
 import { motion, AnimatePresence } from "framer-motion";
 import SEO from "../components/SEO";
+
+// Helper function to map tech names to React Icons
+const getTechIcon = (tech) => {
+  const t = tech.toLowerCase();
+  if (t.includes("react")) return <SiReact className="text-[#61DAFB] text-xl" />;
+  if (t.includes("node")) return <SiNodedotjs className="text-[#339933] text-xl" />;
+  if (t.includes("express")) return <SiExpress className="text-gray-800 dark:text-gray-200 text-xl" />;
+  if (t.includes("mongo")) return <SiMongodb className="text-[#47A248] text-xl" />;
+  if (t.includes("redis")) return <SiRedis className="text-[#DC382D] text-xl" />;
+  if (t.includes("socket")) return <SiSocketdotio className="text-[#010101] dark:text-white text-xl" />;
+  if (t.includes("tailwind")) return <SiTailwindcss className="text-[#06B6D4] text-xl" />;
+  if (t.includes("django")) return <SiDjango className="text-[#092E20] dark:text-[#0BA550] text-xl" />;
+  if (t.includes("postgres")) return <SiPostgresql className="text-[#4169E1] text-xl" />;
+  if (t.includes("jwt")) return <SiJsonwebtokens className="text-[#000000] dark:text-white text-xl" />;
+  if (t.includes("razorpay")) return <SiRazorpay className="text-[#02042B] dark:text-[#3395FF] text-xl" />;
+  if (t.includes("vercel")) return <SiVercel className="text-[#000000] dark:text-white text-xl" />;
+  if (t.includes("cloud")) return <SiCloudinary className="text-[#3448C5] text-xl" />;
+  if (t.includes("stripe")) return <SiStripe className="text-[#008CDD] text-xl" />;
+  if (t.includes("vue")) return <SiVuedotjs className="text-[#4FC08D] text-xl" />;
+  if (t.includes("next")) return <SiNextdotjs className="text-[#000000] dark:text-white text-xl" />;
+  if (t.includes("nest")) return <SiNestjs className="text-[#E0234E] text-xl" />;
+  if (t.includes("type")) return <SiTypescript className="text-[#3178C6] text-xl" />;
+  if (t.includes("docker")) return <SiDocker className="text-[#2496ED] text-xl" />;
+  if (t.includes("python")) return <SiPython className="text-[#3776AB] text-xl" />;
+  if (t.includes("vite")) return <SiVite className="text-[#646CFF] text-xl" />;
+  if (t.includes("turbo")) return <SiTurborepo className="text-[#EF4444] text-xl" />;
+  if (t.includes("api")) return <FiServer className="text-gray-500 dark:text-gray-400 text-xl" />;
+  
+  return <FiCpu className="text-gray-500 dark:text-gray-400 text-xl" />; // default fallback
+};
 
 export default function ProjectDetails() {
   const { slug } = useParams();
@@ -223,12 +258,16 @@ export default function ProjectDetails() {
               <div
                 key={i}
                 className="
-                  rounded-lg p-4 text-center
-                  bg-gray-50 border border-gray-200
+                  rounded-xl p-4 text-center flex flex-col items-center justify-center gap-3
+                  bg-gray-50 border border-gray-200 shadow-sm
                   dark:bg-[#111216] dark:border-[#1F2937]
+                  hover:-translate-y-1 hover:shadow-md transition-all duration-300
                 "
               >
-                <span className="text-gray-800 dark:text-gray-200">{t}</span>
+                <div className="p-3 bg-white dark:bg-[#1A1A24] rounded-lg shadow-sm">
+                  {getTechIcon(t)}
+                </div>
+                <span className="text-gray-800 dark:text-gray-200 font-medium text-sm">{t}</span>
               </div>
             ))}
           </div>
