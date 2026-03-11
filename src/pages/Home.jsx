@@ -105,8 +105,8 @@ export default function Home() {
 
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10 w-full">
 
-          {/* LEFT */}
-          <div className="flex flex-col justify-center">
+          {/* LEFT: Information & CTA */}
+          <div className="flex-1 flex flex-col justify-center max-w-2xl py-8">
             <p className="hero-text-anim text-cyan-600 dark:text-cyan-400 tracking-widest text-sm font-bold uppercase mb-4">
               Full Stack Engineer & Designer
             </p>
@@ -152,7 +152,7 @@ export default function Home() {
 
           {/* RIGHT */}
           <motion.div
-            className="flex justify-center md:justify-end items-center w-full h-full min-h-[400px] relative cursor-pointer"
+            className="flex justify-center md:justify-end items-center w-full h-full relative cursor-pointer"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}

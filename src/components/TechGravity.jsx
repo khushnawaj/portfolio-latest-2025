@@ -153,7 +153,7 @@ export default function TechGravity() {
   }, [theme]);
 
   return (
-    <div className="w-full relative bg-gray-50 dark:bg-[#09090b] py-32 overflow-hidden border-y border-gray-200 dark:border-white/5">
+    <div className="w-full relative bg-gray-50 dark:bg-[#09090b] py-20 overflow-hidden border-y border-gray-200 dark:border-white/5">
       <div className="max-w-6xl mx-auto px-6 text-center mb-12 reveal-up">
         <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-4">
           Tech Stack <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600">Sandbox</span>
