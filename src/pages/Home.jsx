@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import SpotlightCard from "../components/SpotlightCard";
 import Tilt from "../components/Tilt";
-import TechGravity from "../components/TechGravity";
+import TechMarquee from "../components/TechMarquee";
 import SEO from "../components/SEO";
 import ParticleBackground from "../components/ParticleBackground";
 import gsap from "gsap";
@@ -178,8 +178,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* TECH GRAVITY SANDBOX */}
-      <TechGravity />
+      {/* TECH MARQUEE */}
+      <TechMarquee />
 
       {/* FEATURED PROJECT: NEXUS360 */}
       <section className="max-w-6xl mx-auto px-6 py-32 reveal-up">
