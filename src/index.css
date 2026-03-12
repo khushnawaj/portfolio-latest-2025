@@ -145,3 +145,14 @@ a {
 }
 
 
+@keyframes glitch {
+  0% { transform: translate(0); text-shadow: -2px 0 #0ff, 2px 0 #f0f; }
+  25% { transform: translate(-2px, 2px); text-shadow: 2px 0 #0ff, -2px 0 #f0f; }
+  50% { transform: translate(2px, -2px); text-shadow: -2px 0 #0ff, 2px 0 #f0f; }
+  75% { transform: translate(-2px, -2px); text-shadow: 2px 0 #0ff, -2px 0 #f0f; }
+  100% { transform: translate(0); text-shadow: -2px 0 #0ff, 2px 0 #f0f; }
+}
+
+.animate-glitch {
+  animation: glitch 1s infinite linear alternate-reverse;
+}

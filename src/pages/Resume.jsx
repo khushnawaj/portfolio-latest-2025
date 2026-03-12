@@ -191,7 +191,7 @@ export default function Resume() {
             EXPERIENCE & SKILLS
           </p>
 
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+          <h1 className="text-3xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
             Resume
           </h1>
 
@@ -205,9 +205,9 @@ export default function Resume() {
             href="/Khushnawaj-Resume-.pdf"
             download="Khushnawaj-Resume-.pdf"
             className="
-              inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-bold transition-all duration-300
+              inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all duration-300 text-sm
               bg-gradient-to-r from-cyan-600 to-blue-600 text-white
-              hover:shadow-[0_0_25px_rgba(8,145,178,0.4)] hover:-translate-y-1 active:scale-95
+              hover:shadow-lg active:scale-95
             "
           >
             <FiDownload /> Download Resume

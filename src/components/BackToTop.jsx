@@ -29,23 +29,21 @@ export default function BackToTop() {
         <AnimatePresence>
             {isVisible && (
                 <motion.button
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.5 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 20 }}
                     onClick={scrollToTop}
                     className="
-            fixed bottom-8 right-8 z-50
-            p-3 rounded-full shadow-lg
-            bg-cyan-600 text-white
-            hover:bg-cyan-700 hover:shadow-xl
-            dark:bg-cyan-500 dark:hover:bg-cyan-600
-            transition-all duration-300
-            group
-          "
-                    whileHover={{ y: -4 }}
-                    whileTap={{ scale: 0.9 }}
+                        fixed bottom-8 right-8 z-50
+                        p-4 rounded-xl shadow-2xl
+                        bg-gradient-to-br from-cyan-600 to-blue-700 text-white
+                        hover:shadow-cyan-500/20 active:scale-95
+                        transition-all duration-300
+                        group
+                    "
+                    whileHover={{ y: -5 }}
                 >
-                    <FiArrowUp size={20} className="group-hover:animate-bounce" />
+                    <FiArrowUp size={24} className="group-hover:-translate-y-1 transition-transform" />
                 </motion.button>
             )}
         </AnimatePresence>

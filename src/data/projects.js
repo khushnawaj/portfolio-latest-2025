@@ -2,6 +2,8 @@ export const projectsData = [
   {
     slug: "nexus360",
     title: "Nexus360 ERP System",
+    image: null,
+    category: "Node.js",
     description: "An enterprise-grade, microservice-based ERP system featuring Multi-Tenancy, Role-Based Access Control, an API Gateway, and automated invoice workflows.",
     tags: ["Next.js", "NestJS", "Microservices", "TurboRepo"],
     caseStudy: true,
@@ -32,6 +34,8 @@ export const projectsData = [
   {
     slug: "script-shelf",
     title: "ScriptShelf",
+    image: null,
+    category: "React",
     description: "A developer-centric platform featuring a Redis-backed notification system, gamification with XP/reputation, and an interactive typing game.",
     tags: ["React", "Express", "MongoDB", "Redis"],
     caseStudy: true,
@@ -58,37 +62,71 @@ export const projectsData = [
     }
   },
   {
-    slug: "currency-xchange",
-    title: "CurrencyXchange",
-    description: "Multi-currency wallet & exchange platform with real-time rates and secure transfers.",
-    tags: ["React", "Django", "PostgreSQL", "JWT"],
-    caseStudy: true,
-    github: "https://github.com/khushnawaj/currency-exchange-backend", // Backend Repo
-    live: "#",   // Add link if available
+    slug: "article-builder",
+    title: "Article Builder Pro",
+    image: null,
+    category: "React",
+    description: "A comprehensive CMS for creating and managing long-form content with a powerful rich-text editor and custom layouts.",
+    tags: ["React", "Node.js", "CMS"],
+    caseStudy: false,
+    github: "#",
+    live: "#",
     featured: true,
-    date: "Jan 2026",
-    tech: ["React 19", "Vite", "Django REST Framework", "PostgreSQL", "JWT", "Hot Toast"],
+    date: "Dec 2025",
+    tech: ["React", "Node.js", "Express", "MongoDB", "TipTap", "Tailwind CSS"],
     details: {
-      problem: "Users need a secure, unified platform to manage multiple currencies, view live exchange rates, and perform instant money transfers without complex banking procedures.",
-      solution: "Developed a full-stack financial application allowing users to create multi-currency wallets, convert funds with real-time API data, and securely transfer money to other users. Includes a comprehensive dashboard for tracking transaction history and analytics.",
+      problem: "Content creators needed a more intuitive way to build structured articles with varied media types without technical overhead.",
+      solution: "Developed a custom CMS with a block-based editor, permitting real-time previews and drag-and-drop structural organization.",
       architecture: [
-        "Django REST Framework backend with custom JWT authentication",
-        "React + Vite frontend for a responsive SPA experience",
-        "Integration with ExchangeRate-API for live currency data",
-        "PostgreSQL database for secure transaction storage",
-        "Admin panel for system management and user oversight"
+        "Block-based content architecture",
+        "Real-time preview engine",
+        "Media management system",
+        "Automated SEO metadata generation"
       ],
       outcomes: [
-        "Implemented secure financial transaction flows",
-        "Real-time currency conversion with live data",
-        "Scalable wallet management system",
-        "Comprehensive transaction tracking and export"
+        "50% reduction in content publishing time",
+        "Improved content quality with built-in validation",
+        "Flexible layout system for diverse article types"
+      ]
+    }
+  },
+  {
+    slug: "task-manager",
+    title: "ProTask Manager",
+    image: null,
+    category: "React",
+    description: "An enterprise-grade project management platform featuring collaborative Kanban boards, real-time activity streams, and intelligent workload analytics.",
+    tags: ["React", "Node.js", "MongoDB", "Socket.io"],
+    caseStudy: true,
+    github: "https://github.com/khushnawaj/taskmanager_full",
+    live: "#",
+    featured: true,
+    date: "Jan 2026",
+    tech: ["Next.js", "Node.js", "Express", "MongoDB", "Socket.io", "Redux Toolkit", "Framer Motion", "Recharts"],
+    details: {
+      problem: "Teams often struggle with fragmented communication and lack of visibility into workload distribution, leading to burnout and missed deadlines in fast-paced environments.",
+      solution: "Developed ProTask Manager, a robust SaaS-style platform that centralizes project workflows. It features optimistic UI updates for zero latency, real-time collaboration via WebSockets, and a manager-level dashboard for balancing team capacity and task priorities.",
+      architecture: [
+        "Next.js client-side application with state management via Redux Toolkit",
+        "Express REST API protected by rate-limiting and security middleware (Helmet)",
+        "WebSocket integration for instant cross-user synchronization",
+        "Soft-delete mechanism and comprehensive database audit logs",
+        "Command Palette (Ctrl+K) for high-efficiency keyboard navigation",
+        "Data visualization using Recharts for team productivity metrics"
+      ],
+      outcomes: [
+        "Enabled seamless team collaboration with real-time feedback",
+        "Reduced administrative overhead through automated audit trails",
+        "Improved project predictability with data-driven workload insights",
+        "Enhanced developer productivity with a modern, high-speed UX"
       ]
     }
   },
   {
     slug: "scentiva",
     title: "Scentiva E-Commerce",
+    image: null,
+    category: "Node.js",
     description: "Production-ready e-commerce platform with payments, admin panel, and cloud deployment.",
     tags: ["React", "Node.js", "MongoDB", "Razorpay"],
     caseStudy: true,
@@ -118,8 +156,68 @@ export const projectsData = [
     }
   },
   {
+    slug: "template-builder",
+    title: "Low-Code Template Builder",
+    image: null,
+    category: "React",
+    description: "A visual editor for creating customizable UI templates with dynamic data binding and real-time editing.",
+    tags: ["React", "Canvas", "Low-Code"],
+    caseStudy: false,
+    github: "#",
+    live: "#",
+    featured: false,
+    date: "Nov 2025",
+    tech: ["React", "React-DND", "Tailwind CSS", "Redux"],
+    details: {
+      problem: "Static templates were too restrictive for dynamic business needs.",
+      solution: "Created a drag-and-drop builder allowing users to define element positions, dimensions, and data hooks dynamically.",
+      architecture: [
+        "Layer-based rendering engine",
+        "Dynamic property inspector",
+        "Data-mapping layer for API integration"
+      ],
+      outcomes: [
+        "Empowered non-technical users to build UIs",
+        "Standardized template structures across the organization"
+      ]
+    }
+  },
+  {
+    slug: "currency-xchange",
+    title: "CurrencyXchange",
+    image: null,
+    category: "React",
+    description: "Multi-currency wallet & exchange platform with real-time rates and secure transfers.",
+    tags: ["React", "Django", "PostgreSQL", "JWT"],
+    caseStudy: true,
+    github: "https://github.com/khushnawaj/currency-exchange-backend",
+    live: "#",
+    featured: true,
+    date: "Jan 2026",
+    tech: ["React 19", "Vite", "Django REST Framework", "PostgreSQL", "JWT", "Hot Toast"],
+    details: {
+      problem: "Users need a secure, unified platform to manage multiple currencies, view live exchange rates, and perform instant money transfers without complex banking procedures.",
+      solution: "Developed a full-stack financial application allowing users to create multi-currency wallets, convert funds with real-time API data, and securely transfer money to other users. Includes a comprehensive dashboard for tracking transaction history and analytics.",
+      architecture: [
+        "Django REST Framework backend with custom JWT authentication",
+        "React + Vite frontend for a responsive SPA experience",
+        "Integration with ExchangeRate-API for live currency data",
+        "PostgreSQL database for secure transaction storage",
+        "Admin panel for system management and user oversight"
+      ],
+      outcomes: [
+        "Implemented secure financial transaction flows",
+        "Real-time currency conversion with live data",
+        "Scalable wallet management system",
+        "Comprehensive transaction tracking and export"
+      ]
+    }
+  },
+  {
     slug: "election-campaign",
     title: "Election Campaign Platform",
+    image: null,
+    category: "Node.js",
     description: "Secure election system with paid registration, candidate workflows, and real-time voting.",
     tags: ["Vue.js", "Node.js", "Express", "MongoDB"],
     caseStudy: true,
@@ -147,6 +245,8 @@ export const projectsData = [
   {
     slug: "elearning",
     title: "E-Learning Platform",
+    image: null,
+    category: "Vue.js",
     description: "Course management and live classes with teacher & student dashboards.",
     tags: ["Vue.js", "Node.js", "Express", "MongoDB"],
     caseStudy: true,
@@ -170,20 +270,10 @@ export const projectsData = [
     }
   },
   {
-    slug: "task-manager",
-    title: "Task Management System",
-    description: "Collaborative task management with real-time updates and team features.",
-    tags: ["React", "Node.js", "Socket.io", "PostgreSQL"],
-    caseStudy: false,
-    github: "#",
-    live: "#",
-    featured: false,
-    date: "Oct 2024",
-    tech: ["React", "Node.js", "Socket.io", "PostgreSQL"]
-  },
-  {
     slug: "weather-dashboard",
     title: "Weather Dashboard",
+    image: null,
+    category: "React",
     description: "Real-time weather tracking with forecast and clean UI.",
     tags: ["React", "API Integration", "Chart.js", "Tailwind"],
     caseStudy: false,
@@ -196,6 +286,8 @@ export const projectsData = [
   {
     slug: "ArtWall",
     title: "ArtWall",
+    image: null,
+    category: "Vue.js",
     description: "A platform for artists to showcase their digital art.",
     tags: ["Vue", "Node.js", "Express", "MongoDB"],
     caseStudy: false,

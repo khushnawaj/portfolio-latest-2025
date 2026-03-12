@@ -18,18 +18,29 @@ import Toast from "../components/Toast";
 export default function Contact() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [toast, setToast] = useState({ show: false, message: "", type: "success" });
   const [isCopied, setIsCopied] = useState(false);
 
   const handleCopy = () => {
     navigator.clipboard.writeText("khushnawaj14@gmail.com");
     setIsCopied(true);
-    setTimeout(() => setIsCopied(false), 2000);
+    setToast({ show: true, message: "Email copied to clipboard!", type: "success" });
+    setTimeout(() => {
+        setIsCopied(false);
+        setToast(prev => ({ ...prev, show: false }));
+    }, 2000);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    if (!formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+      setToast({ show: true, message: "Please enter a valid email address.", type: "error" });
+      setTimeout(() => setToast(prev => ({ ...prev, show: false })), 4000);
+      setIsSubmitting(false);
+      return;
+    }
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
@@ -50,15 +61,16 @@ export default function Contact() {
       const result = await response.json();
 
       if (result.success) {
-        setIsSubmitted(true);
+        setToast({ show: true, message: "Message sent successfully!", type: "success" });
         setFormData({ name: "", email: "", message: "" });
-        setTimeout(() => setIsSubmitted(false), 5000);
+        setTimeout(() => setToast(prev => ({ ...prev, show: false })), 5000);
       } else {
-        alert("Something went wrong. Please try again later.");
+        setToast({ show: true, message: "Something went wrong. Please try again.", type: "error" });
+        setTimeout(() => setToast(prev => ({ ...prev, show: false })), 5000);
       }
     } catch (error) {
-      console.error("Form Error:", error);
-      alert("Submission failed. Check your connection.");
+      setToast({ show: true, message: "Connectivity issue. Please check your internet.", type: "error" });
+      setTimeout(() => setToast(prev => ({ ...prev, show: false })), 5000);
     } finally {
       setIsSubmitting(false);
     }
@@ -80,7 +92,7 @@ export default function Contact() {
       <div className="text-center mb-16">
         <p className="tracking-wide mb-2 text-cyan-600 dark:text-accent">CONTACT</p>
 
-        <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+        <h1 className="text-3xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
           Let's Connect
         </h1>
 
@@ -203,74 +215,85 @@ export default function Contact() {
             Send a Message
           </h2>
 
-          {isSubmitted ? (
-            <div className="text-center py-10">
-              <div className="text-3xl mb-4 text-cyan-600 dark:text-accent"><FiMail /></div>
-              <p className="font-medium mb-2 text-gray-900 dark:text-white">Message Sent</p>
-              <p className="text-gray-600 dark:text-gray-400">I’ll get back to you soon.</p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
 
+            <div className="space-y-4">
+              <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 ml-1">Name</label>
               <input
                 type="text"
                 name="name"
-                placeholder="Your Name"
+                placeholder="Khushnawaj M."
                 required
                 value={formData.name}
                 onChange={e => setFormData({ ...formData, name: e.target.value })}
                 className="
-                  w-full px-4 py-3 rounded-lg focus:outline-none transition text-center
-                  bg-gray-100 border border-gray-300 placeholder-gray-500
-                  focus:border-cyan-500
-                  dark:bg-[#0B0B0D] dark:border-[#1F2937] dark:text-white dark:placeholder-gray-500 dark:focus:border-accent
+                  w-full px-4 py-3 rounded-xl focus:outline-none transition-all text-sm md:text-base
+                  bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400
+                  focus:border-cyan-500 focus:ring-4 focus:ring-cyan-500/10
+                  dark:bg-white/[0.03] dark:border-white/10 dark:text-white dark:placeholder-gray-600 dark:focus:border-accent dark:focus:ring-accent/10
                 "
               />
+            </div>
 
+            <div className="space-y-4">
+              <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 ml-1">Email</label>
               <input
                 type="email"
                 name="email"
-                placeholder="Email Address"
+                placeholder="khushnawaj14@gmail.com"
                 required
                 value={formData.email}
                 onChange={e => setFormData({ ...formData, email: e.target.value })}
                 className="
-                  w-full px-4 py-3 rounded-lg focus:outline-none transition text-center
-                  bg-gray-100 border border-gray-300 placeholder-gray-500
-                  focus:border-cyan-500
-                  dark:bg-[#0B0B0D] dark:border-[#1F2937] dark:text-white dark:placeholder-gray-500 dark:focus:border-accent
+                  w-full px-4 py-3 rounded-xl focus:outline-none transition-all text-sm md:text-base
+                  bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400
+                  focus:border-cyan-500 focus:ring-4 focus:ring-cyan-500/10
+                  dark:bg-white/[0.03] dark:border-white/10 dark:text-white dark:placeholder-gray-600 dark:focus:border-accent dark:focus:ring-accent/10
                 "
               />
+            </div>
 
+            <div className="space-y-4">
+              <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 ml-1">Message</label>
               <textarea
                 rows={5}
                 name="message"
-                placeholder="Your Message"
+                placeholder="How can I help you?"
                 required
                 value={formData.message}
                 onChange={e => setFormData({ ...formData, message: e.target.value })}
                 className="
-                  w-full px-4 py-3 rounded-lg resize-none focus:outline-none transition text-center
-                  bg-gray-100 border border-gray-300 placeholder-gray-500
-                  focus:border-cyan-500
-                  dark:bg-[#0B0B0D] dark:border-[#1F2937] dark:text-white dark:placeholder-gray-500 dark:focus:border-accent
+                  w-full px-4 py-3 rounded-xl resize-none focus:outline-none transition-all text-sm md:text-base
+                  bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400
+                  focus:border-cyan-500 focus:ring-4 focus:ring-cyan-500/10
+                  dark:bg-white/[0.03] dark:border-white/10 dark:text-white dark:placeholder-gray-600 dark:focus:border-accent dark:focus:ring-accent/10
                 "
               />
+            </div>
 
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="
-                  w-full py-3.5 rounded-xl font-bold transition-all duration-300 disabled:opacity-60
-                  bg-gradient-to-r from-cyan-600 to-blue-700 text-white
-                  hover:shadow-[0_0_25px_rgba(8,145,178,0.4)] hover:-translate-y-0.5 active:scale-95
-                "
-              >
-                {isSubmitting ? "Sending..." : "Send Message"}
-              </button>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="
+                w-full py-3.5 rounded-xl font-bold transition-all duration-300 disabled:opacity-60 flex items-center justify-center gap-2
+                bg-gradient-to-r from-cyan-600 to-blue-700 text-white md:text-lg
+                hover:shadow-lg active:scale-[0.98]
+              "
+            >
+              {isSubmitting ? (
+                <>
+                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  Sending...
+                </>
+              ) : (
+                <>
+                  Send Message
+                  <FiSend />
+                </>
+              )}
+            </button>
 
-            </form>
-          )}
+          </form>
         </div>
       </div>
 
@@ -281,7 +304,7 @@ export default function Contact() {
           bg-white border border-gray-200
           dark:bg-[#111216] dark:border-[#1F2937]
         ">
-          <h3 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
+          <h3 className="text-2xl md:text-3xl font-bold mb-6 text-gray-900 dark:text-white">
             Open to Work & Collaboration
           </h3>
 
@@ -302,7 +325,7 @@ export default function Contact() {
         </div>
       </div>
 
-      <Toast message="Email copied to clipboard!" isVisible={isCopied} />
+      <Toast message={toast.message} isVisible={toast.show} type={toast.type} />
     </div>
   );
 }

@@ -9,6 +9,7 @@ import {
 import { projectsData } from "../data/projects";
 import { motion, AnimatePresence } from "framer-motion";
 import SEO from "../components/SEO";
+import OptimizedImage from "../components/OptimizedImage";
 
 // Helper function to map tech names to React Icons
 const getTechIcon = (tech) => {
@@ -102,37 +103,50 @@ export default function ProjectDetails() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [lightboxIndex, nextImage, prevImage]);
 
-  // If no details are present in the data object yet, show coming soon
-  if (!project.details && !project.description) {
-    // Fallback if data is missing
-  }
-
   // Pre-check for "Coming Soon" only if details are absolutely missing
   if (!project.details) {
     return (
-      <div className="pt-28 px-4 md:px-6 max-w-4xl mx-auto">
+      <div className="pt-32 px-4 md:px-6 max-w-4xl mx-auto min-h-[70vh] flex items-center justify-center">
+        <SEO title="Coming Soon" />
         <div className="
-          text-center rounded-2xl p-8 md:p-14
-          bg-gray-50 border border-gray-200
-          dark:bg-[#111216] dark:border-[#1F2937]
+          relative w-full text-center rounded-3xl p-12 md:p-20 overflow-hidden
+          bg-white border border-gray-100 shadow-2xl
+          dark:bg-[#0B0B0D] dark:border-white/5
         ">
-          <div className="text-5xl mb-4">🚧</div>
-          <h1 className="text-3xl font-bold mb-3 text-gray-900 dark:text-white">
-            Case Study Coming Soon
-          </h1>
-          <p className="mb-8 text-gray-600 dark:text-gray-400">
-            This project case study is currently being prepared.
-          </p>
-          <a
-            href="/projects"
-            className="
-              px-8 py-3.5 rounded-xl font-bold transition-all duration-300
-              bg-gradient-to-r from-gray-900 to-gray-800 dark:from-white dark:to-gray-100 text-white dark:text-black
-              hover:shadow-xl hover:-translate-y-1 active:scale-95
-            "
+          {/* Decorative Glow */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[200%] h-64 bg-gradient-to-b from-cyan-500/10 to-transparent blur-3xl pointer-events-none" />
+          
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            className="relative z-10"
           >
-            Back to Projects
-          </a>
+            <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 mb-8 text-4xl">
+              🚧
+            </div>
+            
+            <h1 className="text-4xl md:text-5xl font-black mb-4 text-gray-900 dark:text-white tracking-tight">
+              Case Study <br className="md:hidden" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600">Under Construction</span>
+            </h1>
+            
+            <p className="mb-10 text-lg text-gray-600 dark:text-gray-400 max-w-md mx-auto leading-relaxed">
+              I'm currently documenting the architecture and outcomes for <b>{project.title}</b>. Check back shortly for the full breakdown.
+            </p>
+            
+            <a
+              href="/projects"
+              className="
+                inline-flex items-center justify-center px-10 py-4 rounded-xl font-bold transition-all duration-300
+                bg-gradient-to-r from-cyan-600 to-blue-700 text-white
+                shadow-[0_10px_30px_rgba(8,145,178,0.3)] hover:shadow-[0_15px_40px_rgba(8,145,178,0.5)] 
+                hover:-translate-y-1 active:scale-95
+              "
+            >
+              Return to Catalog
+            </a>
+          </motion.div>
         </div>
       </div>
     );
@@ -196,16 +210,16 @@ export default function ProjectDetails() {
                 "
                 whileHover={{ y: -4 }}
               >
-                <img
+                <OptimizedImage
                   src={src}
                   alt={`Screenshot ${i + 1}`}
-                  className="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-72"
                 />
 
                 {/* Overlay on Hover */}
                 <div className="
                   absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100
-                  transition-opacity duration-300 flex items-center justify-center
+                  transition-opacity duration-300 flex items-center justify-center z-20
                 ">
                   <span className="text-white bg-black/50 px-4 py-2 rounded-full backdrop-blur-sm flex items-center gap-2">
                     <FiMaximize2 /> View Fullscreen
@@ -236,6 +250,8 @@ export default function ProjectDetails() {
           {project.github && project.github !== "#" && (
             <a
               href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
               className="
                 px-8 py-3.5 rounded-xl inline-flex items-center gap-2 transition-all duration-300 font-bold
                 bg-white/10 dark:bg-white/5 border border-gray-200 dark:border-white/10 backdrop-blur-md

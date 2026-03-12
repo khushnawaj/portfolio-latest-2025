@@ -15,10 +15,10 @@ export default function NotFound() {
                 transition={{ duration: 0.5 }}
                 className="relative mb-8"
             >
-                <h1 className="text-9xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600 select-none">
+                <h1 className="text-9xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600 select-none animate-glitch">
                     404
                 </h1>
-                <div className="absolute inset-0 text-9xl font-bold text-cyan-500/20 blur-sm select-none">
+                <div className="absolute inset-0 text-9xl font-bold text-cyan-500/20 blur-sm select-none animate-glitch" style={{ animationDelay: '0.1s' }}>
                     404
                 </div>
             </motion.div>

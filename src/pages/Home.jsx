@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
 import { FiChevronRight, FiDownload, FiCode, FiDatabase, FiLayers, FiExternalLink } from "react-icons/fi";
-import logo from "../assets/logo.png";
+import profileImg from "../assets/profile.jpeg";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import SpotlightCard from "../components/SpotlightCard";
-import Tilt from "../components/Tilt";
 import TechMarquee from "../components/TechMarquee";
 import SEO from "../components/SEO";
 import ParticleBackground from "../components/ParticleBackground";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import OptimizedImage from "../components/OptimizedImage";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -122,26 +122,26 @@ export default function Home() {
               I build <b className="font-semibold text-gray-900 dark:text-white">high-performance systems</b> and <b className="font-semibold text-gray-900 dark:text-white">beautiful interfaces</b> that scale gracefully.
             </div>
 
-            {/* CTA BUTTONS - Nested inside Left Column */}
-            <div className="hero-text-anim flex flex-col sm:flex-row gap-5 w-full sm:w-auto">
-              <a
-                href="/projects"
+            {/* CTA BUTTONS */}
+            <div className="hero-text-anim flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+              <Link
+                to="/projects"
                 className="
-                  px-8 py-3.5 rounded-xl font-bold transition-all duration-300 text-center
+                  px-6 py-3 rounded-xl font-bold transition-all duration-300 text-center text-sm md:text-base
                   bg-gradient-to-r from-cyan-500 to-blue-600 text-white
-                  hover:shadow-[0_0_25px_rgba(8,145,178,0.5)] hover:-translate-y-1 active:scale-95
+                  hover:shadow-[0_0_25px_rgba(8,145,178,0.5)] active:scale-95
                 "
               >
-                View Selected Work
-              </a>
+                View Work
+              </Link>
 
               <a
                 href="/resume"
                 className="
-                  px-8 py-3.5 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 font-bold
+                  px-6 py-3 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 font-bold text-sm md:text-base
                   bg-white/10 dark:bg-white/5 border border-gray-200 dark:border-white/10 backdrop-blur-md
-                  text-gray-800 dark:text-gray-200 hover:bg-white/20 dark:hover:bg-white/10 hover:border-cyan-400 dark:hover:border-accent/40
-                  hover:-translate-y-1 active:scale-95
+                  text-gray-800 dark:text-gray-200 hover:bg-white/20 dark:hover:bg-white/10
+                  active:scale-95
                 "
               >
                 <FiDownload />
@@ -158,21 +158,19 @@ export default function Home() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
           >
-            {/* Restored Hero Profile Image */}
+            {/* Refined Hero Profile Image (Tilt removed for stability) */}
             <div className="relative z-20">
-              <Tilt>
-                <div className="relative rounded-3xl p-2 bg-gradient-to-br from-cyan-400 to-blue-600 dark:from-cyan-500/50 dark:to-blue-600/50">
-                  <img
-                    src={logo}
-                    alt="Khushnawaj"
-                    className="
-                      h-64 w-64 md:h-80 md:w-80 object-cover rounded-2xl shadow-[0_0_50px_rgba(8,145,178,0.3)] dark:shadow-[0_0_50px_rgba(8,145,178,0.2)]
-                      border border-white/50 dark:border-black/50
-                      bg-white dark:bg-[#09090b]
-                    "
-                  />
-                </div>
-              </Tilt>
+              <div className="relative rounded-3xl p-2 bg-gradient-to-br from-cyan-400 to-blue-600 dark:from-cyan-500/50 dark:to-blue-600/50">
+                <OptimizedImage
+                  src={profileImg}
+                  alt="Khushnawaj"
+                  className="
+                    h-64 w-64 md:h-80 md:w-80 rounded-2xl shadow-[0_0_50px_rgba(8,145,178,0.3)] dark:shadow-[0_0_50px_rgba(8,145,178,0.2)]
+                    border border-white/50 dark:border-black/50
+                    bg-white dark:bg-[#09090b]
+                  "
+                />
+              </div>
             </div>
           </motion.div>
 
@@ -210,15 +208,15 @@ export default function Home() {
               <li className="flex items-center gap-2"><span className="text-cyan-500">◆</span> API Gateway & Redis</li>
             </ul>
 
-            <div className="pt-6 flex flex-wrap gap-4">
+            <div className="pt-6 flex flex-wrap gap-4 justify-center md:justify-start">
               <Link
                 to="/projects/nexus360"
                 className="
-                  px-8 py-3.5 rounded-xl bg-gradient-to-r from-gray-900 to-gray-800 dark:from-white dark:to-gray-100 text-white dark:text-black font-bold 
-                  hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-cyan-500/20 active:scale-95 inline-flex items-center gap-2
+                  px-6 py-3 rounded-xl bg-gray-900 text-white dark:bg-white dark:text-black font-bold text-sm
+                  hover:-translate-y-1 transition-all duration-300 shadow-md active:scale-95 inline-flex items-center gap-2
                 "
               >
-                Explore Architecture <FiChevronRight />
+                Architecture <FiChevronRight />
               </Link>
 
               <a
@@ -226,77 +224,49 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="
-                   px-8 py-3.5 rounded-xl border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-200 font-bold 
-                   hover:text-cyan-600 hover:border-cyan-400/50 dark:hover:text-accent dark:hover:border-accent/40 transition-all duration-300 inline-flex items-center gap-2
-                   bg-white/50 dark:bg-white/5 backdrop-blur-sm hover:-translate-y-1 active:scale-95
+                   px-6 py-3 rounded-xl border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-200 font-bold text-sm
+                   bg-white/50 dark:bg-white/5 backdrop-blur-sm hover:-translate-y-1 active:scale-95 transition-all
                  "
               >
-                <FiCode /> Source Code
+                <FiCode /> Code
               </a>
             </div>
           </div>
 
-          <div className="flex-1 w-full relative group">
-            {/* Abstract ERP Dashboard Preview */}
-            <Link
-              to="/projects/nexus360"
-              className="
-               aspect-video rounded-2xl overflow-hidden 
-               bg-gradient-to-br from-[#f8fafc] to-[#e2e8f0] 
-               dark:from-[#111216] dark:to-[#09090b]
-               border border-gray-200 dark:border-white/10
-               flex flex-col relative group hover:border-blue-400 dark:hover:border-blue-500/50 transition-all duration-500 shadow-2xl block
-             ">
-
-              {/* Server / Microservice Status Badge */}
-              <div className="absolute top-5 right-5 z-20 flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold bg-white/80 dark:bg-black/80 backdrop-blur-md border border-gray-200 dark:border-white/10 text-gray-800 dark:text-gray-200 shadow-sm">
-                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                All Services Operational
-              </div>
-
-              {/* Mock Dashboard UI */}
-              <div className="w-full h-12 bg-white/50 dark:bg-black/40 border-b border-gray-200 dark:border-white/5 flex items-center px-4 gap-2 backdrop-blur-md relative z-10">
-                <div className="w-3 h-3 rounded-full bg-red-400"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
-                <div className="w-3 h-3 rounded-full bg-green-400"></div>
-                <div className="ml-4 h-4 w-32 bg-gray-200 dark:bg-white/10 rounded-full"></div>
-              </div>
-
-              <div className="flex-1 p-6 relative flex flex-col gap-4">
-                {/* Background Grid */}
-                <div className="absolute inset-0 bg-grid-pattern opacity-[0.05] dark:opacity-[0.02]" />
+          <div className="flex-1 w-full flex flex-col justify-center items-center md:items-end">
+            <div className="
+              relative rounded-3xl p-10 md:p-14 overflow-hidden
+              bg-white border border-gray-100 shadow-2xl
+              dark:bg-[#111216] dark:border-white/5
+              text-center md:text-right w-full max-w-lg
+            ">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 blur-3xl rounded-full" />
+              <div className="relative z-10">
+                <div className="text-4xl md:text-5xl font-black text-gray-200 dark:text-white/5 mb-6">
+                  NEXUS
+                </div>
+                <div className="space-y-4">
+                  <div className="h-2 w-full bg-gray-100 dark:bg-white/5 rounded-full overflow-hidden">
+                    <div className="h-full w-[85%] bg-gradient-to-r from-blue-500 to-cyan-500" />
+                  </div>
+                  <div className="flex justify-between text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                    <span>Performance</span>
+                    <span>99.9%</span>
+                  </div>
+                </div>
                 
-                {/* Dashboard Stats Row */}
-                <div className="grid grid-cols-3 gap-4 relative z-10">
-                  <div className="h-20 bg-white/70 dark:bg-white/5 rounded-xl border border-gray-200 dark:border-white/5 p-4 flex flex-col justify-between shadow-sm">
-                    <div className="h-2 w-16 bg-blue-500/50 rounded-full"></div>
-                    <div className="h-6 w-12 bg-gray-800 dark:bg-white/80 rounded-md"></div>
+                <div className="mt-12 grid grid-cols-2 gap-4">
+                  <div className="p-4 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5">
+                    <div className="text-xs text-gray-500 uppercase mb-1">Microservices</div>
+                    <div className="text-lg font-bold text-gray-900 dark:text-white">Active</div>
                   </div>
-                  <div className="h-20 bg-white/70 dark:bg-white/5 rounded-xl border border-gray-200 dark:border-white/5 p-4 flex flex-col justify-between shadow-sm">
-                    <div className="h-2 w-20 bg-cyan-500/50 rounded-full"></div>
-                    <div className="h-6 w-16 bg-gray-800 dark:bg-white/80 rounded-md"></div>
-                  </div>
-                  <div className="h-20 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl p-4 flex flex-col justify-between shadow-[0_0_15px_rgba(59,130,246,0.3)]">
-                    <div className="h-2 w-12 bg-white/50 rounded-full"></div>
-                    <div className="h-6 w-10 bg-white rounded-md"></div>
+                  <div className="p-4 rounded-2xl bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/5">
+                    <div className="text-xs text-gray-500 uppercase mb-1">Tenants</div>
+                    <div className="text-lg font-bold text-gray-900 dark:text-white">Scalable</div>
                   </div>
                 </div>
-
-                {/* Dashboard Chart Mock */}
-                <div className="flex-1 bg-white/70 dark:bg-white/5 rounded-xl border border-gray-200 dark:border-white/5 p-4 relative z-10 shadow-sm overflow-hidden flex flex-col">
-                  <div className="h-3 w-32 bg-gray-300 dark:bg-white/20 rounded-full mb-4"></div>
-                  <div className="flex-1 flex items-end gap-2">
-                    {[40, 70, 45, 90, 65, 100, 80].map((height, i) => (
-                      <div key={i} className="flex-1 bg-gradient-to-t from-blue-500/20 to-cyan-400/80 rounded-t-sm" style={{ height: `${height}%` }}></div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Microservice Flow Mock */}
-                <div className="absolute right-6 bottom-6 w-32 h-32 bg-cyan-500/10 dark:bg-cyan-500/5 rounded-full blur-2xl z-0"></div>
               </div>
-
-            </Link>
+            </div>
           </div>
 
         </div>
@@ -306,26 +276,31 @@ export default function Home() {
       <section className="bg-gray-50 dark:bg-[#0e0e10] py-32 relative">
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent"></div>
         <div className="max-w-6xl mx-auto px-4 md:px-6 relative z-10">
-          <h2 className="reveal-up text-4xl md:text-5xl font-black mb-12 text-gray-900 dark:text-white text-center">
-            Core <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600">Expertise</span>
-          </h2>
+          <div className="text-center mb-20">
+            <h2 className="reveal-up text-4xl md:text-5xl font-black mb-6 text-gray-900 dark:text-white">
+              Core <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600">Expertise</span>
+            </h2>
+            <p className="reveal-up text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              Specialized technical skills focused on building secure, scalable, and high-performance digital products.
+            </p>
+          </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
                 icon: <FiCode size={22} />,
                 title: "Backend Engineering",
-                desc: "Designing stable APIs, authentication, RBAC, integrations & backend logic."
+                desc: "Designing stable APIs, microservice orchestration, RBAC, and complex business logic migrations."
               },
               {
                 icon: <FiDatabase size={22} />,
-                title: "Database Architecture",
-                desc: "MongoDB & SQL schema planning, optimization & performance tuning."
+                title: "Data Architecture",
+                desc: "Strategic database design with MongoDB & SQL, focused on query optimization and data integrity."
               },
               {
                 icon: <FiLayers size={22} />,
-                title: "Frontend & Systems",
-                desc: "Clean React/Vue applications with maintainable architecture."
+                title: "Full-Stack Systems",
+                desc: "Developing end-to-end applications using modern monorepo architectures like TurboRepo."
               }
             ].map((item, i) => (
               <div key={i} className="reveal-up">
@@ -348,6 +323,58 @@ export default function Home() {
         </div>
       </section>
 
+      {/* WORK METHODOLOGY */}
+      <section className="py-32 bg-white dark:bg-[#09090b]">
+        <div className="max-w-6xl mx-auto px-4 md:px-6">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div className="reveal-up">
+              <p className="text-cyan-600 dark:text-cyan-400 font-bold tracking-widest text-sm uppercase mb-4">The Process</p>
+              <h2 className="text-4xl md:text-5xl font-black mb-8 text-gray-900 dark:text-white leading-tight">
+                From Concept to <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-500">Production</span>
+              </h2>
+              
+              <div className="space-y-8">
+                {[
+                  { step: "01", title: "Strategy & Planning", desc: "Understanding the business logic and user requirements to architect a scalable roadmap." },
+                  { step: "02", title: "Architecture & Design", desc: "Defining the tech stack, database schemas, and building out the UI/UX foundation." },
+                  { step: "03", title: "Development & Testing", desc: "Iterative coding cycles with continuous integration and rigorous automated testing." },
+                  { step: "04", title: "Deployment & Scaling", desc: "Launching to production with monitoring systems to ensure 99.9% availability." }
+                ].map((item, idx) => (
+                  <div key={idx} className="flex gap-4 md:gap-6">
+                    <span className="text-xl md:text-2xl font-black text-gray-200 dark:text-white/10 shrink-0">{item.step}</span>
+                    <div>
+                      <h4 className="font-bold text-gray-900 dark:text-white mb-1.5">{item.title}</h4>
+                      <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="reveal-up relative">
+              <div className="aspect-square rounded-3xl bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-gray-100 dark:border-white/5 p-12 flex items-center justify-center overflow-hidden">
+                <div className="grid grid-cols-2 gap-6 relative z-10">
+                  <div className="w-24 h-24 rounded-2xl bg-white dark:bg-white/5 shadow-xl flex items-center justify-center animate-bounce [animation-delay:-0.5s]">
+                    <FiCode className="text-3xl text-cyan-500" />
+                  </div>
+                  <div className="w-24 h-24 rounded-2xl bg-white dark:bg-white/5 shadow-xl flex items-center justify-center animate-bounce [animation-delay:-0.2s] mt-12">
+                    <FiDatabase className="text-3xl text-blue-500" />
+                  </div>
+                  <div className="w-24 h-24 rounded-2xl bg-white dark:bg-white/5 shadow-xl flex items-center justify-center animate-bounce [animation-delay:-0.8s] -mt-12">
+                     <FiLayers className="text-3xl text-purple-500" />
+                  </div>
+                  <div className="w-24 h-24 rounded-2xl bg-white dark:bg-white/5 shadow-xl flex items-center justify-center animate-bounce">
+                     <FiExternalLink className="text-3xl text-emerald-500" />
+                  </div>
+                </div>
+                {/* Decorative particles */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(8,145,178,0.1)_0%,transparent_70%)]" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="max-w-4xl mx-auto px-4 md:px-6 py-20 md:py-32 reveal-up">
         <div className="
@@ -365,18 +392,18 @@ export default function Home() {
           </h2>
 
           <p className="mb-8 max-w-xl mx-auto text-gray-600 dark:text-gray-400 relative z-10">
-            If you have a project, opportunity or just want to connect, feel free to reach out.
+            I am currently available for new opportunities and collaborations. If you have a project in mind, let's talk.
           </p>
 
           <a
             href="/contact"
             className="
-              relative z-10 px-10 py-4 text-lg rounded-xl font-bold inline-flex items-center justify-center gap-3 transition-all duration-300 shadow-[0_0_40px_rgba(8,145,178,0.3)] hover:shadow-[0_0_40px_rgba(8,145,178,0.6)] hover:-translate-y-1 active:scale-95 w-full sm:w-auto
+              relative z-10 px-8 py-3 text-base rounded-xl font-bold inline-flex items-center justify-center gap-3 transition-all duration-300 shadow-lg active:scale-95 w-full sm:w-auto
               bg-gradient-to-r from-cyan-600 to-blue-700 text-white
             "
           >
             Start a Conversation
-            <FiChevronRight size={20} />
+            <FiChevronRight size={18} />
           </a>
 
         </div>

@@ -7,8 +7,31 @@ import { toggleTheme } from "../store/themeSlice";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  
   const dispatch = useDispatch();
   const theme = useSelector((s) => s.theme.mode);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Smart Visibility: Show if scrolling up, hide if scrolling down (after threshold)
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setVisible(false);
+      } else {
+        setVisible(true);
+      }
+      
+      setScrolled(currentScrollY > 20);
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   // Lock scroll when menu open
   useEffect(() => {
@@ -16,98 +39,107 @@ export default function Navbar() {
   }, [open]);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-[#0B0B0D] border-b border-gray-200 dark:border-[#1F2937]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
+    <>
+      <nav className={`
+        fixed top-0 left-0 right-0 z-50 transition-all duration-500
+        ${(visible || open) ? "translate-y-0" : "-translate-y-full"}
+        ${scrolled 
+          ? "bg-white/80 dark:bg-[#0B0B0D]/80 backdrop-blur-lg shadow-lg border-b border-gray-200/50 dark:border-white/5 py-2" 
+          : "bg-transparent py-4"
+        }
+      `}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex justify-between items-center">
 
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-3">
-          <img
-            src={Logo}
-            alt="Logo"
-            className="h-9 w-9 rounded-full border border-gray-200 dark:border-[#1F2937]"
-          />
-          <span className="font-semibold tracking-wide text-gray-900 dark:text-gray-100">
-            KHUSH
-          </span>
-        </Link>
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-3">
+            <img
+              src={Logo}
+              alt="Logo"
+              className="h-9 w-9 rounded-full border border-gray-200 dark:border-[#1F2937]"
+            />
+            <span className="font-semibold tracking-wide text-gray-900 dark:text-gray-100">
+              KHUSH
+            </span>
+          </Link>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex gap-8 items-center">
-          <NavLink
-            to="/"
-            className={({ isActive }) => `
-              transition font-medium
-              ${isActive
-                ? "text-cyan-600 dark:text-accent"
-                : "text-gray-700 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-accent"
-              }
-            `}
-          >
-            Home
-          </NavLink>
+          {/* Desktop Nav */}
+          <div className="hidden md:flex gap-8 items-center">
+            <NavLink
+              to="/"
+              className={({ isActive }) => `
+                transition font-medium
+                ${isActive
+                  ? "text-cyan-600 dark:text-accent"
+                  : "text-gray-700 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-accent"
+                }
+              `}
+            >
+              Home
+            </NavLink>
 
-          <NavLink
-            to="/projects"
-            className={({ isActive }) => `
-              transition font-medium
-              ${isActive
-                ? "text-cyan-600 dark:text-accent"
-                : "text-gray-700 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-accent"
-              }
-            `}
-          >
-            Projects
-          </NavLink>
+            <NavLink
+              to="/projects"
+              className={({ isActive }) => `
+                transition font-medium
+                ${isActive
+                  ? "text-cyan-600 dark:text-accent"
+                  : "text-gray-700 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-accent"
+                }
+              `}
+            >
+              Projects
+            </NavLink>
 
-          <NavLink
-            to="/resume"
-            className={({ isActive }) => `
-              transition font-medium
-              ${isActive
-                ? "text-cyan-600 dark:text-accent"
-                : "text-gray-700 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-accent"
-              }
-            `}
-          >
-            Resume
-          </NavLink>
+            <NavLink
+              to="/resume"
+              className={({ isActive }) => `
+                transition font-medium
+                ${isActive
+                  ? "text-cyan-600 dark:text-accent"
+                  : "text-gray-700 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-accent"
+                }
+              `}
+            >
+              Resume
+            </NavLink>
 
-          <NavLink
-            to="/contact"
-            className={({ isActive }) => `
-              transition font-medium
-              ${isActive
-                ? "text-cyan-600 dark:text-accent"
-                : "text-gray-700 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-accent"
-              }
-            `}
-          >
-            Contact
-          </NavLink>
+            <NavLink
+              to="/contact"
+              className={({ isActive }) => `
+                transition font-medium
+                ${isActive
+                  ? "text-cyan-600 dark:text-accent"
+                  : "text-gray-700 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-accent"
+                }
+              `}
+            >
+              Contact
+            </NavLink>
 
+            <button
+              onClick={() => dispatch(toggleTheme())}
+              className="p-2.5 rounded-xl border border-gray-200 dark:border-white/10 transition-all duration-300 hover:border-cyan-400 dark:hover:border-accent/40 hover:bg-gray-50 dark:hover:bg-white/5 active:scale-90"
+            >
+              {theme === "dark" ? <FiSun className="text-accent" /> : <FiMoon className="text-cyan-600" />}
+            </button>
+          </div>
+
+          {/* Mobile Button */}
           <button
-            onClick={() => dispatch(toggleTheme())}
-            className="p-2.5 rounded-xl border border-gray-200 dark:border-white/10 transition-all duration-300 hover:border-cyan-400 dark:hover:border-accent/40 hover:bg-gray-50 dark:hover:bg-white/5 active:scale-90"
+            onClick={() => setOpen(true)}
+            className="md:hidden text-2xl text-gray-800 dark:text-gray-200 p-2"
           >
-            {theme === "dark" ? <FiSun className="text-accent" /> : <FiMoon className="text-cyan-600" />}
+            <FiMenu />
           </button>
         </div>
+      </nav>
 
-        {/* Mobile Button */}
-        <button
-          onClick={() => setOpen(true)}
-          className="md:hidden text-2xl text-gray-800 dark:text-gray-200 p-2"
-        >
-          <FiMenu />
-        </button>
-      </div>
-
-      {/* FULLSCREEN MENU */}
+      {/* FULLSCREEN MENU - Moved outside nav to avoid transform issues */}
       <div
         className={`
-          fixed inset-0 z-[60] md:hidden
+          fixed inset-0 z-[100] md:hidden
           bg-white dark:bg-[#0B0B0D]
-          transition-transform duration-300
+          transition-transform duration-500 ease-in-out
           ${open ? "translate-y-0" : "-translate-y-full"}
         `}
       >
@@ -127,7 +159,6 @@ export default function Navbar() {
 
         {/* Center Links */}
         <div className="flex flex-col items-center justify-center gap-6 h-[85%]">
-
           <NavLink
             to="/"
             onClick={() => setOpen(false)}
@@ -180,6 +211,6 @@ export default function Navbar() {
           </button>
         </div>
       </div>
-    </nav>
+    </>
   );
 }
