@@ -50,7 +50,7 @@ export default function ProjectDetails() {
 
   if (!project)
     return (
-      <div className="pt-28 px-6 text-gray-700 dark:text-gray-300 font-medium text-center">
+      <div className="pt-28 px-4 md:px-6 text-gray-700 dark:text-gray-300 font-medium text-center">
         <SEO title="Project Not Found" />
         Project not found.
         <br />
@@ -110,9 +110,9 @@ export default function ProjectDetails() {
   // Pre-check for "Coming Soon" only if details are absolutely missing
   if (!project.details) {
     return (
-      <div className="pt-28 px-6 max-w-4xl mx-auto">
+      <div className="pt-28 px-4 md:px-6 max-w-4xl mx-auto">
         <div className="
-          text-center rounded-2xl p-14
+          text-center rounded-2xl p-8 md:p-14
           bg-gray-50 border border-gray-200
           dark:bg-[#111216] dark:border-[#1F2937]
         ">
@@ -126,9 +126,9 @@ export default function ProjectDetails() {
           <a
             href="/projects"
             className="
-              px-7 py-3 rounded-lg font-medium transition
-              bg-gray-900 text-white hover:bg-gray-800
-              dark:bg-white dark:text-black dark:hover:bg-gray-200
+              px-8 py-3.5 rounded-xl font-bold transition-all duration-300
+              bg-gradient-to-r from-gray-900 to-gray-800 dark:from-white dark:to-gray-100 text-white dark:text-black
+              hover:shadow-xl hover:-translate-y-1 active:scale-95
             "
           >
             Back to Projects
@@ -141,7 +141,7 @@ export default function ProjectDetails() {
   return (
     <>
       <SEO title={project.title} description={project.description} />
-      <div className="pt-28 px-6 max-w-6xl mx-auto">
+      <div className="pt-28 px-4 md:px-6 max-w-6xl mx-auto">
 
         {/* HEADER */}
         <div className="mb-12">
@@ -224,9 +224,9 @@ export default function ProjectDetails() {
               target="_blank"
               rel="noopener noreferrer"
               className="
-                px-7 py-3 rounded-lg font-medium inline-flex items-center gap-2 transition
-                bg-gray-900 text-white hover:bg-gray-800
-                dark:bg-white dark:text-black dark:hover:bg-gray-200
+                px-8 py-3.5 rounded-xl font-bold inline-flex items-center gap-2 transition-all duration-300
+                bg-gradient-to-r from-cyan-600 to-blue-700 text-white
+                hover:shadow-[0_0_25px_rgba(8,145,178,0.4)] hover:-translate-y-1 active:scale-95
               "
             >
               <FiExternalLink /> Live Demo
@@ -237,9 +237,10 @@ export default function ProjectDetails() {
             <a
               href={project.github}
               className="
-                px-7 py-3 rounded-lg inline-flex items-center gap-2 transition
-                border border-gray-300 text-gray-700 hover:text-cyan-600 hover:border-cyan-300
-                dark:border-[#1F2937] dark:text-gray-200 dark:hover:text-accent dark:hover:border-accent
+                px-8 py-3.5 rounded-xl inline-flex items-center gap-2 transition-all duration-300 font-bold
+                bg-white/10 dark:bg-white/5 border border-gray-200 dark:border-white/10 backdrop-blur-md
+                text-gray-800 dark:text-gray-200 hover:bg-white/20 dark:hover:bg-white/10 hover:border-cyan-400 dark:hover:border-accent/40
+                hover:-translate-y-1 active:scale-95
               "
             >
               <FiGithub /> Source Code
@@ -278,14 +279,14 @@ export default function ProjectDetails() {
           <>
             <div className="mb-16">
               <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Problem & Context</h2>
-              <div className="rounded-2xl p-8 bg-gray-50 border border-gray-200 dark:bg-[#111216] dark:border-[#1F2937]">
+              <div className="rounded-2xl p-6 md:p-8 bg-gray-50 border border-gray-200 dark:bg-[#111216] dark:border-[#1F2937]">
                 <p className="leading-relaxed whitespace-pre-line text-gray-700 dark:text-gray-300">{project.details.problem}</p>
               </div>
             </div>
 
             <div className="mb-16">
               <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Solution Overview</h2>
-              <div className="rounded-2xl p-8 bg-gray-50 border border-gray-200 dark:bg-[#111216] dark:border-[#1F2937]">
+              <div className="rounded-2xl p-6 md:p-8 bg-gray-50 border border-gray-200 dark:bg-[#111216] dark:border-[#1F2937]">
                 <p className="leading-relaxed whitespace-pre-line text-gray-700 dark:text-gray-300">{project.details.solution}</p>
               </div>
             </div>
@@ -293,7 +294,7 @@ export default function ProjectDetails() {
             {project.details.architecture && (
               <div className="mb-16">
                 <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">System Architecture</h2>
-                <div className="rounded-2xl p-8 bg-gray-50 border border-gray-200 dark:bg-[#111216] dark:border-[#1F2937]">
+                <div className="rounded-2xl p-6 md:p-8 bg-gray-50 border border-gray-200 dark:bg-[#111216] dark:border-[#1F2937]">
                   <ul className="space-y-3 text-gray-700 dark:text-gray-300">
                     {project.details.architecture.map((l, k) => <li key={k}>• {l}</li>)}
                   </ul>
@@ -304,7 +305,7 @@ export default function ProjectDetails() {
             {project.details.outcomes && (
               <div className="mb-16">
                 <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Key Outcomes</h2>
-                <div className="rounded-2xl p-8 bg-gray-50 border border-gray-200 dark:bg-[#111216] dark:border-[#1F2937]">
+                <div className="rounded-2xl p-6 md:p-8 bg-gray-50 border border-gray-200 dark:bg-[#111216] dark:border-[#1F2937]">
                   <ul className="space-y-3 text-gray-700 dark:text-gray-300">
                     {project.details.outcomes.map((l, k) => <li key={k}>• {l}</li>)}
                   </ul>

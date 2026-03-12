@@ -27,16 +27,41 @@ export default function Contact() {
     setTimeout(() => setIsCopied(false), 2000);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    setTimeout(() => {
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({
+          access_key: "bc53ed37-b46b-4284-9c93-bea65b4cd867",
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `New Portfolio Message from ${formData.name}`,
+        })
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setIsSubmitted(true);
+        setFormData({ name: "", email: "", message: "" });
+        setTimeout(() => setIsSubmitted(false), 5000);
+      } else {
+        alert("Something went wrong. Please try again later.");
+      }
+    } catch (error) {
+      console.error("Form Error:", error);
+      alert("Submission failed. Check your connection.");
+    } finally {
       setIsSubmitting(false);
-      setIsSubmitted(true);
-      setFormData({ name: "", email: "", message: "" });
-      setTimeout(() => setIsSubmitted(false), 5000);
-    }, 1500);
+    }
   };
 
   const social = [
@@ -48,7 +73,7 @@ export default function Contact() {
   ];
 
   return (
-    <div className="pt-28 px-6 max-w-6xl mx-auto">
+    <div className="pt-28 px-4 md:px-6 max-w-6xl mx-auto">
       <SEO title="Contact" description="Get in touch with Khushnawaj for collaborations and opportunities." />
 
       {/* Header */}
@@ -69,7 +94,7 @@ export default function Contact() {
         {/* Left */}
         <div className="space-y-6">
 
-          <div className="p-6 rounded-xl flex gap-4
+          <div className="p-5 md:p-6 rounded-xl flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4
             bg-white border border-gray-200
             dark:bg-[#111216] dark:border-[#1F2937]
           ">
@@ -81,7 +106,7 @@ export default function Contact() {
             </div>
             <div className="flex-1">
               <h3 className="font-medium mb-1 text-gray-900 dark:text-white">Email</h3>
-              <div className="flex items-center gap-2">
+              <div className="flex flex-col sm:flex-row items-center gap-2">
                 <a
                   href="mailto:khushnawaj14@gmail.com"
                   className="text-gray-700 hover:text-cyan-600 dark:text-gray-300 dark:hover:text-accent"
@@ -99,7 +124,7 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="p-6 rounded-xl flex gap-4
+          <div className="p-5 md:p-6 rounded-xl flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4
             bg-white border border-gray-200
             dark:bg-[#111216] dark:border-[#1F2937]
           ">
@@ -120,7 +145,7 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="p-6 rounded-xl flex gap-4
+          <div className="p-5 md:p-6 rounded-xl flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4
             bg-white border border-gray-200
             dark:bg-[#111216] dark:border-[#1F2937]
           ">
@@ -141,10 +166,10 @@ export default function Contact() {
 
 
           {/* Social */}
-          <div className="pt-4">
+          <div className="pt-4 text-center">
             <h3 className="font-medium mb-4 text-gray-900 dark:text-white">Social</h3>
 
-            <div className="flex gap-3">
+            <div className="flex gap-3 justify-center">
               {social.map((s, i) => (
                 <a
                   key={i}
@@ -169,12 +194,12 @@ export default function Contact() {
 
         {/* Form */}
         <div className="
-          rounded-2xl p-8
+          rounded-2xl p-6 md:p-8
           bg-white border border-gray-200
           dark:bg-[#111216] dark:border-[#1F2937]
         ">
 
-          <h2 className="text-2xl font-bold mb-8 text-gray-900 dark:text-white">
+          <h2 className="text-2xl font-bold mb-8 text-gray-900 dark:text-white text-center">
             Send a Message
           </h2>
 
@@ -195,7 +220,7 @@ export default function Contact() {
                 value={formData.name}
                 onChange={e => setFormData({ ...formData, name: e.target.value })}
                 className="
-                  w-full px-4 py-3 rounded-lg focus:outline-none transition
+                  w-full px-4 py-3 rounded-lg focus:outline-none transition text-center
                   bg-gray-100 border border-gray-300 placeholder-gray-500
                   focus:border-cyan-500
                   dark:bg-[#0B0B0D] dark:border-[#1F2937] dark:text-white dark:placeholder-gray-500 dark:focus:border-accent
@@ -210,7 +235,7 @@ export default function Contact() {
                 value={formData.email}
                 onChange={e => setFormData({ ...formData, email: e.target.value })}
                 className="
-                  w-full px-4 py-3 rounded-lg focus:outline-none transition
+                  w-full px-4 py-3 rounded-lg focus:outline-none transition text-center
                   bg-gray-100 border border-gray-300 placeholder-gray-500
                   focus:border-cyan-500
                   dark:bg-[#0B0B0D] dark:border-[#1F2937] dark:text-white dark:placeholder-gray-500 dark:focus:border-accent
@@ -225,7 +250,7 @@ export default function Contact() {
                 value={formData.message}
                 onChange={e => setFormData({ ...formData, message: e.target.value })}
                 className="
-                  w-full px-4 py-3 rounded-lg resize-none focus:outline-none transition
+                  w-full px-4 py-3 rounded-lg resize-none focus:outline-none transition text-center
                   bg-gray-100 border border-gray-300 placeholder-gray-500
                   focus:border-cyan-500
                   dark:bg-[#0B0B0D] dark:border-[#1F2937] dark:text-white dark:placeholder-gray-500 dark:focus:border-accent
@@ -236,9 +261,9 @@ export default function Contact() {
                 type="submit"
                 disabled={isSubmitting}
                 className="
-                  w-full py-3 rounded-lg font-medium transition disabled:opacity-60
-                  bg-gray-900 text-white hover:bg-gray-800
-                  dark:bg-white dark:text-black dark:hover:bg-gray-200
+                  w-full py-3.5 rounded-xl font-bold transition-all duration-300 disabled:opacity-60
+                  bg-gradient-to-r from-cyan-600 to-blue-700 text-white
+                  hover:shadow-[0_0_25px_rgba(8,145,178,0.4)] hover:-translate-y-0.5 active:scale-95
                 "
               >
                 {isSubmitting ? "Sending..." : "Send Message"}
@@ -252,8 +277,8 @@ export default function Contact() {
       {/* CTA */}
       <div className="text-center mb-20">
         <div className="
-          rounded-2xl p-12
-          bg-gray-50 border border-gray-200
+          rounded-2xl p-8 md:p-12
+          bg-white border border-gray-200
           dark:bg-[#111216] dark:border-[#1F2937]
         ">
           <h3 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
@@ -267,9 +292,9 @@ export default function Contact() {
           <a
             href="mailto:khushnawaj14@gmail.com"
             className="
-              px-8 py-3 rounded-lg font-medium transition
-              bg-gray-900 text-white hover:bg-gray-800
-              dark:bg-white dark:text-black dark:hover:bg-gray-200
+              inline-flex items-center px-10 py-3.5 rounded-xl font-bold transition-all duration-300
+              bg-gradient-to-r from-gray-900 to-gray-800 dark:from-white dark:to-gray-100 text-white dark:text-black
+              hover:shadow-[0_0_30px_rgba(8,145,178,0.3)] hover:-translate-y-1 active:scale-95
             "
           >
             Email Me

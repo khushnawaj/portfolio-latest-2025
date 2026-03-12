@@ -181,7 +181,7 @@ export default function Resume() {
   };
 
   return (
-    <div className="pt-28 px-6 max-w-4xl mx-auto mb-20">
+    <div className="pt-28 px-4 md:px-6 max-w-4xl mx-auto mb-20">
       <SEO title="Resume" description="Professional resume and skills of Khushnawaj." />
 
       {/* HEADER */}
@@ -205,9 +205,9 @@ export default function Resume() {
             href="/Khushnawaj-Resume-.pdf"
             download="Khushnawaj-Resume-.pdf"
             className="
-              inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition
-              bg-gray-900 text-white hover:bg-gray-800
-              dark:bg-white dark:text-black dark:hover:bg-gray-200
+              inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-bold transition-all duration-300
+              bg-gradient-to-r from-cyan-600 to-blue-600 text-white
+              hover:shadow-[0_0_25px_rgba(8,145,178,0.4)] hover:-translate-y-1 active:scale-95
             "
           >
             <FiDownload /> Download Resume
@@ -221,9 +221,9 @@ export default function Resume() {
           <button
             key={tab}
             onClick={() => setActive(tab)}
-            className={`pb-3 font-medium transition whitespace-nowrap ${active === tab
-              ? "text-cyan-600 dark:text-accent border-b-2 border-cyan-600 dark:border-accent"
-              : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+            className={`pb-3 px-1 font-bold transition-all duration-300 whitespace-nowrap border-b-2 ${active === tab
+              ? "text-cyan-600 dark:text-accent border-cyan-600 dark:border-accent"
+              : "text-gray-500 dark:text-gray-400 border-transparent hover:text-gray-900 dark:hover:text-white"
               }`}
           >
             {tab.charAt(0).toUpperCase() + tab.slice(1)}

@@ -34,10 +34,10 @@ export default function NotFound() {
             <Link
                 to="/"
                 className="
-          px-8 py-3 rounded-lg font-medium transition
-          bg-gray-900 text-white hover:bg-gray-800
-          dark:bg-white dark:text-black dark:hover:bg-gray-200
-        "
+                  px-10 py-3.5 rounded-xl font-bold transition-all duration-300
+                  bg-gradient-to-r from-cyan-600 to-blue-700 text-white
+                  shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 hover:-translate-y-1 active:scale-95
+                "
             >
                 Back to Home
             </Link>

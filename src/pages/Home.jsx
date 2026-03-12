@@ -94,7 +94,7 @@ export default function Home() {
       />
 
       {/* HERO */}
-      <section ref={heroRef} className="min-h-[90vh] flex items-center px-6 pt-20 relative overflow-hidden bg-white/50 dark:bg-[#09090b]/50">
+      <section ref={heroRef} className="min-h-[90vh] flex items-center px-4 md:px-6 pt-20 relative overflow-hidden bg-white/50 dark:bg-[#09090b]/50">
         
         {/* TS Particles Background */}
         <ParticleBackground />
@@ -106,7 +106,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10 w-full">
 
           {/* LEFT: Information & CTA */}
-          <div className="flex-1 flex flex-col justify-center max-w-2xl py-8">
+          <div className="flex-1 flex flex-col justify-center items-center md:items-start text-center md:text-left max-w-2xl py-8">
             <p className="hero-text-anim text-cyan-600 dark:text-cyan-400 tracking-widest text-sm font-bold uppercase mb-4">
               Full Stack Engineer & Designer
             </p>
@@ -123,13 +123,13 @@ export default function Home() {
             </div>
 
             {/* CTA BUTTONS - Nested inside Left Column */}
-            <div className="hero-text-anim flex flex-col sm:flex-row gap-5">
+            <div className="hero-text-anim flex flex-col sm:flex-row gap-5 w-full sm:w-auto">
               <a
                 href="/projects"
                 className="
-                  px-8 py-3.5 rounded-full font-bold transition text-center shadow-[0_0_30px_rgba(8,145,178,0.2)] hover:shadow-[0_0_30px_rgba(8,145,178,0.5)]
-                  bg-gray-900 text-white hover:bg-gray-800
-                  dark:bg-white dark:text-black dark:hover:bg-gray-200
+                  px-8 py-3.5 rounded-xl font-bold transition-all duration-300 text-center
+                  bg-gradient-to-r from-cyan-500 to-blue-600 text-white
+                  hover:shadow-[0_0_25px_rgba(8,145,178,0.5)] hover:-translate-y-1 active:scale-95
                 "
               >
                 View Selected Work
@@ -138,9 +138,10 @@ export default function Home() {
               <a
                 href="/resume"
                 className="
-                  px-8 py-3.5 rounded-full flex items-center justify-center gap-2 transition font-bold
-                  border border-gray-300 text-gray-700 hover:text-cyan-600 hover:border-cyan-400 bg-white/50 backdrop-blur-sm
-                  dark:border-white/10 dark:text-gray-200 dark:hover:text-cyan-400 dark:hover:border-cyan-500/50 dark:bg-black/20
+                  px-8 py-3.5 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 font-bold
+                  bg-white/10 dark:bg-white/5 border border-gray-200 dark:border-white/10 backdrop-blur-md
+                  text-gray-800 dark:text-gray-200 hover:bg-white/20 dark:hover:bg-white/10 hover:border-cyan-400 dark:hover:border-accent/40
+                  hover:-translate-y-1 active:scale-95
                 "
               >
                 <FiDownload />
@@ -182,7 +183,7 @@ export default function Home() {
       <TechMarquee />
 
       {/* FEATURED PROJECT: NEXUS360 */}
-      <section className="max-w-6xl mx-auto px-6 py-32 reveal-up">
+      <section className="max-w-6xl mx-auto px-4 md:px-6 py-32 reveal-up">
         <div className="flex flex-col md:flex-row items-center gap-16">
 
           <div className="flex-1 space-y-6">
@@ -213,8 +214,8 @@ export default function Home() {
               <Link
                 to="/projects/nexus360"
                 className="
-                  px-8 py-3.5 rounded-full bg-gray-900 dark:bg-white text-white dark:text-black font-bold 
-                  hover:-translate-y-1 transition duration-300 shadow-[0_0_20px_rgba(8,145,178,0.2)] hover:shadow-[0_0_20px_rgba(8,145,178,0.5)] inline-flex items-center gap-2
+                  px-8 py-3.5 rounded-xl bg-gradient-to-r from-gray-900 to-gray-800 dark:from-white dark:to-gray-100 text-white dark:text-black font-bold 
+                  hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-cyan-500/20 active:scale-95 inline-flex items-center gap-2
                 "
               >
                 Explore Architecture <FiChevronRight />
@@ -225,10 +226,9 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="
-                   px-8 py-3.5 rounded-full border border-gray-300 text-gray-700 font-bold 
-                   hover:text-blue-600 hover:border-blue-400 transition inline-flex items-center gap-2
-                   dark:border-white/10 dark:text-gray-200 dark:hover:text-blue-400 dark:hover:border-blue-500/50
-                   bg-white/50 dark:bg-black/20 backdrop-blur-sm hover:-translate-y-1 duration-300
+                   px-8 py-3.5 rounded-xl border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-200 font-bold 
+                   hover:text-cyan-600 hover:border-cyan-400/50 dark:hover:text-accent dark:hover:border-accent/40 transition-all duration-300 inline-flex items-center gap-2
+                   bg-white/50 dark:bg-white/5 backdrop-blur-sm hover:-translate-y-1 active:scale-95
                  "
               >
                 <FiCode /> Source Code
@@ -305,7 +305,7 @@ export default function Home() {
       {/* CORE EXPERTISE */}
       <section className="bg-gray-50 dark:bg-[#0e0e10] py-32 relative">
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent"></div>
-        <div className="max-w-6xl mx-auto px-6 relative z-10">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 relative z-10">
           <h2 className="reveal-up text-4xl md:text-5xl font-black mb-12 text-gray-900 dark:text-white text-center">
             Core <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600">Expertise</span>
           </h2>
@@ -349,30 +349,30 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="max-w-4xl mx-auto px-6 py-32 text-center reveal-up">
+      <section className="max-w-4xl mx-auto px-4 md:px-6 py-20 md:py-32 reveal-up">
         <div className="
-            relative rounded-3xl p-16 overflow-hidden
+            relative rounded-3xl p-8 md:p-16 overflow-hidden
             bg-white border border-gray-200 shadow-2xl
             dark:bg-[#111216] dark:border-white/10
+            flex flex-col items-center text-center
           "
         >
           {/* Decorative Glow */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[150%] h-40 bg-gradient-to-b from-cyan-500/20 to-transparent blur-3xl pointer-events-none" />
 
-          <h2 className="text-4xl md:text-5xl font-black mb-8 text-gray-900 dark:text-white relative z-10">
+          <h2 className="text-3xl md:text-5xl font-black mb-6 text-gray-900 dark:text-white relative z-10 leading-tight">
             Let's build something <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600">extraordinary</span>
           </h2>
 
-          <p className="mb-8 max-w-2xl mx-auto text-gray-600 dark:text-gray-400">
+          <p className="mb-8 max-w-xl mx-auto text-gray-600 dark:text-gray-400 relative z-10">
             If you have a project, opportunity or just want to connect, feel free to reach out.
           </p>
 
           <a
             href="/contact"
             className="
-              relative z-10 px-10 py-4 text-lg rounded-full font-bold inline-flex items-center gap-3 transition shadow-[0_0_40px_rgba(8,145,178,0.3)] hover:shadow-[0_0_40px_rgba(8,145,178,0.6)] hover:-translate-y-1
-              bg-gray-900 text-white hover:bg-gray-800
-              dark:bg-white dark:text-black dark:hover:bg-gray-200
+              relative z-10 px-10 py-4 text-lg rounded-xl font-bold inline-flex items-center justify-center gap-3 transition-all duration-300 shadow-[0_0_40px_rgba(8,145,178,0.3)] hover:shadow-[0_0_40px_rgba(8,145,178,0.6)] hover:-translate-y-1 active:scale-95 w-full sm:w-auto
+              bg-gradient-to-r from-cyan-600 to-blue-700 text-white
             "
           >
             Start a Conversation

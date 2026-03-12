@@ -29,7 +29,7 @@ export default function Projects() {
   };
 
   return (
-    <div className="pt-28 px-6 max-w-6xl mx-auto">
+    <div className="pt-28 px-4 md:px-6 max-w-6xl mx-auto">
       <SEO title="Projects" description="Explore my curated collection of web applications and system architectures." />
 
       {/* Header */}
@@ -53,11 +53,12 @@ export default function Projects() {
               key={cat}
               onClick={() => setFilter(cat)}
               className={`
-                px-4 py-2 rounded-lg text-sm font-medium transition
+                px-5 py-2 rounded-xl text-sm font-bold transition-all duration-300
                 ${filter === cat
-                  ? "bg-cyan-600 text-white"
-                  : "bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-[#111216] dark:text-gray-400 dark:hover:bg-[#1F2937]"
+                  ? "bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-lg shadow-cyan-500/20"
+                  : "bg-white/50 dark:bg-white/5 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/10 hover:bg-white dark:hover:bg-white/10 hover:border-cyan-400 dark:hover:border-accent/40"
                 }
+                active:scale-95
               `}
             >
               {cat}
@@ -170,9 +171,9 @@ export default function Projects() {
         <a
           href="/contact"
           className="
-            inline-flex items-center gap-2 px-7 py-3 rounded-lg font-medium transition
-            bg-gray-900 text-white hover:bg-gray-800
-            dark:bg-white dark:text-black dark:hover:bg-gray-200
+            inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-bold transition-all duration-300
+            bg-gradient-to-r from-gray-900 to-gray-800 dark:from-white dark:to-gray-100 text-white dark:text-black
+            hover:-translate-y-1 shadow-xl hover:shadow-cyan-500/20 active:scale-95
           "
         >
           Let’s Connect

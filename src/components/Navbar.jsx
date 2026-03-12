@@ -87,9 +87,9 @@ export default function Navbar() {
 
           <button
             onClick={() => dispatch(toggleTheme())}
-            className="p-2 rounded-lg border border-gray-200 dark:border-[#1F2937]"
+            className="p-2.5 rounded-xl border border-gray-200 dark:border-white/10 transition-all duration-300 hover:border-cyan-400 dark:hover:border-accent/40 hover:bg-gray-50 dark:hover:bg-white/5 active:scale-90"
           >
-            {theme === "dark" ? <FiSun /> : <FiMoon />}
+            {theme === "dark" ? <FiSun className="text-accent" /> : <FiMoon className="text-cyan-600" />}
           </button>
         </div>
 
@@ -174,9 +174,9 @@ export default function Navbar() {
 
           <button
             onClick={() => dispatch(toggleTheme())}
-            className="mt-8 p-3 rounded-lg border border-gray-200 dark:border-[#1F2937] text-gray-700 dark:text-gray-200"
+            className="mt-8 p-4 rounded-xl border border-gray-200 dark:border-white/10 text-xl transition-all duration-300 active:scale-90"
           >
-            {theme === "dark" ? <FiSun /> : <FiMoon />}
+            {theme === "dark" ? <FiSun className="text-accent" /> : <FiMoon className="text-cyan-600" />}
           </button>
         </div>
       </div>
