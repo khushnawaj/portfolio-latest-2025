@@ -68,7 +68,7 @@ export const projectsData = [
     category: "React",
     description: "A comprehensive CMS for creating and managing long-form content with a powerful rich-text editor and custom layouts.",
     tags: ["React", "Node.js", "CMS"],
-    caseStudy: false,
+    caseStudy: true,
     github: "#",
     live: "#",
     featured: true,
@@ -162,7 +162,7 @@ export const projectsData = [
     category: "React",
     description: "A visual editor for creating customizable UI templates with dynamic data binding and real-time editing.",
     tags: ["React", "Canvas", "Low-Code"],
-    caseStudy: false,
+    caseStudy: true,
     github: "#",
     live: "#",
     featured: false,
@@ -276,12 +276,28 @@ export const projectsData = [
     category: "React",
     description: "Real-time weather tracking with forecast and clean UI.",
     tags: ["React", "API Integration", "Chart.js", "Tailwind"],
-    caseStudy: false,
+    caseStudy: true,
     github: "#",
     live: "#",
     featured: false,
     date: "Sep 2024",
-    tech: ["React", "Tailwind", "OpenWeather API"]
+    tech: ["React", "Tailwind", "OpenWeather API", "Chart.js"],
+    details: {
+      problem: "Users need a quick, reliable, and visually engaging way to check real-time weather conditions and long-term forecasts without wading through cluttered ads and complex interfaces.",
+      solution: "Created a clean, modern weather dashboard integrating OpenWeather API. Features dynamic background transitions based on current weather conditions, interactive multi-day forecast charts, and a search history system for fast city switching.",
+      architecture: [
+        "React functional components with local state management",
+        "Axios for fetching real-time weather and forecast data from OpenWeather API",
+        "Tailwind CSS for responsive layouts and theme changes",
+        "Chart.js integration for visualizing 5-day temperature trends"
+      ],
+      outcomes: [
+        "Instant access to real-time and 5-day forecasts",
+        "High performance through minimized API calls using caching",
+        "Responsive layout for mobile, tablet, and desktop views",
+        "Beautiful user interface with animated weather icon states"
+      ]
+    }
   },
   {
     slug: "ArtWall",
@@ -290,11 +306,88 @@ export const projectsData = [
     category: "Vue.js",
     description: "A platform for artists to showcase their digital art.",
     tags: ["Vue", "Node.js", "Express", "MongoDB"],
-    caseStudy: false,
+    caseStudy: true,
     github: "https://github.com/khushnawaj/vue-wall",
     live: "https://vue-wall.vercel.app/",
     featured: true,
     date: "Jan 2026",
-    tech: ["Vue", "Node.js", "Express", "MongoDB"]
-  }
+    tech: ["Vue", "Node.js", "Express", "MongoDB"],
+    details: {
+      problem: "Digital artists require a minimalist, aesthetic online gallery space where their artwork stands out, complete with engagement features like comments, while preserving page speed and visual hierarchy.",
+      solution: "Built a custom showcase platform with a 'Moody Elegant' dark purple aesthetic, featuring Cormorant Garamond headings and Manrope body typography. The system allows art uploads, real-time comment feeds, and full-screen image expandability.",
+      architecture: [
+        "Vue.js (Vue 3) frontend with responsive layout structures",
+        "Node.js & Express REST API for backend services",
+        "MongoDB database for user records, art metadata, and comments",
+        "Elegant dark theme layout with glassmorphic panels"
+      ],
+      outcomes: [
+        "Seamless and highly readable digital artwork showcase",
+        "Functional and optimized comments system to drive interaction",
+        "Custom responsive navigation that adapts to all viewport sizes"
+      ]
+    }
+  },
+  {
+    slug: "SyncUp",
+    title: "SyncUp",
+    image: null,
+    category: "Python",
+    description: "A platform for employee and employers to hire and Join Job.",
+    tags: ["Python", "Next.Js", "PostgreSQL", "Redis"],
+    caseStudy: true,
+    github: "https://github.com/khushnawaj/syncup",
+    live: "https://sync-up-one.vercel.app/jobs",
+    featured: true,
+    date: "Apr 2026",
+    tech: ["Python", "Next.Js", "PostgreSQL", "Redis"],
+    details: {
+      problem: "Job matching platforms often suffer from slow matching pipelines, lack of real-time application updates, and inefficient search, leading to poor communication between recruiters and seekers.",
+      solution: "Designed and developed SyncUp, a job matching platform utilizing a cache-aside Redis strategy to accelerate job searches. It implements a secure Prisma PostgreSQL schema, Socket.io for real-time notification alerts, and cost-efficient OpenAI integration for automated resume-job description match scoring.",
+      architecture: [
+        "Next.js client-side application utilizing Tailwind CSS",
+        "Backend REST API built with Express / Python services",
+        "PostgreSQL database using Prisma ORM with constraints to prevent duplicate applications",
+        "Redis integration implementing Cache-Aside strategy for listing optimization",
+        "Socket.io server enabling real-time targeted alerts per user-scoped rooms",
+        "OpenAI integration (gpt-3.5-turbo) with resume text truncation to control token costs"
+      ],
+      outcomes: [
+        "Optimized query response times using Redis caching for read-heavy lists",
+        "Instant, private notifications delivered to users via WebSocket rooms",
+        "Cost-controlled AI resume matching with automated scoring",
+        "Safe and auditable database migration workflow"
+      ]
+    }
+  },
+  {
+    slug: "ShelfForge",
+    title: "ShelfForge",
+    image: null,
+    category: "React",
+    description: "A platform for Book Lovers to handle their book data.",
+    tags: ["React", "Node.js", "MongoDB", "Express"],
+    caseStudy: true,
+    github: "https://github.com/khushnawaj/booklibrary",
+    live: "https://book-library-flax.vercel.app/",
+    featured: true,
+    date: "Apr 2026",
+    tech: ["React.js", "Node.js", "Express", "MongoDB", "Cloudinary"],
+    details: {
+      problem: "Book lovers need a consolidated platform to track their personal library, wishlists, and reading goals, while admins require secure tools to manage content and users without premature session expiration or data inconsistencies.",
+      solution: "Built ShelfForge, a specialized book tracking and community platform. Resolves critical database validation issues, implements secure JWT refresh token flows with CORS flexibility for cross-domain hosting, and integrates Cloudinary for persistent user avatars and Google Books API for metadata autocomplete.",
+      architecture: [
+        "React Single Page Application (SPA) with Redux Toolkit for unified state tracking",
+        "Express REST API featuring robust token-based JWT authentication and CORS configurations",
+        "MongoDB database utilizing Mongoose schemas with validator hooks",
+        "Cloudinary integration to support persistent user avatar uploads",
+        "Google Books API integration for metadata retrieval"
+      ],
+      outcomes: [
+        "Reliable user session management via secure token lifecycle handling",
+        "Clean, scalable profile features displaying reading stats and followers",
+        "Persistent image uploads and robust database integrity verification"
+      ]
+    }
+  },
 ];
