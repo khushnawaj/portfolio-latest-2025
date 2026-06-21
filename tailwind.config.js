@@ -15,7 +15,8 @@ export default {
         accentSoft: "#0EA5E9"
       },
       fontFamily: {
-        body: ["Inter", "sans-serif"],
+        sans: ["Outfit", "sans-serif"],
+        display: ["Space Grotesk", "sans-serif"],
         mono: ["VT323", "monospace"]
       }
     }

@@ -1,17 +1,24 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=VT323&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=VT323&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 html { color-scheme: light dark; }
 
-
 /* Light mode default */
 body {
-  background-color: #ffffff;
+  background-color: #FAFAFA;
   color: #111827;
-  font-family: Inter, sans-serif;
+  font-family: 'Outfit', sans-serif;
   background-position: center top;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+  background-size: 4rem 4rem;
+}
+
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 /* Custom Scrollbar */
@@ -24,17 +31,17 @@ body {
 ::-webkit-scrollbar-thumb {
   background: #cbd5e1;
   border-radius: 5px;
-  border: 2px solid #ffffff;
+  border: 2px solid #FAFAFA;
 }
 .dark ::-webkit-scrollbar-thumb {
-  background: #374151;
-  border: 2px solid #0B0B0D;
+  background: #1f2937;
+  border: 2px solid #050507;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: #4b5563;
+  background: #374151;
 }
 
 /* Custom Text Selection */
@@ -45,12 +52,12 @@ body {
 
 /* Dark mode only when html has .dark */
 .dark body {
-  background-color: #0B0B0D;
+  background-color: #050507;
   color: #F3F4F6;
   background-image: 
-    linear-gradient(to right, #1f2937 1px, transparent 1px),
-    linear-gradient(to bottom, #1f2937 1px, transparent 1px);
-  background-size: 6rem 6rem;
+    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 4rem 4rem;
 }
 
 /* Adjust pattern opacity for subtlety */
@@ -58,13 +65,13 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at center, transparent, white);
+  background: radial-gradient(circle at center, transparent, rgba(250, 250, 250, 0.85));
   pointer-events: none;
   z-index: -1;
 }
 
 .dark body::before {
-  background: radial-gradient(circle at center, transparent, #0B0B0D);
+  background: radial-gradient(circle at center, transparent, #050507);
 }
 
 /* Hover underline */

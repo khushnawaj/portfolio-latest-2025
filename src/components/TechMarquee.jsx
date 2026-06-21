@@ -28,12 +28,12 @@ export default function TechMarquee() {
     ];
 
     return (
-        <div className="w-full overflow-hidden bg-gray-50 dark:bg-[#0B0B0D] py-10 border-y border-gray-200 dark:border-[#1F2937]">
+        <div className="w-full overflow-hidden bg-white/50 dark:bg-[#050507]/50 py-10 border-y border-gray-200 dark:border-white/5">
             <div className="relative w-full max-w-6xl mx-auto px-6">
 
                 {/* Gradient Masks */}
-                <div className="absolute top-0 left-0 w-24 h-full bg-gradient-to-r from-gray-50 dark:from-[#0B0B0D] to-transparent z-10" />
-                <div className="absolute top-0 right-0 w-24 h-full bg-gradient-to-l from-gray-50 dark:from-[#0B0B0D] to-transparent z-10" />
+                <div className="absolute top-0 left-0 w-24 h-full bg-gradient-to-r from-[#FAFAFA] dark:from-[#050507] to-transparent z-10" />
+                <div className="absolute top-0 right-0 w-24 h-full bg-gradient-to-l from-[#FAFAFA] dark:from-[#050507] to-transparent z-10" />
 
                 <div className="flex overflow-hidden">
                     {/* First Loop */}

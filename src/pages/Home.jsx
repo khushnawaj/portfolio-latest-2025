@@ -95,7 +95,7 @@ export default function Home() {
       />
 
       {/* HERO */}
-      <section ref={heroRef} className="min-h-[90vh] flex items-center px-4 md:px-6 pt-20 relative overflow-hidden bg-white/50 dark:bg-[#09090b]/50">
+      <section ref={heroRef} className="min-h-[90vh] flex items-center px-4 md:px-6 pt-20 relative overflow-hidden bg-[#FAFAFA]/50 dark:bg-[#050507]/50">
         
         {/* TS Particles Background */}
         <ParticleBackground />
@@ -273,9 +273,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CORE EXPERTISE */}
-      <section className="bg-gray-50 dark:bg-[#0e0e10] py-32 relative">
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent"></div>
+      <section className="bg-white/30 dark:bg-[#09090b]/30 py-32 relative border-y border-gray-200 dark:border-white/5">
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent"></div>
         <div className="max-w-6xl mx-auto px-4 md:px-6 relative z-10">
           <div className="text-center mb-20">
             <h2 className="reveal-up text-4xl md:text-5xl font-black mb-6 text-gray-900 dark:text-white">
@@ -325,7 +324,7 @@ export default function Home() {
       </section>
 
       {/* WORK METHODOLOGY */}
-      <section className="py-32 bg-white dark:bg-[#09090b]">
+      <section className="py-32 bg-transparent">
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="reveal-up">

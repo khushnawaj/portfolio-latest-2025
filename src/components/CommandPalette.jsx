@@ -82,6 +82,36 @@ export default function CommandPalette() {
       }
     },
     {
+      id: "case-inventory-system",
+      title: "Case Study: Inventory & Order Management System",
+      category: "Projects",
+      icon: <FiCode />,
+      action: () => {
+        navigate("/projects/inventory-system");
+        setIsOpen(false);
+      }
+    },
+    {
+      id: "case-syncup",
+      title: "Case Study: SyncUp Job Matching",
+      category: "Projects",
+      icon: <FiCode />,
+      action: () => {
+        navigate("/projects/syncup");
+        setIsOpen(false);
+      }
+    },
+    {
+      id: "case-booklibrary",
+      title: "Case Study: ShelfForge Library",
+      category: "Projects",
+      icon: <FiCode />,
+      action: () => {
+        navigate("/projects/booklibrary");
+        setIsOpen(false);
+      }
+    },
+    {
       id: "case-nexus360",
       title: "Case Study: Nexus360 ERP",
       category: "Projects",
@@ -98,6 +128,96 @@ export default function CommandPalette() {
       icon: <FiCode />,
       action: () => {
         navigate("/projects/script-shelf");
+        setIsOpen(false);
+      }
+    },
+    {
+      id: "case-port-blogs",
+      title: "Case Study: Port-blogs Platform",
+      category: "Projects",
+      icon: <FiCode />,
+      action: () => {
+        navigate("/projects/port-blogs");
+        setIsOpen(false);
+      }
+    },
+    {
+      id: "case-task-manager",
+      title: "Case Study: ProTask Manager",
+      category: "Projects",
+      icon: <FiCode />,
+      action: () => {
+        navigate("/projects/task-manager");
+        setIsOpen(false);
+      }
+    },
+    {
+      id: "case-currency-xchange",
+      title: "Case Study: CurrencyXchange",
+      category: "Projects",
+      icon: <FiCode />,
+      action: () => {
+        navigate("/projects/currency-xchange");
+        setIsOpen(false);
+      }
+    },
+    {
+      id: "case-ArtWall",
+      title: "Case Study: ArtWall Portfolio",
+      category: "Projects",
+      icon: <FiCode />,
+      action: () => {
+        navigate("/projects/ArtWall");
+        setIsOpen(false);
+      }
+    },
+    {
+      id: "case-article-builder",
+      title: "Case Study: Article Builder Pro",
+      category: "Projects",
+      icon: <FiCode />,
+      action: () => {
+        navigate("/projects/article-builder");
+        setIsOpen(false);
+      }
+    },
+    {
+      id: "case-template-builder",
+      title: "Case Study: Low-Code Template Builder",
+      category: "Projects",
+      icon: <FiCode />,
+      action: () => {
+        navigate("/projects/template-builder");
+        setIsOpen(false);
+      }
+    },
+    {
+      id: "case-election-campaign",
+      title: "Case Study: Election Campaign Platform",
+      category: "Projects",
+      icon: <FiCode />,
+      action: () => {
+        navigate("/projects/election-campaign");
+        setIsOpen(false);
+      }
+    },
+    {
+      id: "case-scentiva",
+      title: "Case Study: Scentiva E-Commerce",
+      category: "Projects",
+      icon: <FiCode />,
+      action: () => {
+        navigate("/projects/scentiva");
+        setIsOpen(false);
+      }
+    },
+    {
+      id: "case-elearning",
+      title: "Case Study: E-Learning Platform",
+      category: "Projects",
+      icon: <FiCode />,
+      action: () => {
+        navigate("/projects/elearning");
         setIsOpen(false);
       }
     },

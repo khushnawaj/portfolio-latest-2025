@@ -10,6 +10,20 @@ import { projectsData } from "../data/projects";
 import { motion, AnimatePresence } from "framer-motion";
 import SEO from "../components/SEO";
 import OptimizedImage from "../components/OptimizedImage";
+import {
+  SyncUpVisualizer,
+  BookLibraryVisualizer,
+  TaskManagerVisualizer,
+  CurrencyExchangeVisualizer,
+  ArtWallVisualizer,
+  ArticleBuilderVisualizer,
+  TemplateBuilderVisualizer,
+  ElectionCampaignVisualizer,
+  ScentivaVisualizer,
+  ELearningVisualizer,
+  InventorySystemVisualizer,
+  PortBlogsVisualizer
+} from "../components/ProjectWidgets";
 
 function NexusArchitectureDiagram() {
   const [selectedNode, setSelectedNode] = useState("gateway");
@@ -514,9 +528,8 @@ export default function ProjectDetails() {
                 key={i}
                 className="
                   rounded-xl p-4 text-center flex flex-col items-center justify-center gap-3
-                  bg-gray-50 border border-gray-200 shadow-sm
-                  dark:bg-[#111216] dark:border-[#1F2937]
-                  hover:-translate-y-1 hover:shadow-md transition-all duration-300
+                  bg-white/40 border border-gray-250/60 dark:bg-[#111216]/50 dark:border-white/5 backdrop-blur-md
+                  hover:-translate-y-1 hover:shadow-md hover:border-cyan-500/30 transition-all duration-300
                 "
               >
                 <div className="p-3 bg-white dark:bg-[#1A1A24] rounded-lg shadow-sm">
@@ -533,14 +546,14 @@ export default function ProjectDetails() {
           <>
             <div className="mb-16">
               <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Problem & Context</h2>
-              <div className="rounded-2xl p-6 md:p-8 bg-gray-50 border border-gray-200 dark:bg-[#111216] dark:border-[#1F2937]">
+              <div className="rounded-2xl p-6 md:p-8 bg-white/40 border border-gray-250/60 dark:bg-[#111216]/50 dark:border-white/5 backdrop-blur-md">
                 <p className="leading-relaxed whitespace-pre-line text-gray-700 dark:text-gray-300">{project.details.problem}</p>
               </div>
             </div>
 
             <div className="mb-16">
               <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Solution Overview</h2>
-              <div className="rounded-2xl p-6 md:p-8 bg-gray-50 border border-gray-200 dark:bg-[#111216] dark:border-[#1F2937]">
+              <div className="rounded-2xl p-6 md:p-8 bg-white/40 border border-gray-250/60 dark:bg-[#111216]/50 dark:border-white/5 backdrop-blur-md">
                 <p className="leading-relaxed whitespace-pre-line text-gray-700 dark:text-gray-300">{project.details.solution}</p>
               </div>
             </div>
@@ -549,10 +562,22 @@ export default function ProjectDetails() {
               <div className="mb-16">
                 <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">System Architecture</h2>
                 
+                {project.slug === "syncup" && <SyncUpVisualizer />}
+                {project.slug === "booklibrary" && <BookLibraryVisualizer />}
                 {project.slug === "nexus360" && <NexusArchitectureDiagram />}
                 {project.slug === "script-shelf" && <ScriptShelfVisualizer />}
+                {project.slug === "task-manager" && <TaskManagerVisualizer />}
+                {project.slug === "currency-xchange" && <CurrencyExchangeVisualizer />}
+                {project.slug === "ArtWall" && <ArtWallVisualizer />}
+                {project.slug === "article-builder" && <ArticleBuilderVisualizer />}
+                {project.slug === "template-builder" && <TemplateBuilderVisualizer />}
+                {project.slug === "election-campaign" && <ElectionCampaignVisualizer />}
+                {project.slug === "scentiva" && <ScentivaVisualizer />}
+                {project.slug === "elearning" && <ELearningVisualizer />}
+                {project.slug === "inventory-system" && <InventorySystemVisualizer />}
+                {project.slug === "port-blogs" && <PortBlogsVisualizer />}
 
-                <div className="rounded-2xl p-6 md:p-8 bg-gray-50 border border-gray-200 dark:bg-[#111216] dark:border-[#1F2937]">
+                <div className="rounded-2xl p-6 md:p-8 bg-white/40 border border-gray-250/60 dark:bg-[#111216]/50 dark:border-white/5 backdrop-blur-md">
                   <ul className="space-y-3 text-gray-700 dark:text-gray-300">
                     {project.details.architecture.map((l, k) => <li key={k}>• {l}</li>)}
                   </ul>
@@ -563,7 +588,7 @@ export default function ProjectDetails() {
             {project.details.outcomes && (
               <div className="mb-16">
                 <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Key Outcomes</h2>
-                <div className="rounded-2xl p-6 md:p-8 bg-gray-50 border border-gray-200 dark:bg-[#111216] dark:border-[#1F2937]">
+                <div className="rounded-2xl p-6 md:p-8 bg-white/40 border border-gray-250/60 dark:bg-[#111216]/50 dark:border-white/5 backdrop-blur-md">
                   <ul className="space-y-3 text-gray-700 dark:text-gray-300">
                     {project.details.outcomes.map((l, k) => <li key={k}>• {l}</li>)}
                   </ul>
