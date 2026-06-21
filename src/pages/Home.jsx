@@ -10,6 +10,7 @@ import ParticleBackground from "../components/ParticleBackground";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import OptimizedImage from "../components/OptimizedImage";
+import SystemHealth from "../components/SystemHealth";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -373,6 +374,11 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* SYSTEM HEALTH TELEMETRY */}
+      <section className="max-w-6xl mx-auto px-4 md:px-6 py-12 reveal-up">
+        <SystemHealth />
       </section>
 
       {/* CTA */}

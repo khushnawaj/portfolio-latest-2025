@@ -78,21 +78,10 @@ export default function Resume() {
       institution: "SHUATS, Prayagraj",
       period: "2017 – 2021",
       highlights: [
-        "Focused on Web Technologies",
-        "Final Year Project: E-Commerce Platform"
+        "Specialized in Computer Science & Systems Engineering",
+        "Key Coursework: Database Management Systems, Data Structures, Web Engineering",
+        "Capstone Project: Multi-vendor E-Commerce Platform with real-time analytics"
       ]
-    },
-    {
-      degree: "Intermediate (12th Grade)",
-      institution: "Hansvahini Inter College, Sonebhadra",
-      period: "2014 – 2016",
-      highlights: ["PCM", "69.2% Aggregate"]
-    },
-    {
-      degree: "High School (10th Grade)",
-      institution: "Hansvahini Inter College, Sonebhadra",
-      period: "2012 – 2014",
-      highlights: ["PCM", "73.66% Aggregate"]
     }
   ];
 
@@ -164,19 +153,25 @@ export default function Resume() {
 
   const skills = {
     Frontend: [
-      { name: "React", icon: <FaReact />, level: 85 },
-      { name: "Vue.js", icon: <FaVuejs />, level: 80 },
-      { name: "Tailwind CSS", icon: <SiTailwindcss />, level: 90 }
+      { name: "React", icon: <FaReact /> },
+      { name: "Next.js", icon: <FaReact /> },
+      { name: "Vue.js", icon: <FaVuejs /> },
+      { name: "TypeScript", icon: <FiCode /> },
+      { name: "Tailwind CSS", icon: <SiTailwindcss /> }
     ],
     Backend: [
-      { name: "Node.js", icon: <FaNodeJs />, level: 88 },
-      { name: "Express", icon: <SiExpress />, level: 85 },
-      { name: "REST APIs", icon: <FiCode />, level: 90 }
+      { name: "Node.js", icon: <FaNodeJs /> },
+      { name: "Express", icon: <SiExpress /> },
+      { name: "NestJS", icon: <FiCode /> },
+      { name: "REST APIs", icon: <FiCode /> },
+      { name: "GraphQL", icon: <FiCode /> }
     ],
-    Databases: [
-      { name: "MongoDB", icon: <FiDatabase />, level: 85 },
-      { name: "MySQL", icon: <SiMysql />, level: 75 },
-      { name: "PostgreSQL", icon: <SiPostgresql />, level: 70 }
+    "Databases & Tools": [
+      { name: "MongoDB", icon: <FiDatabase /> },
+      { name: "PostgreSQL", icon: <SiPostgresql /> },
+      { name: "Redis", icon: <FiDatabase /> },
+      { name: "Docker", icon: <FiServer /> },
+      { name: "AWS", icon: <FiServer /> }
     ]
   };
 
@@ -383,25 +378,24 @@ export default function Resume() {
                 {cat}
               </h3>
 
-              <div className="space-y-5">
+              <div className="flex flex-wrap gap-2.5">
                 {arr.map((s, i) => (
-                  <div key={i} className="group">
-                    <div className="flex justify-between items-center mb-2">
-                      <div className="flex items-center gap-3 text-gray-900 dark:text-white font-medium">
-                        <span className="text-cyan-600 dark:text-accent opacity-80 group-hover:opacity-100 transition">{s.icon}</span>
-                        {s.name}
-                      </div>
-                      <span className="text-xs font-semibold text-gray-500 dark:text-gray-500">
-                        {s.level}%
-                      </span>
-                    </div>
-
-                    <div className="h-1.5 rounded-full overflow-hidden bg-gray-200 dark:bg-[#0B0B0D]">
-                      <div
-                        className="h-full rounded-full bg-cyan-600 dark:bg-accent transition-all duration-1000 ease-out"
-                        style={{ width: `${s.level}%` }}
-                      />
-                    </div>
+                  <div
+                    key={i}
+                    className="
+                      flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium
+                      bg-white border border-gray-150 shadow-sm
+                      dark:bg-[#0B0B0D] dark:border-white/5
+                      text-gray-800 dark:text-gray-200
+                      hover:border-cyan-500/50 dark:hover:border-accent/50
+                      hover:shadow-md dark:hover:shadow-[0_0_15px_rgba(8,145,178,0.08)]
+                      transition-all duration-300 transform hover:-translate-y-0.5
+                    "
+                  >
+                    <span className="text-cyan-600 dark:text-accent text-base">
+                      {s.icon}
+                    </span>
+                    <span>{s.name}</span>
                   </div>
                 ))}
               </div>

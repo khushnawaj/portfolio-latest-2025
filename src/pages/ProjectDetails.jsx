@@ -11,6 +11,244 @@ import { motion, AnimatePresence } from "framer-motion";
 import SEO from "../components/SEO";
 import OptimizedImage from "../components/OptimizedImage";
 
+function NexusArchitectureDiagram() {
+  const [selectedNode, setSelectedNode] = useState("gateway");
+
+  const nodes = {
+    gateway: {
+      name: "API Gateway",
+      role: "Wildcard Tenant Router",
+      desc: "Intercepts all incoming traffic (e.g., tenant.nexus360.com). Handles SSL termination, CORS headers, security policy enforcement, and forwards payloads to the microservice swarm.",
+      tech: "NestJS / Express / Reverse Proxy",
+      color: "border-cyan-500 text-cyan-600 dark:text-cyan-400 bg-cyan-500/5"
+    },
+    auth: {
+      name: "Auth Service",
+      role: "Identity & RBAC",
+      desc: "Microservice verifying JSON Web Tokens (JWT). Performs Role-Based Access Control checks, permission mappings, and authenticates tenant isolation layers.",
+      tech: "NestJS / Passport / JWT",
+      color: "border-purple-500 text-purple-600 dark:text-purple-400 bg-purple-500/5"
+    },
+    erp: {
+      name: "ERP Service",
+      role: "Business Swarm Engine",
+      desc: "Manages core processes: multi-tenant invoicing, client records, document indexing, and user workspaces. Highly scalable and decoupled from Auth.",
+      tech: "NestJS / Prisma / Node.js",
+      color: "border-blue-500 text-blue-600 dark:text-blue-400 bg-blue-500/5"
+    },
+    cron: {
+      name: "Cron / Invoice worker",
+      role: "Automated Workflows",
+      desc: "Autonomous background service querying databases for unpaid invoices. Dispatches automated PDF generation, triggers payment reminders, and sends transaction emails.",
+      tech: "NestJS / Node-Cron / Nodemailer",
+      color: "border-orange-500 text-orange-600 dark:text-orange-400 bg-orange-500/5"
+    },
+    redis: {
+      name: "Redis Cache",
+      role: "State & Rate Limit Store",
+      desc: "In-memory database caching configuration rules, session statuses, rate limit quotas, and query responses to speed up API Gateway resolutions.",
+      tech: "Redis / Redis Labs",
+      color: "border-red-500 text-red-600 dark:text-red-400 bg-red-500/5"
+    },
+    postgres: {
+      name: "PostgreSQL DB",
+      role: "Relational Storage",
+      desc: "Primary relational storage with row-level tenant separation constraints. Stores financial ledgers, audit logs, and account profiles with strict ACID guarantees.",
+      tech: "PostgreSQL / Prisma Client",
+      color: "border-emerald-500 text-emerald-600 dark:text-emerald-400 bg-emerald-500/5"
+    }
+  };
+
+  return (
+    <div className="my-8 rounded-2xl border border-gray-200 dark:border-white/5 bg-gray-50/50 dark:bg-black/25 p-6">
+      <div className="text-sm font-semibold mb-2 text-gray-500 dark:text-gray-400 uppercase tracking-widest text-center">
+        Interactive Monorepo Microservices Architecture
+      </div>
+      <p className="text-xs text-gray-400 text-center mb-8">Click a node to inspect its role and stack in the Nexus360 mesh.</p>
+
+      <div className="grid md:grid-cols-3 gap-8 items-center">
+        {/* Node Visual Layout */}
+        <div className="md:col-span-2 flex flex-col gap-6 relative">
+          
+          {/* Top Layer */}
+          <div className="flex justify-center">
+            <button
+              onClick={() => setSelectedNode("gateway")}
+              className={`px-4 py-3 rounded-xl border-2 font-mono text-sm transition-all duration-300 shadow-md ${selectedNode === "gateway" ? "ring-4 ring-cyan-500/20 scale-105" : ""} ${nodes.gateway.color}`}
+            >
+              {nodes.gateway.name}
+            </button>
+          </div>
+
+          {/* Connective lines */}
+          <div className="flex justify-center -my-2 h-4 w-full relative">
+            <div className="w-0.5 h-full bg-cyan-500/30"></div>
+          </div>
+
+          {/* Middle Layer */}
+          <div className="grid grid-cols-3 gap-4 justify-items-center">
+            <button
+              onClick={() => setSelectedNode("auth")}
+              className={`w-full max-w-[140px] px-3 py-2.5 rounded-xl border-2 font-mono text-xs text-center transition-all duration-300 shadow-sm ${selectedNode === "auth" ? "ring-4 ring-purple-500/20 scale-105" : ""} ${nodes.auth.color}`}
+            >
+              {nodes.auth.name}
+            </button>
+
+            <button
+              onClick={() => setSelectedNode("erp")}
+              className={`w-full max-w-[140px] px-3 py-2.5 rounded-xl border-2 font-mono text-xs text-center transition-all duration-300 shadow-sm ${selectedNode === "erp" ? "ring-4 ring-blue-500/20 scale-105" : ""} ${nodes.erp.color}`}
+            >
+              {nodes.erp.name}
+            </button>
+
+            <button
+              onClick={() => setSelectedNode("cron")}
+              className={`w-full max-w-[140px] px-3 py-2.5 rounded-xl border-2 font-mono text-xs text-center transition-all duration-300 shadow-sm ${selectedNode === "cron" ? "ring-4 ring-orange-500/20 scale-105" : ""} ${nodes.cron.color}`}
+            >
+              {nodes.cron.name}
+            </button>
+          </div>
+
+          {/* Connective lines */}
+          <div className="flex justify-around px-8 -my-2 h-4 relative">
+            <div className="w-0.5 h-full bg-purple-500/30"></div>
+            <div className="w-0.5 h-full bg-blue-500/30"></div>
+            <div className="w-0.5 h-full bg-orange-500/30"></div>
+          </div>
+
+          {/* Bottom Layer */}
+          <div className="grid grid-cols-2 gap-8 justify-items-center px-6">
+            <button
+              onClick={() => setSelectedNode("redis")}
+              className={`w-full max-w-[160px] px-4 py-2.5 rounded-xl border-2 font-mono text-xs text-center transition-all duration-300 shadow-sm ${selectedNode === "redis" ? "ring-4 ring-red-500/20 scale-105" : ""} ${nodes.redis.color}`}
+            >
+              {nodes.redis.name}
+            </button>
+
+            <button
+              onClick={() => setSelectedNode("postgres")}
+              className={`w-full max-w-[160px] px-4 py-2.5 rounded-xl border-2 font-mono text-xs text-center transition-all duration-300 shadow-sm ${selectedNode === "postgres" ? "ring-4 ring-emerald-500/20 scale-105" : ""} ${nodes.postgres.color}`}
+            >
+              {nodes.postgres.name}
+            </button>
+          </div>
+
+        </div>
+
+        {/* Details Card */}
+        <div className="rounded-xl border border-gray-200 dark:border-white/5 bg-white dark:bg-[#111216] p-5 shadow-sm min-h-[220px] flex flex-col justify-between">
+          <div>
+            <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-gray-100 dark:bg-white/5 text-gray-500 uppercase tracking-widest font-mono mb-2 inline-block">
+              {nodes[selectedNode].role}
+            </span>
+            <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2 font-mono">
+              {nodes[selectedNode].name}
+            </h4>
+            <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed font-light mb-4">
+              {nodes[selectedNode].desc}
+            </p>
+          </div>
+          <div className="pt-3 border-t border-gray-100 dark:border-white/5 text-[10px] font-bold text-cyan-600 dark:text-accent font-mono uppercase tracking-wide">
+            Stack: {nodes[selectedNode].tech}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  );
+}
+
+function ScriptShelfVisualizer() {
+  const [activeStep, setActiveStep] = useState(-1);
+  const [simulating, setSimulating] = useState(false);
+  const [liveLog, setLiveLog] = useState("");
+
+  const steps = [
+    { title: "Client Action", detail: "Developer publishes script or earns platform XP." },
+    { title: "API Gateway", detail: "Express validates JWT security and updates database." },
+    { title: "Redis Pub/Sub", detail: "Events channeled to notification broker instantly." },
+    { title: "Socket Swarm", detail: "Socket.io routes payload to targeted websocket connections." },
+    { title: "Recipient UI", detail: "Dynamic feedback: Notification bubbles pop & XP increment." }
+  ];
+
+  const runSimulation = () => {
+    if (simulating) return;
+    setSimulating(true);
+    setActiveStep(0);
+    setLiveLog("Publish transaction dispatched from Client...");
+
+    const delays = [1000, 2200, 3400, 4600, 5800];
+    const logs = [
+      "Express API validating permissions and committing metadata to MongoDB...",
+      "Database commit complete! Routing event details to Redis Pub/Sub stream...",
+      "Redis channels matched: Broadcasting payload to active subscription instances...",
+      "Socket.io handshake matched: Transmitting WS message to targeted user scoping...",
+      "Simulated update complete: Notification bubble popped, XP count incremented (+50 XP)!"
+    ];
+
+    delays.forEach((delay, idx) => {
+      setTimeout(() => {
+        setActiveStep(idx);
+        setLiveLog(logs[idx]);
+        if (idx === delays.length - 1) {
+          setSimulating(false);
+        }
+      }, delay);
+    });
+  };
+
+  return (
+    <div className="my-8 rounded-2xl border border-gray-200 dark:border-white/5 bg-gray-50/50 dark:bg-black/25 p-6 flex flex-col gap-6">
+      <div className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-widest text-center">
+        Real-time Redis Notifications & Events Pipeline
+      </div>
+      <p className="text-xs text-gray-400 text-center -mt-3">Simulate the real-time event pipeline implemented in ScriptShelf.</p>
+
+      {/* Steps Grid */}
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+        {steps.map((s, idx) => (
+          <div
+            key={idx}
+            className={`p-3 rounded-xl border text-center transition-all duration-500 relative flex flex-col justify-between min-h-[90px] ${
+              activeStep === idx
+                ? "bg-cyan-500/10 border-cyan-500 scale-105 shadow-md shadow-cyan-500/10"
+                : activeStep > idx
+                ? "bg-emerald-500/5 border-emerald-500/30 text-gray-500"
+                : "bg-white dark:bg-[#111216] border-gray-250 dark:border-white/5 text-gray-600 dark:text-gray-400"
+            }`}
+          >
+            <div className="text-xs font-mono font-bold mb-1.5 uppercase">
+              {idx + 1}. {s.title}
+            </div>
+            <div className="text-[10px] leading-tight font-light opacity-80">
+              {s.detail}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Log Console Console */}
+      <div className="flex flex-col sm:flex-row gap-4 items-center justify-between p-4 rounded-xl border border-gray-200 dark:border-white/5 bg-white dark:bg-[#0B0B0D]">
+        <div className="font-mono text-xs text-gray-600 dark:text-cyan-500/90 w-full sm:w-[70%] min-h-[24px] flex items-center">
+          {liveLog ? `[log]: ${liveLog}` : "Ready to simulate system transaction pipeline."}
+        </div>
+        
+        <button
+          onClick={runSimulation}
+          disabled={simulating}
+          className="
+            w-full sm:w-auto px-5 py-2.5 rounded-xl font-bold text-xs transition-all duration-300 text-center whitespace-nowrap
+            bg-gradient-to-r from-cyan-600 to-blue-600 text-white disabled:opacity-50
+            hover:shadow-md active:scale-95
+          "
+        >
+          {simulating ? "Simulating..." : "Simulate Notification Event"}
+        </button>
+      </div>
+    </div>
+  );
+}
+
 // Helper function to map tech names to React Icons
 const getTechIcon = (tech) => {
   const t = tech.toLowerCase();
@@ -310,6 +548,10 @@ export default function ProjectDetails() {
             {project.details.architecture && (
               <div className="mb-16">
                 <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">System Architecture</h2>
+                
+                {project.slug === "nexus360" && <NexusArchitectureDiagram />}
+                {project.slug === "script-shelf" && <ScriptShelfVisualizer />}
+
                 <div className="rounded-2xl p-6 md:p-8 bg-gray-50 border border-gray-200 dark:bg-[#111216] dark:border-[#1F2937]">
                   <ul className="space-y-3 text-gray-700 dark:text-gray-300">
                     {project.details.architecture.map((l, k) => <li key={k}>• {l}</li>)}

@@ -269,36 +269,7 @@ export const projectsData = [
       ]
     }
   },
-  {
-    slug: "weather-dashboard",
-    title: "Weather Dashboard",
-    image: null,
-    category: "React",
-    description: "Real-time weather tracking with forecast and clean UI.",
-    tags: ["React", "API Integration", "Chart.js", "Tailwind"],
-    caseStudy: true,
-    github: "#",
-    live: "#",
-    featured: false,
-    date: "Sep 2024",
-    tech: ["React", "Tailwind", "OpenWeather API", "Chart.js"],
-    details: {
-      problem: "Users need a quick, reliable, and visually engaging way to check real-time weather conditions and long-term forecasts without wading through cluttered ads and complex interfaces.",
-      solution: "Created a clean, modern weather dashboard integrating OpenWeather API. Features dynamic background transitions based on current weather conditions, interactive multi-day forecast charts, and a search history system for fast city switching.",
-      architecture: [
-        "React functional components with local state management",
-        "Axios for fetching real-time weather and forecast data from OpenWeather API",
-        "Tailwind CSS for responsive layouts and theme changes",
-        "Chart.js integration for visualizing 5-day temperature trends"
-      ],
-      outcomes: [
-        "Instant access to real-time and 5-day forecasts",
-        "High performance through minimized API calls using caching",
-        "Responsive layout for mobile, tablet, and desktop views",
-        "Beautiful user interface with animated weather icon states"
-      ]
-    }
-  },
+
   {
     slug: "ArtWall",
     title: "ArtWall",
